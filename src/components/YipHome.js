@@ -13,31 +13,40 @@ export default function YipHome() {
                 <MainBodyBarrier>
                     <NotesNavigation>
                         <CreateNote>
-                            <div className={`innerDiv`}>
-                                <h3>Name</h3>
-                                <h3>Category</h3>
-                                <h3>Create</h3>
+                            <div className={`content-container`}>
+                                <div className={`child-content`}>
+                                    <h3>Name:</h3>
+                                    <h3>Category:</h3>
+                                </div>
+                                <div className={`child-content`}>git
+                                    <h3>Create:</h3>
+                                </div>
                             </div>
                         </CreateNote>
                         <Kennel>
-                            <div className={`innerDiv`}>
-                                <h3>Kennel</h3>
+                            <div className={`content-container`}>
+                                <div className={`child-content`}>
+                                    <h3>Kennel Name</h3>
+                                    <h3>Kennel Category</h3>
+                                </div>
+                                <div className={`child-content notes`}>
+                                    <Note><h4>Dogs</h4></Note>
+                                    <Note><h4>Dogs</h4></Note>
+                                    <Note><h4>Dogs</h4></Note>
+                                </div>
                             </div>
                         </Kennel>
                         <Kennel>
-                            <div className={`innerDiv`}>
-                                <h3>Kennel</h3>
-                                <Note><h4>Dogs</h4></Note>
-                                <Note><h4>Dogs</h4></Note>
-                                <Note><h4>Dogs</h4></Note>
-                            </div>
-                        </Kennel>
-                        <Kennel>
-                            <div className={`innerDiv`}>
-                                <h3>Kennel</h3>
-                                <Note><h4>Dogs</h4></Note>
-                                <Note><h4>Dogs</h4></Note>
-                                <Note><h4>Dogs</h4></Note>
+                            <div className={`content-container`}>
+                                <div className={`child-content`}>
+                                    <h3>Kennel Name</h3>
+                                    <h3>Kennel Category</h3>
+                                </div>
+                                <div className={`child-content notes`}>
+                                    <Note><h4>Dogs</h4></Note>
+                                    <Note><h4>Dogs</h4></Note>
+                                    <Note><h4>Dogs</h4></Note>
+                                </div>
                             </div>
                         </Kennel>
                     </NotesNavigation>
