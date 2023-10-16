@@ -1,11 +1,20 @@
-## Yip - Notes
+# Yip - Notes
 
-A simple and intuitive notes and documentation app built with React, allowing users to easily create, organize, and manage their notes and other information.
+## Description
+A React-based notes app to help you stay organized and productive. 
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+## Installation
+1. Clone this repository.
+2. Navigate to the project folder.
+3. Run `npm install` to install dependencies.
+4. Run `npm start` to start the app locally.
+
+## Usage
+- Open the app in your browser.
+- Create, edit, and delete notes in an organzied and efficient manner.
+
+## Roadmap
+- [ ] Add search functionality.
+- [ ] Implement categories for notes.
+- [ ] Color coding.
 
