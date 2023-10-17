@@ -1,16 +1,11 @@
-import React, { useState, useContext } from "react";
-import { Routes, Route, Link } from 'react-router-dom'
-import CSSContext from "../context/CSS-context";
-import { YipHomeCSSContainer, NotesNavigation, CreateNote, Kennel, Note, MainBody, MainBodyBarrier, InfoBoard } from "../styled-components/Yip-home-styled-components/YipHomeStyled";
+import { Link } from "react-router-dom";
+import { NotesNavigation, CreateNote, Kennel, Note, MainBody, MainBodyBarrier, InfoBoard } from "../styled-components/Yip-home-styled-components/YipHomeStyled";
 
-export default function YipHome() {
-
-    const stylesContext = useContext(CSSContext)
+export default function YipNoteHomeInfo () {
 
     return (
-        <YipHomeCSSContainer styles={stylesContext} >
-            <MainBody>
-                <MainBodyBarrier>
+        <MainBody>
+            <MainBodyBarrier>
                     <NotesNavigation>
                         <CreateNote>
                             <div className={`content-container`}>
@@ -18,19 +13,19 @@ export default function YipHome() {
                                     <h3>Name:</h3>
                                     <h3>Category:</h3>
                                 </div>
-                                <div className={`child-content`}>git
+                                <div className={`child-content`}>
                                     <h3>Create:</h3>
                                 </div>
                             </div>
                         </CreateNote>
                         <Kennel>
                             <div className={`content-container`}>
-                                <div className={`child-content`}>
+                                <div className={`child-content kennel-info`}>
                                     <h3>Kennel Name</h3>
                                     <h3>Kennel Category</h3>
                                 </div>
                                 <div className={`child-content notes`}>
-                                    <Note><h4>Dogs</h4></Note>
+                                    <Note><Link to={`/home/note`}>Test Note</Link></Note>
                                     <Note><h4>Dogs</h4></Note>
                                     <Note><h4>Dogs</h4></Note>
                                 </div>
@@ -38,7 +33,7 @@ export default function YipHome() {
                         </Kennel>
                         <Kennel>
                             <div className={`content-container`}>
-                                <div className={`child-content`}>
+                                <div className={`child-content kennel-info`}>
                                     <h3>Kennel Name</h3>
                                     <h3>Kennel Category</h3>
                                 </div>
@@ -57,7 +52,6 @@ export default function YipHome() {
                         </p>
                     </InfoBoard>
                 </MainBodyBarrier>
-            </MainBody>
-        </YipHomeCSSContainer>
+        </MainBody>
     )
 }

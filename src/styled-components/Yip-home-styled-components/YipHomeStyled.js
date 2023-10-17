@@ -42,6 +42,12 @@ export const Kennel = styled(CreateNote)`
         flex-flow: column nowrap;
     }
 
+    .child-content.kennel-info {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+    }
+
     .child-content.notes {
         display: flex;
         flex-flow: row nowrap;
@@ -52,6 +58,10 @@ export const Kennel = styled(CreateNote)`
 export const Note = styled.div`
     padding: 1rem;
     margin: 0 1.5rem;
+
+    a {
+        text-decoration: none;
+    }
 `
 
 export const InfoBoard = styled.div`
