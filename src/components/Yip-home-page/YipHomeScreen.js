@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Routes, Route, Link } from 'react-router-dom'
 import { TopNavigation } from "../../styled-components/App-styled/AppStyled";
 import YipNote from "../../sub-components/YipNote";
-import YipNoteHomeInfo from "../../sub-components/YipNoteHomeInfo";
+import YipHomeScreenBodyGUI from "../../sub-components/YipHomeScreenBodyGUI";
 
 
 export default function YipHomeInfo() {
@@ -15,7 +15,7 @@ export default function YipHomeInfo() {
                 <Link to={`info`}>Information</Link>
             </TopNavigation>
                 <Routes>
-                    <Route path={`info`} element={<YipNoteHomeInfo />} />
+                    <Route path={`info`} element={<YipHomeScreenBodyGUI />} />
                     <Route path={`note`} element={<YipNote />} />
                 </Routes>
         </>
