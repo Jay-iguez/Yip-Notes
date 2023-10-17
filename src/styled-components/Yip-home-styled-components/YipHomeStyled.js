@@ -6,40 +6,34 @@ export const YipHomeCSSContainer = styled.div`
     border: 1px solid black;
    }
 `
-export const MainBody = styled.div`
+export const StyledMainBody = styled.div`
     background-color: blanchedalmond;
     margin: 0 2rem;
     margin-top: 3rem;
     font-size: var(--font-size);    
 `
-export const MainBodyBarrier = styled.div`
+export const StyledMainBodyBarrier = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     margin: 1rem;
 `
 
-export const NotesNavigation = styled.div`
+export const StyledNotesNavigation = styled.div`
     background-color: bisque;
     margin: .5rem 1rem;
     width: 50%;
 `
 
-export const CreateNote = styled.div`
-    .content-container {
-        margin: .2rem .5rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .child-content {
-        padding: 1rem 2rem;
-    }
+export const StyledCreateNote = styled.div`
+    width: 40rem;
 `
 
-export const Kennel = styled(CreateNote)`
+export const StyledKennel = styled.div`
     .content-container {
+        display: flex;
         flex-flow: column nowrap;
+        justify-content: space-between;
     }
 
     .child-content.kennel-info {
@@ -55,7 +49,7 @@ export const Kennel = styled(CreateNote)`
     }
 `
 
-export const Note = styled.div`
+export const StyledNote = styled.div`
     padding: 1rem;
     margin: 0 1.5rem;
 
@@ -64,9 +58,6 @@ export const Note = styled.div`
     }
 `
 
-export const InfoBoard = styled.div`
-    background-color: aliceblue;
-    width: 40%;
-    margin: .5rem 1rem;
-`
+
+
 

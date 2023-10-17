@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { YipHomeCSSContainer } from "./styled-components/Yip-home-styled-components/YipHomeStyled";
 import CSSContext from "./context/CSS-context";
-import YipIntro from "./components/Yip-home-page/YipStartIntro";
+import YipStartIntro from "./components/Yip-Start-Intro/YipStartIntro";
 
 function App() {
   const stylesContext = useContext(CSSContext)
@@ -11,7 +11,7 @@ function App() {
   return (
     <CSSContext.Provider value={CSSState}>
       <YipHomeCSSContainer styles={CSSState}>
-        <YipIntro />
+        <YipStartIntro />
       </YipHomeCSSContainer>
     </CSSContext.Provider>
   );
