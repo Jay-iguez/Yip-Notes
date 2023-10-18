@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Routes, Route, Link } from 'react-router-dom'
 import { TopNavigation } from "../../styled-components/App-styled/AppStyled";
-import YipNote from "../Yip-notes/YipNote";
+import YipNote from "./YipNote";
 import YipHomeScreenBodyGUI from "./YipHomeScreenBodyGUI";
 
 

@@ -3,6 +3,7 @@ import uniqid from 'uniqid'
 export const YipNotesData = [
     {
         kennel: 'JavaScript stuff I want to study',
+        category: 'coding stuff',
         date: Date.now(),
         id: uniqid(),
         yips: [
@@ -20,6 +21,7 @@ export const YipNotesData = [
     },
     {
         kennel: 'Dog stuff ha-ha',
+        category: 'canines and such ha-ha',
         date: Date.now(),
         id: uniqid(),
         yips: [
