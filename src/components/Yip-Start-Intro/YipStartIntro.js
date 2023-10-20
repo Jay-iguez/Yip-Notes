@@ -23,6 +23,7 @@ console.log(`work?`, data)
 
 // So my options are to store either my notes data as JSON and parse it - or just store the data itself albeit in an unconvential manner I have yet to come across with of course IndexedDB. I'll just store them directly, i'll figure it out! Parsing will take too long as JSON, especially with how many notes people can create - trust me I would know ha-ha
 
+
 export default function YipIntro() {
 
     return (
