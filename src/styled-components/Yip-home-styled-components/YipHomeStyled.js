@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const YipHomeCSSContainer = styled.div`
+export const YipCSSStyles = styled.div`
     --font-size : ${props => props.styles.properties.fontSize};
    * {
     border: 1px solid black;

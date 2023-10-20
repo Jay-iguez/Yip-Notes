@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { YipHomeCSSContainer } from "./styled-components/Yip-home-styled-components/YipHomeStyled";
+import { YipCSSStyles } from "./styled-components/Yip-home-styled-components/YipHomeStyled";
 import CSSContext from "./context/CSS-context";
 import YipStartIntro from "./components/Yip-Start-Intro/YipStartIntro";
 
@@ -10,9 +10,9 @@ function App() {
 
   return (
     <CSSContext.Provider value={CSSState}>
-      <YipHomeCSSContainer styles={CSSState}>
+      <YipCSSStyles styles={CSSState}>
         <YipStartIntro />
-      </YipHomeCSSContainer>
+      </YipCSSStyles >
     </CSSContext.Provider>
   );
 }
