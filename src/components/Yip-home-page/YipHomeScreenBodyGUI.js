@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { StyledNotesNavigation, StyledCreateNote, StyledKennel, StyledNote, StyledMainBody, StyledMainBodyBarrier, StyledInfoBoard } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
-import YipKennelInfo from "./YipKennelInfo";
+import YipKennelsInfo from "./YipKennelsInfo";
 import YipCreate from "./YipCreate";
 
-export default function YipNoteHomeInfo () {
+export default function YipNoteHomeInfo(props) {
 
     return (
-        <StyledMainBody>
-            <StyledMainBodyBarrier>
-                    <YipKennelInfo />
+        <>
+            <StyledMainBody>
+                <StyledMainBodyBarrier>
+                    <YipKennelsInfo kennelRoutes={props.kennelRoutes} setKennelRoutes={props.setKennelRoutes} kennelData={props.kennelData} />
                     <YipCreate />
                 </StyledMainBodyBarrier>
-        </StyledMainBody>
+            </StyledMainBody>
+        </>
     )
 }

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { StyledNotesNavigation, StyledKennel, StyledNote } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
-import { YipNotesData } from "../../data/MockNoteData";
 import { YipKennel } from "./YipKennel";
 
 /**
@@ -25,15 +23,15 @@ import { YipKennel } from "./YipKennel";
     logic to check amount of storage IndexedDB would allow on my devices. It's sufficient enough! 10 Gbs worth of stuff AT LEAST is plenty.
  */
 
-export default function YipKennelInfo() {
-    const [kennelData, setKennelData] = useState(YipNotesData)
+export default function YipKennelsInfo(props) {
+    const { kennelRoutes, setKennelRoutes, kennelData } = props
 
     return (
         <>
             <StyledNotesNavigation>
                 {
                     kennelData.map(kennel => {
-                        return <YipKennel kennel={kennel} />
+                        return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
                     })
                 }
             </StyledNotesNavigation>
