@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { StyledKennel } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import { YipKennelNoteLink } from "./YipKennelNoteLink";
-import YipNote from "./YipNote";
+import YipNote from "../Yip-notes/YipNote";
 
 export const YipKennel = (props) => {
 

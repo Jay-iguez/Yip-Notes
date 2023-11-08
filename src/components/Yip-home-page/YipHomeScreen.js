@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from 'react-router-dom';
-import { TopNavigation } from "../../styled-components/App-styled/AppStyled";
+import { StyledTopNavigation } from "../../styled-components/App-styled/AppStyled";
 import YipHomeScreenBodyGUI from "./YipHomeScreenBodyGUI";
-import YipNote from "./YipNote";
+import YipNote from "../Yip-notes/YipNote";
 import { YipRoutesCreator } from "./YipRoutesCreator";
 import { YipNotesData } from "../../data/MockNoteData";
 
@@ -16,9 +16,6 @@ const RouteReturn = () => {
 export default function YipHomeInfo() {
     const [kennelData, setKennelData] = useState(YipNotesData)
     const [kennelRoutes, setKennelRoutes] = useState(null)
-    //<YipRoutesCreator kennelData={kennelData} />
-
-
 
     useEffect(() => {
 
@@ -52,13 +49,20 @@ export default function YipHomeInfo() {
 
     }, [kennelData])
 
+    useEffect(() => {
+        const body = document.querySelector('body')
+        body.style.backgroundColor = '#daf2ea'
+    }, [])
+
     return (
         <>
-            <TopNavigation>
-                <Link to={`navigation-screen`}>Home</Link>
-                <Link to={`settings`}>Settings</Link>
-                <Link to={`info`}>Information</Link>
-            </TopNavigation>
+            <StyledTopNavigation>
+                <div className="nav-items">
+                    <Link to={`navigation-screen`}>Home</Link>
+                    <Link to={`settings`}>Settings</Link>
+                    <Link to={`info`}>Information</Link>
+                </div>
+            </StyledTopNavigation>
             <Routes>
                 <Route path={`navigation-screen`} element={<YipHomeScreenBodyGUI kennelData={kennelData} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />} />
                 {

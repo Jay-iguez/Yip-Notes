@@ -41,5 +41,18 @@ export const YipNotesData = [
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             }
         ]
+    },
+    {
+        kennel: 'Stuff I finally made work',
+        category: 'acomplishments',
+        date: Date.now(),
+        id: uniqid(),
+        yips: [
+            {
+                yip: 'What in tarnation this worked?',
+                id: uniqid('they'),
+                text: 'Just some random text and not lorum ipsum cause I was too lazy to copy and paste some lol'
+            }
+        ]
     }
 ]

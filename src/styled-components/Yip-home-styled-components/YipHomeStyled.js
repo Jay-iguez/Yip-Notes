@@ -2,31 +2,32 @@ import styled from "styled-components";
 
 export const YipCSSStyles = styled.div`
     --font-size : ${props => props.styles.properties.fontSize};
+    font-family: 'Sunflower', sans-serif;
    * {
     border: 1px solid black;
    }
+   /** */
 `
 export const StyledMainBody = styled.div`
-    background-color: blanchedalmond;
+    //background-color: #a3bac4;
     margin: 0 2rem;
     margin-top: 3rem;
     font-size: var(--font-size);    
 `
 export const StyledMainBodyBarrier = styled.div`
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
-    margin: 1rem;
 `
 
 export const StyledNotesNavigation = styled.div`
-    background-color: bisque;
-    margin: .5rem 1rem;
-    width: 50%;
+    background-color: #cedbd7;
+    width: 59%;
 `
 
 export const StyledCreateNote = styled.div`
-    width: 40rem;
+    background-color: #cedbd7;
+    width: 40%;
+    height: 80vh;
 `
 
 export const StyledKennel = styled.div`
@@ -57,6 +58,8 @@ export const StyledNote = styled.div`
         text-decoration: none;
     }
 `
+
+
 
 
 
