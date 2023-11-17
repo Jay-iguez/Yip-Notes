@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from 'react-router-dom';
-import { StyledTopNavigation } from "../../styled-components/App-styled/AppStyled";
+import { StyledYipHomeScreenNavBar } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import YipHomeScreenBodyGUI from "./YipHomeScreenBodyGUI";
 import YipNote from "../Yip-notes/YipNote";
 import { YipRoutesCreator } from "./YipRoutesCreator";
@@ -16,6 +16,11 @@ const RouteReturn = () => {
 export default function YipHomeInfo() {
     const [kennelData, setKennelData] = useState(YipNotesData)
     const [kennelRoutes, setKennelRoutes] = useState(null)
+
+    useEffect(() => {
+        const body = document.querySelector('body')
+        body.style.backgroundColor = '#373943'
+    }, [])
 
     useEffect(() => {
 
@@ -49,20 +54,19 @@ export default function YipHomeInfo() {
 
     }, [kennelData])
 
-    useEffect(() => {
-        const body = document.querySelector('body')
-        body.style.backgroundColor = '#daf2ea'
-    }, [])
+
 
     return (
         <>
-            <StyledTopNavigation>
+            <StyledYipHomeScreenNavBar>
                 <div className="nav-items">
                     <Link to={`navigation-screen`}>Home</Link>
                     <Link to={`settings`}>Settings</Link>
                     <Link to={`info`}>Information</Link>
                 </div>
-            </StyledTopNavigation>
+                <button className="temp-create">Create</button>
+            </StyledYipHomeScreenNavBar>
+
             <Routes>
                 <Route path={`navigation-screen`} element={<YipHomeScreenBodyGUI kennelData={kennelData} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />} />
                 {
