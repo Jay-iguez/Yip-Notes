@@ -22,6 +22,7 @@ export const StyledMainBodyBarrier = styled.div`
 export const StyledNotesNavigation = styled.div`
     background-color: #cedbd7;
     width: 59%;
+    overflow-y: auto;
 `
 
 export const StyledCreateNote = styled.div`
@@ -31,6 +32,8 @@ export const StyledCreateNote = styled.div`
 `
 
 export const StyledKennel = styled.div`
+    height: 30%;
+
     .content-container {
         display: flex;
         flex-flow: column nowrap;
@@ -50,9 +53,23 @@ export const StyledKennel = styled.div`
     }
 `
 
+export const StyledKennelBox = styled.div`
+    .kennel-name {
+        color: red;
+    }
+    .kennel-category {
+        color: blue;
+    }
+`
 export const StyledNote = styled.div`
+`
+
+export const StyledNoteLink = styled.div`
+display: flex;
+flex-flow: row;
     padding: 1rem;
     margin: 0 1.5rem;
+    overflow: auto;
 
     a {
         text-decoration: none;

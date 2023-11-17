@@ -1,8 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { StyledKennel } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
+import { StyledKennel, StyledKennelBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import { YipKennelNoteLink } from "./YipKennelNoteLink";
-import YipNote from "../Yip-notes/YipNote";
 
 export const YipKennel = (props) => {
 
@@ -15,19 +13,16 @@ export const YipKennel = (props) => {
     return (
         <>
             <StyledKennel>
-                <div className={`content-container`}>
-                    <div className={`child-content kennel-info`}>
-                        <h3>{kennel.kennel}</h3>
-                        <h3>{kennel.category}</h3>
-                    </div>
-                    {
-
-                        kennel.yips.map(yip => {
-                            const splitYipName = yip.yip.split(" ").join("-")
-                            return <YipKennelNoteLink name={{name: yip.yip, splitYipName: splitYipName}} kennelName={splitKennelName} key={yip.id + '-link'} />
-                        })
-                    }
-                </div>
+                <StyledKennelBox>
+                    <h3 className="kennel-name">{kennel.kennel}</h3>
+                    <h3 className="kennel-category">{kennel.category}</h3>
+                </StyledKennelBox>
+                {
+                    kennel.yips.map(yip => {
+                        const splitYipName = yip.yip.split(" ").join("-")
+                        return <YipKennelNoteLink name={{ name: yip.yip, splitYipName: splitYipName }} kennelName={splitKennelName} key={yip.id + '-link'} />
+                    })
+                }
             </StyledKennel>
         </>
     )
