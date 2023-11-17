@@ -12,33 +12,54 @@ export const YipCSSStyles = styled.div`
 `
 
 // YipHomeScreenBodyGUI --------
-export const StyledMainBody = styled.div`
-    //background-color: #a3bac4;
+export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 100vh;
+`
+export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
+    height: 4.5vh;
+`
+export const StyledYipHomeScreenGUI_Content = styled.div`
+    border: .5rem solid #1D1F21;
+    background-color: #757575;
+    height: 85vh; // needs to be fixed
     margin: 0 2rem;
-    margin-top: 10vh;
+    padding: .5rem;
+    overflow: auto;
     font-size: var(--font-size);    
 `
-export const StyledMainBodyBarrier = styled.div`
+/**
+ * 
+ * export const StyledMainBodyBarrier = styled.div`
     display: flex;
     justify-content: space-between;
 `
+ */
 
-export const StyledNotesNavigation = styled.div`
-    background-color: #cedbd7;
-    width: 59%;
-    overflow-y: auto;
-`
 //
+
+// YipKennelsInfo --------
+
+/**
+ * export const StyledYipKennelsInfoListKennels = styled.div`
+    background-color: #757575;
+    overflow-y: auto;
+    height: 100%;
+`
+ * 
+ */
+//
+
+
 
 
 
 // YipHomeScreen ---------
 export const StyledYipHomeScreenNavBar = styled.nav`
-    border: 1px solid black;
     background-color: #1D1F21; 
     position: fixed;
     width: 100%;
-    top: 0;
     display: flex;
    
    .nav-items {

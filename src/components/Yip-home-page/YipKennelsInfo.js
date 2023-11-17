@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyledNotesNavigation, StyledKennel, StyledNote } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
+import { StyledYipKennelsInfoListKennels, StyledKennel, StyledNote } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import { YipKennel } from "./YipKennel";
 
 /**
@@ -28,13 +28,13 @@ export default function YipKennelsInfo(props) {
 
     return (
         <>
-            <StyledNotesNavigation>
+            
                 {
                     kennelData.map(kennel => {
                         return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
                     })
                 }
-            </StyledNotesNavigation>
+         
         </>
 
     )

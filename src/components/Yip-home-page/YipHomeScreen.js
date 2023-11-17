@@ -64,7 +64,6 @@ export default function YipHomeInfo() {
                     <Link to={`settings`}>Settings</Link>
                     <Link to={`info`}>Information</Link>
                 </div>
-                <button className="temp-create">Create</button>
             </StyledYipHomeScreenNavBar>
 
             <Routes>
