@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledKennel, StyledKennelBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
+import { StyledYipKennel_KennelContainer, StyledYipKennel_KennelItemBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import { YipKennelNoteLink } from "./YipKennelNoteLink";
 
 export const YipKennel = (props) => {
@@ -12,18 +12,37 @@ export const YipKennel = (props) => {
 
     return (
         <>
-            <StyledKennel>
-                <StyledKennelBox>
-                    <h3 className="kennel-name">{kennel.kennel}</h3>
-                    <h3 className="kennel-category">{kennel.category}</h3>
-                </StyledKennelBox>
+            <StyledYipKennel_KennelContainer>
+                <StyledYipKennel_KennelItemBox>
+                    <div className="kennel_information">
+                        <div>
+                            <h3>{kennel.kennel}</h3>
+                            <h3>{kennel.category}</h3>
+                        </div>
+                        <button>Edit Kennel</button>
+                    </div>
+                </StyledYipKennel_KennelItemBox>
                 {
                     kennel.yips.map(yip => {
                         const splitYipName = yip.yip.split(" ").join("-")
                         return <YipKennelNoteLink name={{ name: yip.yip, splitYipName: splitYipName }} kennelName={splitKennelName} key={yip.id + '-link'} />
                     })
                 }
-            </StyledKennel>
+            </StyledYipKennel_KennelContainer>
         </>
     )
 }
+
+/**
+ *  <StyledYipKennel_KennelItemBox>
+                    <h3 className="kennel-name">{kennel.kennel}</h3>
+                    <h3 className="kennel-category">{kennel.category}</h3>
+                </StyledYipKennel_KennelItemBox>
+                {
+                    kennel.yips.map(yip => {
+                        const splitYipName = yip.yip.split(" ").join("-")
+                        return <YipKennelNoteLink name={{ name: yip.yip, splitYipName: splitYipName }} kennelName={splitKennelName} key={yip.id + '-link'} />
+                    })
+                }
+ * 
+ */

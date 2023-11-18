@@ -1,14 +1,16 @@
 import React from "react"
-import { StyledNoteLink } from "../../styled-components/Yip-home-styled-components/YipHomeStyled"
+import { StyledNoteLink, StyledYipKennel_KennelItemBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled"
 import { Link } from "react-router-dom"
 
 export const YipKennelNoteLink = (props) => {
-    
+
     const { name, kennelName } = props
 
     return (
-        <StyledNoteLink>
-            <Link to={`/home/${kennelName}/${name.splitYipName}`}>{name.name}</Link>
-        </StyledNoteLink>
+        <StyledYipKennel_KennelItemBox>
+            <div >
+                <Link to={`/home/${kennelName}/${name.splitYipName}`}><div className="kennel_yip" >{kennelName}</div></Link>
+            </div>
+        </StyledYipKennel_KennelItemBox>
     )
 }

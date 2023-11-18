@@ -23,11 +23,14 @@ export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
 export const StyledYipHomeScreenGUI_Content = styled.div`
     border: .5rem solid #1D1F21;
     background-color: #757575;
-    height: 85vh; // needs to be fixed
+    height: 91.5vh; // needs to be fixed
     margin: 0 2rem;
     padding: .5rem;
     overflow: auto;
-    font-size: var(--font-size);    
+    font-size: var(--font-size); 
+    
+    display: flex;
+    flex-flow: column nowrap;
 `
 /**
  * 
@@ -100,36 +103,57 @@ export const StyledCreateNote = styled.div`
     height: 80vh;
 `
 
-export const StyledKennel = styled.div`
+// YipKennel --------
+export const StyledYipKennel_KennelContainer = styled.div`
     height: 30%;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #373943;
+    border: .5rem solid #1D1F21;
+    margin: .5rem 0;
+    overflow: auto;
+`
 
-    .content-container {
+export const StyledYipKennel_KennelItemBox = styled.div`
+    height: 15rem; // Need to be changed
+    width: 15rem;
+
+    margin: 0 .5rem;
+    padding-top: 1rem;
+    display: flex;
+
+    .kennel_information {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;
+
+        h3 {
+            background-color: #2a2b34;
+            color: #cdcfd0;
+        }
+        
+        button {
+            text-decoration: none;
+            color: white;
+            background-color: #373943;
+        }
     }
 
-    .child-content.kennel-info {
+    .kennel_yip {
         display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around;
-    }
-
-    .child-content.notes {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: start;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2a2b34;
+        width: 15rem;
+        height: 100%;
     }
 `
+//
 
-export const StyledKennelBox = styled.div`
-    .kennel-name {
-        color: red;
-    }
-    .kennel-category {
-        color: blue;
-    }
-`
+
+
+
+
 export const StyledNote = styled.div`
 `
 

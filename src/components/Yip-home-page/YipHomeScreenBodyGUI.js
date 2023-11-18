@@ -11,7 +11,6 @@ export default function YipNoteHomeInfo(props) {
                 <StyledYipHomeScreenGUI_ContentTopBorder></StyledYipHomeScreenGUI_ContentTopBorder>
                 <StyledYipHomeScreenGUI_Content>
                     <YipKennelsInfo kennelRoutes={props.kennelRoutes} setKennelRoutes={props.setKennelRoutes} kennelData={props.kennelData} />
-
                 </StyledYipHomeScreenGUI_Content>
             </StyledYipHomeScreenGUI_ContentContainer>
         </>
