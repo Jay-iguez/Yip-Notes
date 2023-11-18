@@ -19,7 +19,7 @@ export default function YipHomeInfo() {
 
     useEffect(() => {
         const body = document.querySelector('body')
-        body.style.backgroundColor = '#373943'
+        body.style.backgroundColor = '#1D1F21'
     }, [])
 
     useEffect(() => {

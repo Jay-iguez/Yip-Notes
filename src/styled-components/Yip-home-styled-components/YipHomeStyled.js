@@ -11,56 +11,9 @@ export const YipCSSStyles = styled.div`
    */
 `
 
-// YipHomeScreenBodyGUI --------
-export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    max-height: 100vh;
-`
-export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
-    height: 4.5vh;
-`
-export const StyledYipHomeScreenGUI_Content = styled.div`
-    border: .5rem solid #1D1F21;
-    background-color: #757575;
-    height: 91.5vh; // needs to be fixed
-    margin: 0 2rem;
-    padding: .5rem;
-    overflow: auto;
-    font-size: var(--font-size); 
-    
-    display: flex;
-    flex-flow: column nowrap;
-`
-/**
- * 
- * export const StyledMainBodyBarrier = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
- */
-
-//
-
-// YipKennelsInfo --------
-
-/**
- * export const StyledYipKennelsInfoListKennels = styled.div`
-    background-color: #757575;
-    overflow-y: auto;
-    height: 100%;
-`
- * 
- */
-//
-
-
-
-
-
 // YipHomeScreen ---------
 export const StyledYipHomeScreenNavBar = styled.nav`
-    background-color: #1D1F21; 
+    background-color: #373943; 
     position: fixed;
     width: 100%;
     display: flex;
@@ -75,25 +28,37 @@ export const StyledYipHomeScreenNavBar = styled.nav`
         a {
             text-align: center;
             text-decoration: none;
-            background-color: #373943;
+            background-color: #2a2b34;
             color: white;
             padding: .1rem 2rem;
+            margin: 0 .2rem;
+            border-right: .4rem solid #1D1F21;
         }
-   }
-
-   .temp-create {
-    position: absolute;
-    top: 3rem;
-    left: 2vw;
-    text-align: center;
-    text-decoration: none;
-    background-color: #373943;
-    color: white;
-    padding: .1rem 2rem;
    }
 
 `
 //
+
+
+
+// YipHomeScreenBodyGUI --------
+export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 100vh;
+`
+export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
+    height: 4.5vh;
+`
+export const StyledYipHomeScreenGUI_Content = styled.div`
+    background-color: #373943;
+    max-height: 91.5vh; // needs to be fixed
+    margin: 0 2rem;
+    overflow: auto;
+    font-size: var(--font-size); 
+    display: flex;
+    flex-flow: column nowrap;
+`
 
 
 
@@ -109,8 +74,8 @@ export const StyledYipKennel_KennelContainer = styled.div`
     display: flex;
     flex-flow: row nowrap;
     background-color: #373943;
-    border: .5rem solid #1D1F21;
-    margin: .5rem 0;
+    border-bottom: .5rem solid #1D1F21;
+    //padding-bottom: .5rem;
     overflow: auto;
 `
 
@@ -119,13 +84,15 @@ export const StyledYipKennel_KennelItemBox = styled.div`
     width: 15rem;
 
     margin: 0 .5rem;
-    padding-top: 1rem;
+    padding: 1rem 0;
     display: flex;
 
     .kennel_information {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;
+        width: 15rem;
+        height: 100%;
 
         h3 {
             background-color: #2a2b34;
@@ -135,7 +102,9 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         button {
             text-decoration: none;
             color: white;
-            background-color: #373943;
+            background-color: #2a2b34;
+            border: none;
+            border-right: .4rem solid #1D1F21;
         }
     }
 
@@ -144,6 +113,7 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         justify-content: space-between;
         align-items: center;
         background-color: #2a2b34;
+        border-right: .4rem solid #1D1F21;
         width: 15rem;
         height: 100%;
     }

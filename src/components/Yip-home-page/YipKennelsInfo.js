@@ -28,13 +28,11 @@ export default function YipKennelsInfo(props) {
 
     return (
         <>
-            
-                {
-                    kennelData.map(kennel => {
-                        return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
-                    })
-                }
-         
+            {
+                kennelData.map(kennel => {
+                    return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
+                })
+            }
         </>
 
     )
