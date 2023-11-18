@@ -25,7 +25,7 @@ export const YipKennel = (props) => {
                 {
                     kennel.yips.map(yip => {
                         const splitYipName = yip.yip.split(" ").join("-")
-                        return <YipKennelNoteLink name={{ name: yip.yip, splitYipName: splitYipName }} kennelName={splitKennelName} key={yip.id + '-link'} />
+                        return <YipKennelNoteLink content={{ name: yip.yip, splitYipName: splitYipName, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
                     })
                 }
             </StyledYipKennel_KennelContainer>

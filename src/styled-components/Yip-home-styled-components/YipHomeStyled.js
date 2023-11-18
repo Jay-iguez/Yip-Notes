@@ -75,14 +75,12 @@ export const StyledYipKennel_KennelContainer = styled.div`
     flex-flow: row nowrap;
     background-color: #373943;
     border-bottom: .5rem solid #1D1F21;
-    //padding-bottom: .5rem;
     overflow: auto;
 `
 
 export const StyledYipKennel_KennelItemBox = styled.div`
     height: 15rem; // Need to be changed
     width: 15rem;
-
     margin: 0 .5rem;
     padding: 1rem 0;
     display: flex;
@@ -108,14 +106,28 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         }
     }
 
+
+    a {
+        text-decoration: none;
+    }
+
     .kennel_yip {
         display: flex;
+        flex-flow: column nowrap;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
         background-color: #2a2b34;
         border-right: .4rem solid #1D1F21;
         width: 15rem;
         height: 100%;
+
+        h3, p {
+            color: #cdcfd0;
+        };
+
+        h3 {
+            border-bottom: .4rem solid #373943;
+        }
     }
 `
 //

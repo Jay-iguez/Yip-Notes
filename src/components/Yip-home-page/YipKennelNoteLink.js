@@ -4,13 +4,18 @@ import { Link } from "react-router-dom"
 
 export const YipKennelNoteLink = (props) => {
 
-    const { name, kennelName } = props
+    const { content, kennelName } = props
 
     return (
-        <StyledYipKennel_KennelItemBox>
-            <div>
-                <Link to={`/home/${kennelName}/${name.splitYipName}`}><div className="kennel_yip" >{kennelName}</div></Link>
-            </div>
+        <StyledYipKennel_KennelItemBox> 
+           
+                <Link to={`/home/${kennelName}/${content.splitYipName}`}>
+                    <div className="kennel_yip" >
+                        <h3>{content.name}</h3>
+                        <p>{content.text}</p>
+                    </div>
+                </Link>
+          
         </StyledYipKennel_KennelItemBox>
     )
 }
