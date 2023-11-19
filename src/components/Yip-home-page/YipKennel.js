@@ -19,7 +19,7 @@ export const YipKennel = (props) => {
                             <h3>{kennel.kennel}</h3>
                             <h3>{kennel.category}</h3>
                         </div>
-                        <button>Edit Kennel</button>
+                        <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledYipKennel_KennelItemBox>
                 {

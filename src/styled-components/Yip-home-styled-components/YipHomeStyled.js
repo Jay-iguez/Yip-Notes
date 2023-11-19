@@ -4,11 +4,25 @@ export const YipCSSStyles = styled.div`
     --font-size : ${props => props.styles.properties.fontSize};
     font-family: 'Sunflower', sans-serif;
    
-   /**
-** {
-    border: 1px solid black;
-   }
-   */
+    .button {
+        align-self: flex-start;
+        text-align: center;
+        text-decoration: none;
+        background-color: #2a2b34;
+        color: white;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: .1rem 2rem;
+        margin: 0 .2rem;
+        margin-top: .5rem;
+        border-right: .4rem solid #1D1F21;
+    }
+
+    .button:hover, a:hover {
+        color: grey;
+    }
+
 `
 
 // YipHomeScreen ---------
@@ -17,6 +31,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
     position: fixed;
     width: 100%;
     display: flex;
+    top: 0;
    
    .nav-items {
         width: 25vw;
@@ -32,6 +47,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
             color: white;
             padding: .1rem 2rem;
             margin: 0 .2rem;
+            font-size: 1rem;
             border-right: .4rem solid #1D1F21;
         }
    }
@@ -46,6 +62,7 @@ export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
     max-height: 100vh;
+
 `
 export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
     height: 4.5vh;
@@ -97,12 +114,7 @@ export const StyledYipKennel_KennelItemBox = styled.div`
             color: #cdcfd0;
         }
         
-        button {
-            text-decoration: none;
-            color: white;
-            background-color: #2a2b34;
-            border: none;
-            border-right: .4rem solid #1D1F21;
+        .button.edit_kennel {
         }
     }
 
@@ -127,17 +139,12 @@ export const StyledYipKennel_KennelItemBox = styled.div`
 
         h3 {
             border-bottom: .4rem solid #373943;
+            font-style: italic;
         }
     }
 `
 //
 
-
-
-
-
-export const StyledNote = styled.div`
-`
 
 export const StyledNoteLink = styled.div`
 display: flex;

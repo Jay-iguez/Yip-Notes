@@ -27,7 +27,7 @@ export default function YipKennelsInfo(props) {
     const { kennelRoutes, setKennelRoutes, kennelData } = props
 
     return (
-        <>
+        <>  <button className="button" >Create</button>
             {
                 kennelData.map(kennel => {
                     return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
