@@ -4,8 +4,6 @@ import { YipKennelNoteLink } from "./YipKennelNoteLink";
 
 export const YipKennel = (props) => {
 
-    let array = []
-
     const { kennel, kennelRoutes, setKennelRoutes } = props
 
     const splitKennelName = kennel.kennel.split(" ").join("-")
@@ -22,11 +20,12 @@ export const YipKennel = (props) => {
                         <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledYipKennel_KennelItemBox>
-                {
+                { kennel.yips.length < 5 ?
                     kennel.yips.map(yip => {
-                        const splitYipName = yip.yip.split(" ").join("-")
-                        return <YipKennelNoteLink content={{ name: yip.yip, splitYipName: splitYipName, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
+                        return <YipKennelNoteLink content={{ name: yip.yip, id: yip.id, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
                     })
+                    :
+                    <h3>This is gonna need a drop down!</h3>
                 }
             </StyledYipKennel_KennelContainer>
         </>

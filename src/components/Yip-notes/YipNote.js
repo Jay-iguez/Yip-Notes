@@ -11,6 +11,7 @@ export default function YipNote({ yip = { yip: 'dogs!', id: '123', text: 'You ko
         <StyledYipHomeScreenGUI_ContentContainer>
             <StyledYipHomeScreenGUI_ContentTopBorder />
             <StyledYipHomeScreenGUI_Content>
+                <button className="button">Back</button>
                 <p>{yip.yip}</p>
                 <p>{yip.id}</p>
                 <ReactQuill theme="snow" value={value} onChange={setValue} />

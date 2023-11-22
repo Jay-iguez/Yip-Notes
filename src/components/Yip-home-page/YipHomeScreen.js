@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { StyledYipHomeScreenNavBar } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
 import YipHomeScreenBodyGUI from "./YipHomeScreenBodyGUI";
 import YipNote from "../Yip-notes/YipNote";
-import { YipRoutesCreator } from "./YipRoutesCreator";
+import { YipRoutesCreator } from "../child-helpers/YipRoutesCreator";
 import { YipNotesData } from "../../data/MockNoteData";
 
 const RouteReturn = () => {
@@ -30,9 +30,7 @@ export default function YipHomeInfo() {
                 const splitKennelName = kennel.kennel.split(" ").join("-")
 
                 return kennel.yips.map(yip => {
-
-                    const splitYipName = yip.yip.split(" ").join("-")
-                    return <Route path={`${splitKennelName}/${splitYipName}`} element={<YipNote yip={yip} />} />
+                    return <Route path={`${splitKennelName}/${yip.id}`} element={<YipNote yip={yip} />} />
                 })
             })
 

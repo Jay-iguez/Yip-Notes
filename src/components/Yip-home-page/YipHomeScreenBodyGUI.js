@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
-import { StyledNotesNavigation, StyledCreateNote, StyledKennel, StyledNote, StyledYipHomeScreenGUI_Content, StyledYipHomeScreenGUI_ContentContainer, StyledYipHomeScreenGUI_ContentTopBorder, StyledInfoBoard } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
-import YipKennelsInfo from "./YipKennelsInfo";
-import YipCreate from "./YipCreate";
+import React, { useState } from 'react'
+import { StyledYipHomeScreenGUI_Content, StyledYipHomeScreenGUI_ContentContainer, StyledYipHomeScreenGUI_ContentTopBorder, StyledInfoBoard } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
+import YipKennelsInfo from "../YipHomeMenuScreens/YipKennelsScreen";
+import Condition from '../child-helpers/Condition';
+
 
 export default function YipNoteHomeInfo(props) {
+    const [currentMenuScreen, setCurrentMenuScreen] = useState('kennels-list')
 
     return (
         <>
             <StyledYipHomeScreenGUI_ContentContainer>
                 <StyledYipHomeScreenGUI_ContentTopBorder />
                 <StyledYipHomeScreenGUI_Content>
-                    <YipKennelsInfo kennelRoutes={props.kennelRoutes} setKennelRoutes={props.setKennelRoutes} kennelData={props.kennelData} />
+                    <Condition toRender={currentMenuScreen} setToRender={setCurrentMenuScreen} state={props} />
                 </StyledYipHomeScreenGUI_Content>
             </StyledYipHomeScreenGUI_ContentContainer>
         </>
@@ -18,3 +20,4 @@ export default function YipNoteHomeInfo(props) {
 }
 
 //<YipCreate />
+// <YipKennelsInfo kennelRoutes={props.kennelRoutes} setKennelRoutes={props.setKennelRoutes} kennelData={props.kennelData} />

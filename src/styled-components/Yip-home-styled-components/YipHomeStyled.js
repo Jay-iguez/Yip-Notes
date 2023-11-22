@@ -16,11 +16,15 @@ export const YipCSSStyles = styled.div`
         padding: .1rem 2rem;
         margin: 0 .2rem;
         margin-top: .5rem;
-        border-right: .4rem solid #1D1F21;
+        border-left: .4rem solid #1D1F21;
     }
 
     .button:hover, a:hover {
         color: grey;
+    }
+
+    * {
+        color: #cdcfd0;
     }
 
 `
@@ -48,7 +52,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
             padding: .1rem 2rem;
             margin: 0 .2rem;
             font-size: 1rem;
-            border-right: .4rem solid #1D1F21;
+            border-left: .4rem solid #1D1F21;
         }
    }
 
@@ -65,7 +69,7 @@ export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
 
 `
 export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
-    height: 4.5vh;
+    height: 5vh;
 `
 export const StyledYipHomeScreenGUI_Content = styled.div`
     background-color: #373943;
@@ -89,10 +93,10 @@ export const StyledCreateNote = styled.div`
 export const StyledYipKennel_KennelContainer = styled.div`
     height: 30%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     background-color: #373943;
     border-bottom: .5rem solid #1D1F21;
-    overflow: auto;
+    
 `
 
 export const StyledYipKennel_KennelItemBox = styled.div`
@@ -129,7 +133,7 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         justify-content: space-between;
         align-items: start;
         background-color: #2a2b34;
-        border-right: .4rem solid #1D1F21;
+        border-left: .4rem solid #1D1F21;
         width: 15rem;
         height: 100%;
 

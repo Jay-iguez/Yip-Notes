@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyledYipKennelsInfoListKennels, StyledKennel, StyledNote } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
-import { YipKennel } from "./YipKennel";
+import { YipKennel } from "../child-helpers/YipKennel";
 
 /**
  * 
@@ -24,10 +23,11 @@ import { YipKennel } from "./YipKennel";
  */
 
 export default function YipKennelsInfo(props) {
-    const { kennelRoutes, setKennelRoutes, kennelData } = props
+    const { state, setToRender } = props
+    const { kennelRoutes, setKennelRoutes, kennelData } = state
 
     return (
-        <>  <button className="button" >Create</button>
+        <>  <button className="button" onClick={() => setToRender('create')}>Create</button>
             {
                 kennelData.map(kennel => {
                     return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />

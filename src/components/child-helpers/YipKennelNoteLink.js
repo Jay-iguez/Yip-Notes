@@ -9,7 +9,7 @@ export const YipKennelNoteLink = (props) => {
     return (
         <StyledYipKennel_KennelItemBox> 
            
-                <Link to={`/home/${kennelName}/${content.splitYipName}`}>
+                <Link to={`/home/${kennelName}/${content.id}`}>
                     <div className="kennel_yip" >
                         <h3>{content.name}</h3>
                         <p>{content.text}</p>
