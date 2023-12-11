@@ -45,6 +45,13 @@ export const YipCSSStyles = styled.div`
         color: #cdcfd0;
     }
 
+    .caret {
+        border-left: solid 3.5rem transparent; 
+        border-bottom: solid 3.5rem #fff; 
+        height: 0; 
+        width: 0; 
+    }
+
 `
 
 // YipHomeScreen ---------
@@ -110,7 +117,7 @@ export const StyledCreateNote = styled.div`
 `
 
 // YipKennel --------
-export const StyledYipKennel_KennelContainer = styled.div`
+export const StyledKennelContainer = styled.div`
     height: 30%;
     display: flex;
     flex-flow: row wrap;
@@ -119,8 +126,8 @@ export const StyledYipKennel_KennelContainer = styled.div`
     
 `
 
-export const StyledYipKennel_KennelItemBox = styled.div`
-    height: 15rem; // Need to be changed
+export const StyledKennelContentBox = styled.div`
+    height: ${props => props.view === '' ? '15rem' : '7.5rem'}; // Need to be changed
     width: 15rem;
     margin: 0 .5rem;
     padding: 1rem 0;
@@ -154,6 +161,7 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         align-items: start;
         background-color: #2a2b34;
         border-left: .4rem solid #1D1F21;
+        overflow: hidden;
         width: 15rem;
         height: 100%;
 
@@ -164,6 +172,34 @@ export const StyledYipKennel_KennelItemBox = styled.div`
         h3 {
             border-bottom: .4rem solid #373943;
             font-style: italic;
+        }
+    }
+
+    .kennel_yip.expand {
+        border-bottom: .5rem solid #1D1F21;
+    }
+
+    .kennel_expand {
+        border: 1px solid red;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+
+        .caret {
+           margin-left: 8rem;
+           position: relative;
+        }
+
+        button {
+            text-decoration: none;
+            background: none;
+	        color: inherit;
+	        border: none;
+	        padding: 0;
+	        font: inherit;
+	        cursor: pointer;
+	        outline: inherit;
+            width: 0;
         }
     }
 `
@@ -178,7 +214,7 @@ flex-flow: row;
     overflow: auto;
 
     a {
-        text-decoration: none;
+       
     }
 `
 

@@ -1,17 +1,19 @@
 import React from "react";
-import { StyledYipKennel_KennelContainer, StyledYipKennel_KennelItemBox } from "../../styled-components/Styled";
+import { StyledKennelContainer, StyledKennelContentBox} from "../../styled-components/Styled";
+import * as Helper from '../../utils/helper_functions'
 import YIP_LINK from "./Yip_Link";
+import KENNEL_DROP_DOWN from '../../styled-components/Kennel_Drop_Down'
 
 export const Kennel = (props) => {
 
-    const { kennel, kennelRoutes, setKennelRoutes } = props
+    const { kennel } = props
 
-    const splitKennelName = kennel.kennel.split(" ").join("-")
+    const formatted_kennel_name = Helper.format_to_url(kennel.kennel)
 
     return (
         <>
-            <StyledYipKennel_KennelContainer>
-                <StyledYipKennel_KennelItemBox>
+            <StyledKennelContainer>
+                <StyledKennelContentBox>
                     <div className="kennel_information">
                         <div>
                             <h3>{kennel.kennel}</h3>
@@ -19,31 +21,23 @@ export const Kennel = (props) => {
                         </div>
                         <button className="button edit_kennel">Edit Kennel</button>
                     </div>
-                </StyledYipKennel_KennelItemBox>
-                { kennel.yips.length < 5 ?
+                </StyledKennelContentBox>
+                {kennel.yips.length < 5 ?
                     kennel.yips.map(yip => {
-                        return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
+                        return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennelName={formatted_kennel_name} key={yip.id} />
                     })
-                    :
-                    <h3>This is gonna need a drop down!</h3>
+
+                    : kennel.yips.length < 12 ?
+                        kennel.yips.map(yip => {
+                            return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: 'smash' }} kennelName={formatted_kennel_name} key={yip.id} />
+                        })
+
+                        : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} />
+
                 }
-            </StyledYipKennel_KennelContainer>
+            </StyledKennelContainer>
         </>
     )
 }
-
-/**
- *  <StyledYipKennel_KennelItemBox>
-                    <h3 className="kennel-name">{kennel.kennel}</h3>
-                    <h3 className="kennel-category">{kennel.category}</h3>
-                </StyledYipKennel_KennelItemBox>
-                {
-                    kennel.yips.map(yip => {
-                        const splitYipName = yip.yip.split(" ").join("-")
-                        return <YipKennelNoteLink name={{ name: yip.yip, splitYipName: splitYipName }} kennelName={splitKennelName} key={yip.id + '-link'} />
-                    })
-                }
- * 
- */
 
 export default Kennel

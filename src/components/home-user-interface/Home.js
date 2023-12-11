@@ -17,7 +17,7 @@ export default function YipHomeInfo() {
     }, [])
 
     useEffect(() => {
-
+        
         Helper.kennel_routes_creator(kennelData, setKennelRoutes, YIP)
 
     }, [kennelData])

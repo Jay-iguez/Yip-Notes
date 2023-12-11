@@ -22,3 +22,7 @@ export const kennel_routes_creator = (state, setState, Component) => {
     setState(array_of_routes)
 
 }
+
+export const format_to_url = (value) => {
+    return value.split(" ").join("-")
+}
