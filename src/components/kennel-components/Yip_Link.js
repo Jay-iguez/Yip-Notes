@@ -1,8 +1,8 @@
 import React from "react"
-import { StyledNoteLink, StyledYipKennel_KennelItemBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled"
+import { StyledNoteLink, StyledYipKennel_KennelItemBox } from "../../styled-components/Styled"
 import { Link } from "react-router-dom"
 
-export const YipKennelNoteLink = (props) => {
+export const YipLink = (props) => {
 
     const { content, kennelName } = props
 
@@ -19,3 +19,5 @@ export const YipKennelNoteLink = (props) => {
         </StyledYipKennel_KennelItemBox>
     )
 }
+
+export default YipLink

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { YipKennel } from "../child-helpers/YipKennel";
+import React from "react";
+import KENNEL from "../kennel-components/Kennel";
 
 /**
  * 
@@ -22,7 +22,7 @@ import { YipKennel } from "../child-helpers/YipKennel";
     logic to check amount of storage IndexedDB would allow on my devices. It's sufficient enough! 10 Gbs worth of stuff AT LEAST is plenty.
  */
 
-export default function YipKennelsInfo(props) {
+export default function Kennels(props) {
     const { state, setToRender } = props
     const { kennelRoutes, setKennelRoutes, kennelData } = state
 
@@ -30,7 +30,7 @@ export default function YipKennelsInfo(props) {
         <>  <button className="button" onClick={() => setToRender('create')}>Create</button>
             {
                 kennelData.map(kennel => {
-                    return <YipKennel kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
+                    return <KENNEL kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
                 })
             }
         </>

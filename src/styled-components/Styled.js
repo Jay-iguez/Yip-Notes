@@ -23,6 +23,24 @@ export const YipCSSStyles = styled.div`
         color: grey;
     }
 
+    .intro_message {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: start;
+        background-color: #2a2b34;
+        border-left: .4rem solid #1D1F21;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 0 1rem;
+       
+    }
+    
+
+    a {
+        text-decoration: none;
+    }
+
     * {
         color: #cdcfd0;
     }
@@ -62,16 +80,16 @@ export const StyledYipHomeScreenNavBar = styled.nav`
 
 
 // YipHomeScreenBodyGUI --------
-export const StyledYipHomeScreenGUI_ContentContainer = styled.div`
+export const StyledContentContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
     max-height: 100vh;
 
 `
-export const StyledYipHomeScreenGUI_ContentTopBorder = styled.div`
+export const StyledContentTopborder = styled.div`
     height: 5vh;
 `
-export const StyledYipHomeScreenGUI_Content = styled.div`
+export const StyledContentbody = styled.div`
     background-color: #373943;
     max-height: 91.5vh; // needs to be fixed
     margin: 0 2rem;
@@ -80,6 +98,8 @@ export const StyledYipHomeScreenGUI_Content = styled.div`
     display: flex;
     flex-flow: column nowrap;
 `
+// YipStartIntroMessage
+
 
 
 

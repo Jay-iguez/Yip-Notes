@@ -1,6 +1,6 @@
 import uniqid from 'uniqid'
 
-export const YipNotesData = [
+export const Data = [
     {
         kennel: 'JavaScript stuff I want to study',
         category: 'coding stuff',
@@ -101,3 +101,5 @@ export const YipNotesData = [
         ]
     }
 ]
+
+export default Data

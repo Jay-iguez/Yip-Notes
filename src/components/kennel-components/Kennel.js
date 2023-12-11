@@ -1,8 +1,8 @@
 import React from "react";
-import { StyledYipKennel_KennelContainer, StyledYipKennel_KennelItemBox } from "../../styled-components/Yip-home-styled-components/YipHomeStyled";
-import { YipKennelNoteLink } from "./YipKennelNoteLink";
+import { StyledYipKennel_KennelContainer, StyledYipKennel_KennelItemBox } from "../../styled-components/Styled";
+import YIP_LINK from "./Yip_Link";
 
-export const YipKennel = (props) => {
+export const Kennel = (props) => {
 
     const { kennel, kennelRoutes, setKennelRoutes } = props
 
@@ -22,7 +22,7 @@ export const YipKennel = (props) => {
                 </StyledYipKennel_KennelItemBox>
                 { kennel.yips.length < 5 ?
                     kennel.yips.map(yip => {
-                        return <YipKennelNoteLink content={{ name: yip.yip, id: yip.id, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
+                        return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text}} kennelName={splitKennelName} key={yip.id + '-link'} />
                     })
                     :
                     <h3>This is gonna need a drop down!</h3>
@@ -45,3 +45,5 @@ export const YipKennel = (props) => {
                 }
  * 
  */
+
+export default Kennel
