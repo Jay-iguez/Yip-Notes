@@ -22,7 +22,7 @@ export const Kennel = (props) => {
                         <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledKennelContentBox>
-                {kennel.yips.length < 5 ?
+                {kennel.yips.length <= 5 ?
                     kennel.yips.map(yip => {
                         return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennelName={formatted_kennel_name} key={yip.id} />
                     })

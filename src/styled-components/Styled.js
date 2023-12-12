@@ -180,7 +180,6 @@ export const StyledKennelContentBox = styled.div`
     }
 
     .kennel_expand {
-        border: 1px solid red;
         display: flex;
         justify-content: space-between;
         flex-flow: row nowrap;
