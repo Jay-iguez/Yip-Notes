@@ -2,7 +2,7 @@ import React from "react";
 import { StyledKennelContainer, StyledKennelContentBox} from "../../styled-components/Styled";
 import * as Helper from '../../utils/helper_functions'
 import YIP_LINK from "./Yip_Link";
-import KENNEL_DROP_DOWN from '../../styled-components/Kennel_Drop_Down'
+import KENNEL_DROP_DOWN from './Kennel_Drop_Down'
 
 export const Kennel = (props) => {
 

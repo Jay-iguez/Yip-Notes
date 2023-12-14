@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import KENNELS from '../home-user-interface/Kennels'
 import CREATE from '../home-user-interface/Create'
+import KENNEL_VIEW from '../kennel-components/Kennel_View'
+import condition_view from "../../context/condition_context"
 
 export default function Condition(props) {
-    const { toRender, setToRender, state } = props
+    const { state } = props
     
+    const condition = useContext(condition_view)
+
     const [currentRender, setCurrentRender] = useState(stateRenderSwitcher)
     
     useEffect(() => {
         setCurrentRender(stateRenderSwitcher)
-    }, [toRender])
+    }, [condition.condition])
 
     function stateRenderSwitcher() {
-        switch (toRender) {
+        switch (condition.condition) {
             case 'kennels-list':
-                return <KENNELS state={state} setToRender={setToRender} />
+                return <KENNELS state={state} condition={condition} />
             case 'create':
-                return <CREATE state={state} setToRender={setToRender}/>
+                return <CREATE state={state} condition={condition}/>
+            case 'drop-down':
+                return <KENNEL_VIEW state={state} condition={condition} />
             default:
-                return <KENNELS state={state} setToRender={setToRender}/>
+                return <KENNELS state={state} condition={condition}/>
         }
     }
 

@@ -23,11 +23,11 @@ import KENNEL from "../kennel-components/Kennel";
  */
 
 export default function Kennels(props) {
-    const { state, setToRender } = props
+    const { condition, state } = props
     const { kennelRoutes, setKennelRoutes, kennelData } = state
 
     return (
-        <>  <button className="button" onClick={() => setToRender('create')}>Create</button>
+        <>  <button className="button" onClick={() => condition.set_condition('create')}>Create</button>
             {
                 kennelData.map(kennel => {
                     return <KENNEL kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />

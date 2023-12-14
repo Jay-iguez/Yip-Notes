@@ -4,13 +4,13 @@ import CONDITION from '../child-helpers/Condition';
 
 
 export default function YipNoteHomeInfo(props) {
-    const [currentMenuScreen, setCurrentMenuScreen] = useState('kennels-list')
+   
     return (
         <>
             <StyledContentContainer>
                 <StyledContentTopborder />
                 <StyledContentbody>
-                    <CONDITION toRender={currentMenuScreen} setToRender={setCurrentMenuScreen} state={props} />
+                    <CONDITION state={props} />
                 </StyledContentbody>
             </StyledContentContainer>
         </>

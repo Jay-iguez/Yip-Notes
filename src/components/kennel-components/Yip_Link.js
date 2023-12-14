@@ -1,13 +1,16 @@
-import React, {useContext} from "react"
+import React, { useContext } from "react"
 import { StyledKennelContentBox } from "../../styled-components/Styled"
 import { Link } from "react-router-dom"
+import condition_view from "../../context/condition_context"
 import toggle_view from "../../context/view_context"
 
 export const YipLink = (props) => {
 
-    const { content, kennelName, toggle_state={} }= props
+    const { content, kennelName } = props
 
-    const views = useContext(toggle_view)
+    const view = useContext(toggle_view)
+    const condition = useContext(condition_view)
+
 
     const content_to_render = content.appearance === 'expand' ?
         <StyledKennelContentBox view={content.appearance} >
@@ -15,7 +18,10 @@ export const YipLink = (props) => {
                 <h3>{content.name}</h3>
                 <div className="kennel_expand">
                     <p>Yips: {22}</p>
-                    <button onClick={() => views.set_view(!views.view)}><div className="caret"></div></button>
+                    <button onClick={() => {
+                        condition.set_condition('drop-down')
+                        view.set_view(content.kennel)
+                    }}><div className="caret"></div></button>
                 </div>
             </div>
         </StyledKennelContentBox>
