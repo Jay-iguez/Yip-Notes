@@ -25,8 +25,6 @@ export default function YipHomeInfo() {
 
     }, [kennelData])
 
-    console.log(kennelRoutes)
-
     return (
         <>
             <StyledYipHomeScreenNavBar>
