@@ -9,12 +9,12 @@ export const Data = [
         yips: [
             {
                 yip: 'JavaScript call stack',
-                id: uniqid(`JavaScript-call-stack`),
+                id: uniqid(uniqid()),
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'Methods on methods?',
-                id: uniqid('Methods-on-methods?'),
+                id: uniqid(uniqid()),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             }
         ]
@@ -27,64 +27,94 @@ export const Data = [
         yips: [
             {
                 yip: 'What if dogs could talk?',
-                id: uniqid(`talk`),
+                id: uniqid(),
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'They are pretty cute',
-                id: uniqid('they'),
+                id: uniqid(),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
                 yip: 'THey eat a ton i dont know why ',
-                id: uniqid('eat'),
+                id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
             {
                 yip: 'What if dogs could talk?',
-                id: uniqid(`talk`),
+                id: uniqid(),
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'They are pretty cute',
-                id: uniqid('they'),
+                id: uniqid(),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
                 yip: 'THey eat a ton i dont know why ',
-                id: uniqid('eat'),
+                id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
             {
                 yip: 'What if dogs could talk?',
-                id: uniqid(`talk`),
+                id: uniqid(),
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'They are pretty cute',
-                id: uniqid('they'),
+                id: uniqid(),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
                 yip: 'THey eat a ton i dont know why ',
-                id: uniqid('eat'),
+                id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
             {
                 yip: 'What if dogs could talk?',
-                id: uniqid(`talk`),
+                id: uniqid(),
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'They are pretty cute',
-                id: uniqid('they'),
+                id: uniqid(),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
                 yip: 'THey eat a ton i dont know why ',
-                id: uniqid('eat'),
+                id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
-            }
+            },
+            {
+                yip: 'What if dogs could talk?',
+                id: uniqid(),
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+            },
+            {
+                yip: 'They are pretty cute',
+                id: uniqid(),
+                text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            {
+                yip: 'THey eat a ton i dont know why ',
+                id: uniqid(),
+                text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
+            },
+            {
+                yip: 'What if dogs could talk?',
+                id: uniqid(),
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+            },
+            {
+                yip: 'They are pretty cute',
+                id: uniqid(),
+                text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            {
+                yip: 'THey eat a ton i dont know why ',
+                id: uniqid(),
+                text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
+            },
         ]
     },
     {
@@ -95,7 +125,7 @@ export const Data = [
         yips: [
             {
                 yip: 'What in tarnation this worked?',
-                id: uniqid('they'),
+                id: uniqid(),
                 text: 'Just some random text and not lorum ipsum cause I was too lazy to copy and paste some lol'
             }
         ]

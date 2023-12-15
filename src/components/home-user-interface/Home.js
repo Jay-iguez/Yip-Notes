@@ -10,7 +10,7 @@ import condition_view from "../../context/condition_context";
 
 export default function YipHomeInfo() {
     const [kennelData, setKennelData] = useState(Data)
-    const [kennelRoutes, setKennelRoutes] = useState(null)
+    const [kennelRoutes, setKennelRoutes] = useState([])
 
     const condition = useContext(condition_view)
 
@@ -25,8 +25,6 @@ export default function YipHomeInfo() {
 
     }, [kennelData])
 
-
-
     return (
         <>
             <StyledYipHomeScreenNavBar>
@@ -40,7 +38,9 @@ export default function YipHomeInfo() {
             <Routes>
                 <Route path={`navigation-screen`} element={<USER_INTERFACE kennelData={kennelData} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />} />
                 {
-                    kennelRoutes && kennelRoutes
+                    kennelRoutes.map(route => {
+                        return route
+                    }) && kennelRoutes
                 }
             </Routes>
         </>

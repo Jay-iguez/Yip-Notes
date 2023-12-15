@@ -7,6 +7,7 @@ export default function KennelView(props) {
 
     const view = useContext(toggle_view)
 
+
     return (
         <>
              <button className="button" onClick={() => condition.set_condition('kennels-list')}>Back</button>
