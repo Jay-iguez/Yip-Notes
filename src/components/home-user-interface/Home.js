@@ -25,6 +25,8 @@ export default function YipHomeInfo() {
 
     }, [kennelData])
 
+    console.log(kennelRoutes)
+
     return (
         <>
             <StyledYipHomeScreenNavBar>
@@ -38,9 +40,9 @@ export default function YipHomeInfo() {
             <Routes>
                 <Route path={`navigation-screen`} element={<USER_INTERFACE kennelData={kennelData} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />} />
                 {
-                    kennelRoutes.map(route => {
+                   kennelRoutes && kennelRoutes.map(route => {
                         return route
-                    }) && kennelRoutes
+                    }) 
                 }
             </Routes>
         </>

@@ -9,18 +9,18 @@ export const Data = [
         yips: [
             {
                 yip: 'JavaScript call stack',
-                id: uniqid(uniqid()),
+                id: 'dog',
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             },
             {
                 yip: 'Methods on methods?',
-                id: uniqid(uniqid()),
+                id: uniqid(),
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             }
         ]
     },
     {
-        kennel: 'Dog stuff ha-ha',
+        kennel: 'Dog stuff ha ha',
         category: 'canines and such ha-ha',
         date: Date.now(),
         id: uniqid(),
@@ -36,7 +36,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
@@ -51,7 +51,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
@@ -66,7 +66,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
@@ -81,7 +81,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
@@ -96,7 +96,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
@@ -111,7 +111,7 @@ export const Data = [
                 text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             {
-                yip: 'THey eat a ton i dont know why ',
+                yip: 'THey eat a ton i dont know why',
                 id: uniqid(),
                 text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
             },
