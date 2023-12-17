@@ -3,7 +3,7 @@ import KENNEL from "./Kennel";
 import toggle_view from "../../context/view_context";
 
 export default function KennelView(props) {
-    const {condition, state} = props
+    const {condition} = props
 
     const view = useContext(toggle_view)
 
@@ -11,6 +11,7 @@ export default function KennelView(props) {
     return (
         <>
              <button className="button" onClick={() => condition.set_condition('kennels-list')}>Back</button>
+             <KENNEL kennel={view.view} key={view.view.id} view_condition='kennel_view' />
         </>
     )
 }

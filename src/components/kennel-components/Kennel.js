@@ -1,12 +1,12 @@
 import React from "react";
-import { StyledKennelContainer, StyledKennelContentBox} from "../../styled-components/Styled";
+import { StyledKennelContainer, StyledKennelContentBox } from "../../styled-components/Styled";
 import * as Helper from '../../utils/helper_functions'
 import YIP_LINK from "./Yip_Link";
 import KENNEL_DROP_DOWN from './Kennel_Drop_Down'
 
 export const Kennel = (props) => {
 
-    const { kennel } = props
+    const { kennel, view_condition } = props
 
     const formatted_kennel_name = Helper.format_to_url(kennel.kennel)
 
@@ -22,17 +22,25 @@ export const Kennel = (props) => {
                         <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledKennelContentBox>
-                {kennel.yips.length <= 5 ?
+
+                {view_condition !== 'kennel_view' ?
+
+                    kennel.yips.length <= 5 ?
+                        kennel.yips.map(yip => {
+                            return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennelName={formatted_kennel_name} key={yip.id} />
+                        })
+
+                        : kennel.yips.length < 12 ?
+                            kennel.yips.map(yip => {
+                                return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: 'smash' }} kennelName={formatted_kennel_name} key={yip.id} />
+                            })
+
+                            : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} view_condition={view_condition} />
+                    :
+
                     kennel.yips.map(yip => {
                         return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennelName={formatted_kennel_name} key={yip.id} />
                     })
-
-                    : kennel.yips.length < 12 ?
-                        kennel.yips.map(yip => {
-                            return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: 'smash' }} kennelName={formatted_kennel_name} key={yip.id} />
-                        })
-
-                        : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} />
 
                 }
             </StyledKennelContainer>

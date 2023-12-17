@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Routes, Route, Link } from 'react-router-dom';
 import { StyledYipHomeScreenNavBar } from "../../styled-components/Styled";
 import USER_INTERFACE from './User_Interface'
 import YIP from '../yip-components/Yip'
-import Data from "../../data/mock-data/Mock";
 import * as Helper from '../../utils/helper_functions'
 import condition_view from "../../context/condition_context";
+import routes from "../../context/routes_context";
+import app_data from "../../context/data_context";
 
 
 export default function YipHomeInfo() {
-    const [kennelData, setKennelData] = useState(Data)
-    const [kennelRoutes, setKennelRoutes] = useState([])
-
     const condition = useContext(condition_view)
+    const kennel_routes = useContext(routes)
+    const app = useContext(app_data)
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -21,9 +21,9 @@ export default function YipHomeInfo() {
 
     useEffect(() => {
         
-        Helper.kennel_routes_creator(kennelData, setKennelRoutes, YIP)
+        Helper.kennel_routes_creator(app.app, kennel_routes.set_kennel_routes, YIP)
 
-    }, [kennelData])
+    }, [app.app])
 
     return (
         <>
@@ -36,11 +36,9 @@ export default function YipHomeInfo() {
             </StyledYipHomeScreenNavBar>
 
             <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE kennelData={kennelData} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />} />
+                <Route path={`navigation-screen`} element={<USER_INTERFACE kennelRoutes={kennel_routes.kennel_routes} setKennelRoutes={kennel_routes.set_kennel_routes} kennelData={app.app} />} />
                 {
-                   kennelRoutes && kennelRoutes.map(route => {
-                        return route
-                    }) 
+                   kennel_routes.kennel_routes && kennel_routes.kennel_routes
                 }
             </Routes>
         </>
