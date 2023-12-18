@@ -8,8 +8,14 @@ import app_data from "./context/data_context";
 import APP_INTRO from './components/intro-screen/App_Intro'
 import CONTEXT_STORE from './utils/Context_Store'
 
+import DUMMYTEST from "./utils/Dummy_Test";
+
 function App() {
-  const stylesContext = useContext(CSSContext)
+
+  
+
+  /**
+   * const stylesContext = useContext(CSSContext)
   const [CSSStylesContext, setCSSStylesContext] = useState(stylesContext)
   const CSSState = { properties: CSSStylesContext, setProperties: setCSSStylesContext }
 
@@ -28,21 +34,14 @@ function App() {
   const app_context = useContext(app_data)
   const [app, set_app] = useState(app_context)
   const app_state = { app: app, set_app: set_app }
+   *    <DUMMYTEST />
+   */
+  
 
   return (
-    <CSSContext.Provider value={CSSState}>
-      <condition_view.Provider value={current_condition} >
-        <toggle_view.Provider value={current_toggle}>
-          <app_data.Provider value={app_state}>
-            <routes.Provider value={routes_state}>
-              <YipCSSStyles styles={CSSState}>
-                <APP_INTRO />
-              </YipCSSStyles >
-            </routes.Provider>
-          </app_data.Provider>
-        </toggle_view.Provider>
-      </condition_view.Provider>
-    </CSSContext.Provider>
+    <CONTEXT_STORE>
+     <APP_INTRO /> 
+    </CONTEXT_STORE>
   );
 }
 

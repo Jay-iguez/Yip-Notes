@@ -12,13 +12,16 @@ import app_data from "../../context/data_context";
 
 
 export default function YipHomeInfo() {
-    const condition = useContext(condition_view)
-    const kennel_routes = useContext(routes)
-    const app = useContext(app_data)
+    const condition_context = useContext(condition_view)
+    const [condition, set_condition] = condition_context
 
-    const kennels = useLiveQuery(() => db.kennels.toArray())
+    const kennel_context = useContext(routes)
+    const [kennels, set_kennels] = kennel_context
 
-    console.log(kennels)
+    const app_context = useContext(app_data)
+    const [app, set_app] = app_context
+
+    //const kennels = useLiveQuery(() => db.kennels.toArray())
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -27,24 +30,24 @@ export default function YipHomeInfo() {
 
     useEffect(() => {
         
-        Helper.kennel_routes_creator(app.app, kennel_routes.set_kennel_routes, YIP)
+        Helper.kennel_routes_creator(app, set_kennels, YIP)
 
-    }, [app.app])
+    }, [app])
 
     return (
         <>
             <StyledYipHomeScreenNavBar>
                 <div className="nav-items">
-                    <Link to={`navigation-screen`} onClick={() => condition.set_condition('kennels-list')}>Home</Link>
+                    <Link to={`navigation-screen`} onClick={() => set_condition('kennels-list')}>Home</Link>
                     <Link to={`settings`}>Settings</Link>
                     <Link to={`info`}>Information</Link>
                 </div>
             </StyledYipHomeScreenNavBar>
 
             <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE kennelRoutes={kennel_routes.kennel_routes} setKennelRoutes={kennel_routes.set_kennel_routes} kennelData={app.app} />} />
+                <Route path={`navigation-screen`} element={<USER_INTERFACE kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app} />} />
                 {
-                   kennel_routes.kennel_routes && kennel_routes.kennel_routes
+                   kennels && kennels
                 }
             </Routes>
         </>

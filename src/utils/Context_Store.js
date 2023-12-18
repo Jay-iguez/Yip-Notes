@@ -19,7 +19,9 @@ export default function ContextStore({ children }) {
                 <toggle_view.Provider value={toggle_context_state}>
                     <app_data.Provider value={app_context_state}>
                         <routes.Provider value={routes_context_state}>
-                            {children}
+                            <CSSContext.Provider value={styles_context_state}>
+                                 {children}
+                            </CSSContext.Provider>
                         </routes.Provider>
                     </app_data.Provider>
                 </toggle_view.Provider>
