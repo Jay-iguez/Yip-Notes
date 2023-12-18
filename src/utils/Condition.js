@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react"
-import KENNELS from '../home-user-interface/Kennels'
-import CREATE from '../home-user-interface/Create'
-import KENNEL_VIEW from '../kennel-components/Kennel_View'
-import condition_view from "../../context/condition_context"
+import KENNELS from '../components/home-user-interface/Kennels'
+import CREATE from '../components/home-user-interface/Create'
+import KENNEL_VIEW from '../components/kennel-components/Kennel_View'
+import condition_view from "../context/condition_context"
 
 export default function Condition(props) {
     const { state } = props
