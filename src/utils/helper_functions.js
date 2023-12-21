@@ -20,3 +20,9 @@ export const kennel_routes_creator = (state, setState, Component) => {
 export const format_to_url = (value) => {
     return value.split(" ").join("-")
 }
+
+export const dummy_function_to_test = (...args) => {
+    return args.reduce((acc, e) => {
+        return acc + e
+    })
+}

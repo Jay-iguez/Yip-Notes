@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const YipCSSStyles = styled.div`
-    --font-size : ${props => props.styles.properties.fontSize};
+    --font-size : ${props => props.styles.fontSize};
     font-family: 'Sunflower', sans-serif;
    
     .button {
