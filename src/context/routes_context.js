@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const routes = createContext([])
+const routes_context = createContext([])
 
-export default routes
+export default routes_context
   

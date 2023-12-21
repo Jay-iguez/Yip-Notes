@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const condition_view = createContext('kennels-list')
+const condition_context = createContext('kennels-list')
 
-export default condition_view
+export default condition_context

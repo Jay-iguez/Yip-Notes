@@ -1,17 +1,20 @@
 import React, { useContext } from "react";
 import KENNEL from "./Kennel";
-import toggle_view from "../../context/view_context";
+import view_context from "../../context/view_context";
+import condition_context from "../../context/condition_context";
 
-export default function KennelView(props) {
-    const {condition} = props
+export default function KennelView() {
 
-    const view = useContext(toggle_view)
+    const view_state = useContext(view_context)
+    const [view, set_view] = view_state
 
+    const condition_state = useContext(condition_context)
+    const [condition, set_condition] = condition_state
 
     return (
         <>
-             <button className="button" onClick={() => condition.set_condition('kennels-list')}>Back</button>
-             <KENNEL kennel={view.view} key={view.view.id} view_condition='kennel_view' />
+             <button className="button" onClick={() => set_condition('kennels-list')}>Back</button>
+             <KENNEL kennel={view} key={view.id} render_status={view ? 'complete' : ''} />
         </>
     )
 }

@@ -1,14 +1,7 @@
-import React, { useState, useContext } from "react";
-import { YipCSSStyles } from "./styled-components/Styled";
-import CSSContext from "./context/CSS-context";
-import toggle_view from "./context/view_context";
-import condition_view from "./context/condition_context";
-import routes from './context/routes_context'
-import app_data from "./context/data_context";
+import React from "react";
 import APP_INTRO from './components/intro-screen/App_Intro'
 import CONTEXT_STORE from './utils/Context_Store'
 
-import DUMMYTEST from "./utils/Dummy_Test";
 
 function App() {
 

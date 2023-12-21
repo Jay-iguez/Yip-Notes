@@ -1,5 +1,5 @@
 import { createContext} from "react";
 
-const toggle_view = createContext(false)
+const view_context = createContext(false)
 
-export default toggle_view
+export default view_context

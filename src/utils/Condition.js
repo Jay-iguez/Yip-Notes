@@ -2,29 +2,29 @@ import React, { useState, useEffect, useContext } from "react"
 import KENNELS from '../components/home-user-interface/Kennels'
 import CREATE from '../components/home-user-interface/Create'
 import KENNEL_VIEW from '../components/kennel-components/Kennel_View'
-import condition_view from "../context/condition_context"
+import condition_context from "../context/condition_context"
 
-export default function Condition(props) {
-    const { state } = props
+export default function Condition(props) { // kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app}
     
-    const condition = useContext(condition_view)
+    const condition_state = useContext(condition_context)
+    const [condition, set_condition] = condition_state
 
     const [currentRender, setCurrentRender] = useState(stateRenderSwitcher)
     
     useEffect(() => {
         setCurrentRender(stateRenderSwitcher)
-    }, [condition.condition])
+    }, [condition])
 
     function stateRenderSwitcher() {
-        switch (condition.condition) {
+        switch (condition) {
             case 'kennels-list':
-                return <KENNELS state={state} condition={condition} />
+                return <KENNELS />
             case 'create':
-                return <CREATE state={state} condition={condition}/>
+                return <CREATE />
             case 'drop-down':
-                return <KENNEL_VIEW state={state} condition={condition} />
+                return <KENNEL_VIEW />
             default:
-                return <KENNELS state={state} condition={condition}/>
+                return <KENNELS />
         }
     }
 

@@ -1,5 +1,31 @@
-import React from "react";
+import React, {useContext} from "react";
 import KENNEL from "../kennel-components/Kennel";
+import condition_context from "../../context/condition_context";
+import routes_context from "../../context/routes_context";
+import app_data_context from "../../context/app_data_context";
+
+export default function Kennels(props) {
+
+    const condition_state = useContext(condition_context)
+    const [condition, set_condition] = condition_state
+
+    const routes_state = useContext(routes_context)
+    const [routes, set_routes] = routes_state
+
+    const app_state = useContext(app_data_context)
+    const [app, set_app] = app_state
+
+    return (
+        <>  <button className="button" onClick={() => set_condition('create')}>Create</button>
+            {
+                app.map(kennel => {
+                    return <KENNEL kennel={kennel} key={kennel.id} kennel_routes={routes} set_kennel_routes={set_routes} />
+                })
+            }
+        </>
+
+    )
+}
 
 /**
  * 
@@ -21,19 +47,3 @@ import KENNEL from "../kennel-components/Kennel";
 
     logic to check amount of storage IndexedDB would allow on my devices. It's sufficient enough! 10 Gbs worth of stuff AT LEAST is plenty.
  */
-
-export default function Kennels(props) {
-    const { condition, state } = props
-    const { kennelRoutes, setKennelRoutes, kennelData } = state
-
-    return (
-        <>  <button className="button" onClick={() => condition.set_condition('create')}>Create</button>
-            {
-                kennelData.map(kennel => {
-                    return <KENNEL kennel={kennel} key={kennel.id} kennelRoutes={kennelRoutes} setKennelRoutes={setKennelRoutes} />
-                })
-            }
-        </>
-
-    )
-}

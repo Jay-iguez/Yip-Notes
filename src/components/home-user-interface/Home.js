@@ -6,20 +6,20 @@ import db from '../../data/mock-data/db'
 import USER_INTERFACE from './User_Interface'
 import YIP from '../yip-components/Yip'
 import * as Helper from '../../utils/helper_functions'
-import condition_view from "../../context/condition_context";
-import routes from "../../context/routes_context";
-import app_data from "../../context/data_context";
+import condition_context from "../../context/condition_context";
+import routes_context from "../../context/routes_context";
+import app_data_context from "../../context/app_data_context";
 
 
 export default function YipHomeInfo() {
-    const condition_context = useContext(condition_view)
-    const [condition, set_condition] = condition_context
+    const condition_state = useContext(condition_context)
+    const [condition, set_condition] = condition_state
 
-    const kennel_context = useContext(routes)
-    const [kennels, set_kennels] = kennel_context
+    const kennels_state = useContext(routes_context)
+    const [kennels, set_kennels] = kennels_state
 
-    const app_context = useContext(app_data)
-    const [app, set_app] = app_context
+    const app_state = useContext(app_data_context)
+    const [app] = app_state
 
     //const kennels = useLiveQuery(() => db.kennels.toArray())
 
@@ -45,7 +45,7 @@ export default function YipHomeInfo() {
             </StyledYipHomeScreenNavBar>
 
             <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app} />} />
+                <Route path={`navigation-screen`} element={<USER_INTERFACE />} />
                 {
                    kennels && kennels
                 }
