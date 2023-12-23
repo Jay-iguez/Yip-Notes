@@ -1,8 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useLiveQuery } from "dexie-react-hooks";
 import { Routes, Route, Link } from 'react-router-dom';
 import { StyledYipHomeScreenNavBar } from "../../styled-components/Styled";
-import db from '../../data/mock-data/db'
 import USER_INTERFACE from './User_Interface'
 import YIP from '../yip-components/Yip'
 import * as Helper from '../../utils/helper_functions'
