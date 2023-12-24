@@ -1,6 +1,7 @@
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 
-export default function useContextCreator (context) {
+export default function useContextCreator (context, state) {
+    
     const given_context = useContext(context)
     const [current_context, set_current_context] = useState(given_context)
     const context_state = {current_context: current_context, set_current_context: set_current_context}
