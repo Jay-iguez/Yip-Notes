@@ -14,21 +14,89 @@ export default function ContextStore({ children }) {
 
     const [dexie, set_dexie] = useState()
 
+
+    /**
+     * 
+     * @returns 
+     * 
+     *  const fetchDataFromDexie = async () => {
+        try {
+          // Use toArray to fetch all records from marry_kennels
+          const marryKennelsData = await db.marry_kennels.toArray();
+    
+          // Process each record and fetch related data
+          const processedData = await Promise.all(
+            marryKennelsData.map(async (marry) => {
+              const kennelData = await db.kennels.where('kennel_id').equals(marry.kennel_id).first();
+              const yipData = await db.yip.where('yips_id').equals(marry.yips_id).first();
+    
+              // Combine marry_kennels, kennels, and yip data as needed
+              return {
+                marry,
+                kennel: kennelData,
+                yip: yipData,
+              };
+            })
+          );
+    
+          setMarryData(processedData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+    
+     */
+
+    const fetch_data = async () => {
+        const data = await db.marry_kennels.toArray()
+        return data
+    }
+
+    const query_data = async (data) => {
+        try {
+            const processed_data = await Promise.all(
+                data.map(async (marry) => {
+                    const kennels = await db.kennels.where('kennel_id').equals(marry.kennel_id).first()
+                    const yip = await db.yip.where('yips_id').equals(marry.yips_id).toArray()
+
+                    const formatted_kennels = {...kennels, yips : yip}
+                    return formatted_kennels
+                })
+            )
+            set_dexie(processed_data)
+        } catch (err) {
+            console.error(err)
+        }
+
+    }
+
     useEffect(() => {
-        db.transaction('rw', db.marry_kennels, db.kennels, db.yip, () => {
+        fetch_data()
+            .then(res => {
+                 query_data(res)
+            })
+            .catch(err => console.error(err))
+
+       
+
+        /**
+         * 
+         * db.transaction('rw', db.marry_kennels, db.kennels, db.yip, () => {
             db.marry_kennels.where('marry_id').equals(1).each((marry) => {
-                console.log(marry)
+                //console.log(marry)
                 db.kennels.where('kennel_id').equals(marry.kennel_id).each((ken) => {
-                    console.log(ken)
+                    //console.log(ken)
                     db.yip.where('yips_id').equals(marry.yips_id).each((note) => {
-                        console.log(note)
+                        //console.log(note)
                     })
                 })
             })
         })
+         */
     }, [])
 
     console.log(dexie)
+
 
     const [styles_context_state] = USECONTEXTCREATOR(css_context)
     const [styles] = styles_context_state
