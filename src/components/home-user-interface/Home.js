@@ -7,6 +7,7 @@ import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import app_data_context from "../../context/app_data_context";
+import db from "../../data/mock-data/db";
 
 
 export default function YipHomeInfo() {
@@ -19,7 +20,40 @@ export default function YipHomeInfo() {
     const app_state = useContext(app_data_context)
     const [app] = app_state
 
-    //const kennels = useLiveQuery(() => db.kennels.toArray())
+    const [dexie_kennels, set_dexie_kennels] = useState()
+
+    const fetch_app = async () => {
+        const data = await db.marry_kennels.toArray()
+        return data
+    }
+
+    const fetch_data = async (data) => {
+        try {
+            const processed_data = await Promise.all(
+                data.map(async (marry) => {
+                    const kennels = await db.kennels.where('kennel_id').equals(marry.kennel_id).first()
+                    const yip = await db.yip.where('yips_id').equals(marry.yips_id).toArray()
+
+                    const formatted_kennels = { ...kennels, yips: yip }
+                    return formatted_kennels
+                })
+            )
+            set_dexie_kennels(processed_data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    useEffect(() => {
+        fetch_app()
+            .then(res => {
+                fetch_data(res)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }, [])
+
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -27,10 +61,13 @@ export default function YipHomeInfo() {
     }, [])
 
     useEffect(() => {
-        
-        Helper.kennel_routes_creator(app, set_kennels, YIP)
 
-    }, [app])
+        if (dexie_kennels !== undefined) {
+            Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP)
+        }
+
+    }, [dexie_kennels])
+
 
     return (
         <>
@@ -43,9 +80,9 @@ export default function YipHomeInfo() {
             </StyledYipHomeScreenNavBar>
 
             <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE />} />
+                <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{dexie: dexie_kennels, set_dexie: set_dexie_kennels}} />} />
                 {
-                   kennels && kennels
+                    kennels && kennels
                 }
             </Routes>
         </>

@@ -3,14 +3,14 @@ import { StyledContentContainer, StyledContentTopborder, StyledContentbody} from
 import CONDITION from '../../utils/Condition';
 
 
-export default function YipNoteHomeInfo() {
+export default function YipNoteHomeInfo(props) {
    
     return (
         <>
             <StyledContentContainer>
                 <StyledContentTopborder />
                 <StyledContentbody>
-                    <CONDITION />
+                    <CONDITION state={props} />
                 </StyledContentbody>
             </StyledContentContainer>
         </>

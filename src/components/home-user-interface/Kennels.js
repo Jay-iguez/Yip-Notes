@@ -1,10 +1,15 @@
-import React, {useContext} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import KENNEL from "../kennel-components/Kennel";
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import app_data_context from "../../context/app_data_context";
 
 export default function Kennels(props) {
+
+    const { state } = props
+
+    const {dexie, set_dexie} = state.state.dexie
+
 
     const condition_state = useContext(condition_context)
     const [condition, set_condition] = condition_state
@@ -15,11 +20,12 @@ export default function Kennels(props) {
     const app_state = useContext(app_data_context)
     const [app, set_app] = app_state
 
+
     return (
         <>  <button className="button" onClick={() => set_condition('create')}>Create</button>
             {
-                app.map(kennel => {
-                    return <KENNEL kennel={kennel} key={kennel.id} kennel_routes={routes} set_kennel_routes={set_routes} />
+                dexie.map(kennel => {
+                    return <KENNEL kennel={kennel} key={kennel.kennel_id} kennel_routes={routes} set_kennel_routes={set_routes} />
                 })
             }
         </>
