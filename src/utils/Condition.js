@@ -6,6 +6,7 @@ import condition_context from "../context/condition_context"
 
 export default function Condition(props) { // kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app}
     
+    const {dexie} = props
 
     const condition_state = useContext(condition_context)
     const [condition, set_condition] = condition_state
@@ -19,13 +20,13 @@ export default function Condition(props) { // kennelRoutes={kennels} setKennelRo
     function stateRenderSwitcher() {
         switch (condition) {
             case 'kennels-list':
-                return <KENNELS state={props} />
+                return <KENNELS dexie={dexie} />
             case 'create':
-                return <CREATE state={props} />
+                return <CREATE dexie={dexie} />
             case 'drop-down':
-                return <KENNEL_VIEW state={props} />
+                return <KENNEL_VIEW dexie={dexie} />
             default:
-                return <KENNELS state={props} />
+                return <KENNELS dexie={dexie} />
         }
     }
 

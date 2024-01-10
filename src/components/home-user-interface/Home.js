@@ -22,6 +22,36 @@ export default function YipHomeInfo() {
 
     const [dexie_kennels, set_dexie_kennels] = useState()
 
+    const [data_change, set_data_change] = useState()
+
+
+    const add_yip_content = async (key, changes) => {
+        try {
+            db.yip.update(key, changes).then(function (updated) {
+                if (updated) {
+                    console.log('success')
+                    set_data_change(Math.random() * 1000)
+                } else {
+                    console.log('error i guess')
+                }
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+
+    const change_state = (key, changes) => {
+        add_yip_content(key, changes)
+            .then(res => {
+                console.log('success')
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
+
+
     const fetch_app = async () => {
         const data = await db.marry_kennels.toArray()
         return data
@@ -52,7 +82,7 @@ export default function YipHomeInfo() {
             .catch(err => {
                 console.error(err)
             })
-    }, [])
+    }, [data_change])
 
 
     useEffect(() => {
@@ -63,7 +93,7 @@ export default function YipHomeInfo() {
     useEffect(() => {
 
         if (dexie_kennels !== undefined) {
-            Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP)
+            Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP, change_state)
         }
 
     }, [dexie_kennels])
@@ -78,13 +108,21 @@ export default function YipHomeInfo() {
                     <Link to={`info`}>Information</Link>
                 </div>
             </StyledYipHomeScreenNavBar>
+            {
+                dexie_kennels === undefined ?
 
-            <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{dexie: dexie_kennels, set_dexie: set_dexie_kennels}} />} />
+                <h1> Loading... </h1>
+
+                : 
+
+                <Routes>
+                <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state}} />} />
                 {
                     kennels && kennels
                 }
             </Routes>
+            }
+            
         </>
     )
 }

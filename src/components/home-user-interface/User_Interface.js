@@ -4,13 +4,13 @@ import CONDITION from '../../utils/Condition';
 
 
 export default function YipNoteHomeInfo(props) {
-   
+   const { dexie } = props
     return (
         <>
             <StyledContentContainer>
                 <StyledContentTopborder />
                 <StyledContentbody>
-                    <CONDITION state={props} />
+                    <CONDITION dexie={dexie} />
                 </StyledContentbody>
             </StyledContentContainer>
         </>

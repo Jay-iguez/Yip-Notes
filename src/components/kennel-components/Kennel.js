@@ -29,7 +29,7 @@ export const Kennel = (props) => {
                             return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
                         })
 
-                        : kennel.yips.length < 12 ?
+                        : kennel.yips.length < 11 ?
                             kennel.yips.map(yip => {
                                 return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: 'smash' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
                             })
