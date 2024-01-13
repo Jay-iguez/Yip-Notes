@@ -24,7 +24,7 @@ export const Kennel = (props) => {
                 </StyledKennelContentBox>
 
                 { render_status !== 'complete' ?
-                    kennel.yips.length <= 5 ?
+                    kennel.yips.length <= 6 ?
                         kennel.yips.map(yip => {
                             return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
                         })

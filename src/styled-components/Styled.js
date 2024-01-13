@@ -98,13 +98,30 @@ export const StyledContentTopborder = styled.div`
 `
 export const StyledContentbody = styled.div`
     background-color: #373943;
-    max-height: 91.5vh; // needs to be fixed
     margin: 0 2rem;
+    //margin-top: 1.5%; // needs to be fixed
     overflow: auto;
     font-size: var(--font-size); 
-    display: flex;
-    flex-flow: column nowrap;
 `
+
+
+export const StyledQuill = styled.div`
+    border: none;
+
+    .ql-toolbar.ql-snow {
+        border: none;
+        border-bottom: 1px solid #ccc; 
+    }
+
+    .ql-container.ql-snow {
+        border: none;
+    }
+
+    .ql-bold {
+        fill: red;
+    }
+`
+
 // YipStartIntroMessage
 
 

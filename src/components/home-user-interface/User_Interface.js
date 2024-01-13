@@ -3,7 +3,7 @@ import { StyledContentContainer, StyledContentTopborder, StyledContentbody} from
 import CONDITION from '../../utils/Condition';
 
 
-export default function YipNoteHomeInfo(props) {
+export default function UserInterface(props) {
    const { dexie } = props
     return (
         <>
