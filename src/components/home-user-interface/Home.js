@@ -25,6 +25,61 @@ export default function YipHomeInfo() {
     const [data_change, set_data_change] = useState()
 
 
+
+    const add_yips = async () => {
+        try {
+            const id = await db.yips.add({})
+            return id
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const add_kennel = async (data) => {
+        const formatted_data = { ...data, kennel_date: `${Date.now()}` }
+
+        try {
+            const id = await db.kennels.add(formatted_data)
+            return id
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+    const create_kennel = async (data) => {
+
+        const yips_id = await add_yips()
+        const kennel_id = await add_kennel(data)
+
+        try {
+            await db.marry_kennels.add({
+                kennel_id: kennel_id,
+                yips_id: yips_id
+            })
+            set_data_change(Math.random() * 1000)
+            console.log('SUCCESS')
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const create_yip = async (data) => {
+        try {
+            const formatted_data = {...data, yip_content: ''}
+
+            await db.yip.add(formatted_data)
+            set_data_change(Math.random() * 1000)
+            console.log('success!')
+        } catch(err){
+            console.error(err)
+        }
+    }
+
+
+
+
+
+
     const add_yip_content = async (key, changes) => {
         try {
             db.yip.update(key, changes).then(function (updated) {
@@ -35,11 +90,10 @@ export default function YipHomeInfo() {
                     console.log('error i guess')
                 }
             })
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
-
 
     const change_state = (key, changes) => {
         add_yip_content(key, changes)
@@ -111,18 +165,18 @@ export default function YipHomeInfo() {
             {
                 dexie_kennels === undefined ?
 
-                <h1> Loading... </h1>
+                    <h1> Loading... </h1>
 
-                : 
+                    :
 
-                <Routes>
-                <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state}} />} />
-                {
-                    kennels && kennels
-                }
-            </Routes>
+                    <Routes>
+                        <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state, update: create_kennel, update_yip: create_yip}} />} />
+                        {
+                            kennels && kennels
+                        }
+                    </Routes>
             }
-            
+
         </>
     )
 }

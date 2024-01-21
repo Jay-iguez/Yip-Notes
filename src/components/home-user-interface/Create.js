@@ -5,9 +5,41 @@ export default function YipCreate(props) {
 
     const { dexie } = props
 
+    const single = (acc, current) => {
+        let array = typeof acc !== 'object' ? [acc] : acc
+
+        if (!(array.includes(current))) {
+            array.push(current)
+            return array
+        } else {
+            return acc
+        }
+    }
+
+    const kennel_categories = dexie.dexie.map(value => {
+        return value.kennel_category
+    }).reduce(single)
+
+    const kennel_names = dexie.dexie.map(value => {
+        return { name: value.kennel_name, id: value.kennel_id }
+    })
+
     const [current_screen, set_current_screen] = useState('Kennels')
     const condition_state = useContext(condition_context)
+    const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: kennel_categories[0] })
+    const [new_yip, set_new_yip] = useState({ yip_name: '', yips_id: kennel_names[0].id })
+
     const [condition, set_condition] = condition_state
+
+    const updater = () => {
+        if (current_screen === 'Kennels'){
+            console.log('ken')
+            dexie.update(new_kennel)
+        } else if (current_screen === 'Yips'){
+            console.log('yip')
+            dexie.update_yip(new_yip)
+        }
+    }
 
 
     return (
@@ -17,8 +49,8 @@ export default function YipCreate(props) {
             <br></br>
 
             <div style={{ display: 'flex' }}>
-                <h3>Creating: </h3>
-                
+                <h3>Create: </h3>
+
                 <select className='button' onChange={(e) => {
                     set_current_screen(e.target.value)
                 }}>
@@ -27,39 +59,66 @@ export default function YipCreate(props) {
                 </select>
             </div>
 
-            {
-                current_screen === 'Kennels' ?
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                updater()
+            }}>
+                {
+                    current_screen === 'Kennels' ?
 
-                    <>
-                        <h3>Kennel Name: </h3>
-                        <input></input>
-                        <h3>Kennel Category: </h3>
-                        <select className="button" onChange={(e) => {
-                            
-                        }}>
-                            <option value='Canines'>Canines</option>
-                            <option value='Coding Stuff'>Coding Stuff</option>
-                            <option value='Droowing'>Droowing</option>
-                        </select>
-                    </>
+                        <>
+                            <div style={{ display: 'flex' }}>
+                                <h3>Kennel Name: </h3>
+                                <input
+                                    onChange={(e) => {
+                                        set_new_kennel({ ...new_kennel, kennel_name: e.target.value })
+                                    }}
+                                    value={new_kennel.kennel_name}
+                                />
+                            </div>
 
-                    :
+                            <div style={{ display: 'flex' }}>
+                                <h3>Kennel Category: </h3>
+                                <select className="button" onChange={(e) => {
+                                    set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
+                                }}>
+                                    {
+                                        kennel_categories.map(value => {
+                                            return <option value={value}>{value}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
+                        </>
 
-                    <>
-                        <h3>Yip Name: </h3>
-                        <input></input>
-                        <h3>Select Kennel: </h3>
-                        <select className="button" onChange={(e) => {
-                            
-                        }}>
-                            <option value='THe kennels of fortune'>THe kennels of fortune</option>
-                            <option value='Breeds of dogs I like'>Breeds of dogs I like</option>
-                            <option value='Why Arch Linux is hard lol'>Why Arch Linux is hard lol</option>
-                        </select>
-                    </>
-            
-            }
+                        :
 
+                        <>
+                            <div style={{ display: 'flex' }}>
+                                <h3>Yip Name: </h3>
+                                <input
+                                    onChange={(e) => {
+                                        set_new_yip({ ...new_yip, yip_name: e.target.value })
+                                    }}
+                                />
+                            </div>
+                            <div style={{ display: 'flex' }}>
+                                <h3>Select Kennel: </h3>
+                                <select className="button" onChange={(e) => {
+                                    set_new_yip({ ...new_yip, yips_id: parseInt(e.target.value) })
+                                }}>
+                                    {
+                                        kennel_names.map(value => {
+                                            return <option value={value.id}>{value.name}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
+                        </>
+
+                }
+                <button>Finalize Changes</button>
+            </form>
 
         </>
     )
