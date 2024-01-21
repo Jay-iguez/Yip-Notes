@@ -12,14 +12,16 @@ export default function YipNote(props) {
     const [html_value, set_html_value] = useState()
     const [value, setValue] = useState(yip.yip_content)
     const [to_change, set_to_change] = useState(false)
+    const [unsaved, set_unsaved] = useState(false)
+    const [confirm_leave, set_confirm_leave] = useState(1)
 
     let counts = 0
 
     const quill_change = (e) => {
-        
+
         counts = counts + 1
-      
-        if (counts === 2 ){
+
+        if (counts === 2) {
             set_html_value(e)
             setValue(e)
             counts = 0
@@ -32,37 +34,46 @@ export default function YipNote(props) {
         set_html_value(value)
     }, [])
 
-   
 
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
             <StyledContentbody>
-                <Link to={'/home/navigation-screen'} onClick={() => {
-                    if (html_value !== value){
-                        alert(' differnt! ')
+                <Link to={'/home/navigation-screen'} onClick={(e) => {
+                    if (confirm_leave !== 2) {
+                        if (html_value !== value) {
+                            set_unsaved(true)
+                            set_confirm_leave(confirm_leave + 1)
+                            e.preventDefault()
+                        }
                     }
+
                 }}>
-                    <button className="button">Back</button>
+                    {
+                        <button className="button">{unsaved === true ? 'You have unsaved changes! Are you sure you want to continue without saving?' : 'Back'}</button>
+                    }
                 </Link>
                 <br></br>
-                <br></br>
-                {!to_change ?
+                {
+                    !to_change ?
 
-                    <button className='button' onClick={() => set_to_change(!to_change)}>Save Changes</button>
+                        <button className='button' onClick={() => set_to_change(!to_change)}>Save Changes</button>
 
-                    :
+                        :
 
-                    <>
-                        <button className="button" onClick={() => {
-                            change(yip.yip_id, { ...yip, yip_content: value })
-                            set_to_change(!to_change)
-                            set_html_value(value)
-                        }}>Confirm Changes</button>
-                        <button className="button" onClick={() => {
-                            set_to_change(!to_change)
-                        }}>Cancel Changes</button>
-                    </>
+                        <>
+                            <button className="button" onClick={() => {
+                                set_to_change(!to_change)
+                            }}>Cancel Changes</button>
+                            <button className="button" onClick={() => {
+                                change(yip.yip_id, { ...yip, yip_content: value })
+                                set_to_change(!to_change)
+                                set_html_value(value)
+                                if (unsaved === true){
+                                    set_unsaved(false)
+                                }
+                            }}>Confirm Changes</button>
+                        </>
                 }
 
                 <StyledQuill>
