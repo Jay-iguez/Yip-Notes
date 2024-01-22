@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import KENNELS from '../components/home-user-interface/Kennels'
-import CREATE from '../components/home-user-interface/Create'
+import EDIT_CONDITION from '../utils/Edit_Condition'
 import KENNEL_VIEW from '../components/kennel-components/Kennel_View'
 import condition_context from "../context/condition_context"
 
@@ -22,7 +22,7 @@ export default function Condition(props) { // kennelRoutes={kennels} setKennelRo
             case 'kennels-list':
                 return <KENNELS dexie={dexie} />
             case 'create':
-                return <CREATE dexie={dexie} menu={menu}/>
+                return <EDIT_CONDITION dexie={dexie} menu={menu} set_condition={set_condition} />
             case 'drop-down':
                 return <KENNEL_VIEW dexie={dexie} />
             default:

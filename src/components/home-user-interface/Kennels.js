@@ -19,7 +19,7 @@ export default function Kennels(props) {
 
 
     return (
-        <>  <button className="button" onClick={() => set_condition('create')}>Create</button>
+        <>  <button className="button" onClick={() => set_condition('create')}>Update Data</button>
             {
                 dexie.dexie.map(kennel => {
                     return <KENNEL kennel={kennel} key={kennel.kennel_id} kennel_routes={routes} set_kennel_routes={set_routes} />

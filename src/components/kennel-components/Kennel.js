@@ -19,7 +19,6 @@ export const Kennel = (props) => {
                             <h3>{kennel.kennel_name}</h3>
                             <h3>{kennel.kennel_category}</h3>
                         </div>
-                        <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledKennelContentBox>
                 {
