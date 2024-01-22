@@ -23,7 +23,7 @@ export default function YipHomeInfo() {
     const [dexie_kennels, set_dexie_kennels] = useState()
 
     const [data_change, set_data_change] = useState()
-
+    const [current_menu, set_current_menu] = useState('Kennels')
 
 
     const add_yips = async () => {
@@ -129,6 +129,7 @@ export default function YipHomeInfo() {
     }
 
     useEffect(() => {
+        set_dexie_kennels(undefined)
         fetch_app()
             .then(res => {
                 fetch_data(res)
@@ -170,7 +171,7 @@ export default function YipHomeInfo() {
                     :
 
                     <Routes>
-                        <Route path={`navigation-screen`} element={<USER_INTERFACE dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state, update: create_kennel, update_yip: create_yip}} />} />
+                        <Route path={`navigation-screen`} element={<USER_INTERFACE menu={{menu: current_menu, set_menu: set_current_menu}} dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state, update: create_kennel, update_yip: create_yip}} />} />
                         {
                             kennels && kennels
                         }

@@ -4,13 +4,13 @@ import CONDITION from '../../utils/Condition';
 
 
 export default function UserInterface(props) {
-   const { dexie } = props
+   const { dexie, menu } = props
     return (
         <>
             <StyledContentContainer>
                 <StyledContentTopborder />
                 <StyledContentbody>
-                    <CONDITION dexie={dexie} />
+                    <CONDITION dexie={dexie} menu={menu} />
                 </StyledContentbody>
             </StyledContentContainer>
         </>

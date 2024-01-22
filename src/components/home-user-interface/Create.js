@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEf, useEffect } from "react";
 import condition_context from "../../context/condition_context";
 
 export default function YipCreate(props) {
 
-    const { dexie } = props
+    const { dexie, menu } = props
 
     const single = (acc, current) => {
         let array = typeof acc !== 'object' ? [acc] : acc
@@ -24,22 +24,28 @@ export default function YipCreate(props) {
         return { name: value.kennel_name, id: value.kennel_id }
     })
 
-    const [current_screen, set_current_screen] = useState('Kennels')
-    const condition_state = useContext(condition_context)
+
+    const [screen, set_screen] = useState(menu.menu)
     const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: kennel_categories[0] })
     const [new_yip, set_new_yip] = useState({ yip_name: '', yips_id: kennel_names[0].id })
-
+    
+    const condition_state = useContext(condition_context)
     const [condition, set_condition] = condition_state
 
     const updater = () => {
-        if (current_screen === 'Kennels'){
+        if (menu.menu === 'Kennels') {
             console.log('ken')
             dexie.update(new_kennel)
-        } else if (current_screen === 'Yips'){
+        } else if (menu.menu === 'Yips') {
             console.log('yip')
             dexie.update_yip(new_yip)
         }
     }
+
+
+    useEffect(() => {
+        menu.set_menu(menu.menu)
+    }, [])
 
 
     return (
@@ -51,9 +57,15 @@ export default function YipCreate(props) {
             <div style={{ display: 'flex' }}>
                 <h3>Create: </h3>
 
-                <select className='button' onChange={(e) => {
-                    set_current_screen(e.target.value)
-                }}>
+                <select 
+                
+                defaultValue={screen}
+                className='button' 
+                onChange={(e) => {
+                    menu.set_menu(e.target.value)
+                    set_screen(e.target.value)
+                }}
+                >
                     <option value='Kennels'>Kennels</option>
                     <option value='Yips'>Yips</option>
                 </select>
@@ -64,7 +76,7 @@ export default function YipCreate(props) {
                 updater()
             }}>
                 {
-                    current_screen === 'Kennels' ?
+                    screen === 'Kennels' ?
 
                         <>
                             <div style={{ display: 'flex' }}>

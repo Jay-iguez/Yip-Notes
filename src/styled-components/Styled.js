@@ -99,7 +99,7 @@ export const StyledContentTopborder = styled.div`
 export const StyledContentbody = styled.div`
     background-color: #373943;
     margin: 0 2rem;
-    //margin-top: 1.5%; // needs to be fixed
+    margin-top: 1.5%; // needs to be fixed
     overflow: auto;
     font-size: var(--font-size); 
 `
