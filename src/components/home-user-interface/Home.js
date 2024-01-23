@@ -78,9 +78,26 @@ export default function YipHomeInfo() {
 
 
 
+    const update_kennel = async (key, changes) => {
+        try {
+            db.kennels.update(key, changes).then(function (updated) {
+                if (updated) {
+                    console.log('kennel success')
+                    set_data_change(Math.random() * 1000)
+                } else {
+                    console.log('kennel update error')
+                }
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
+    const update_yip = async (key, changes) => {
 
-    const add_yip_content = async (key, changes) => {
+    }
+
+    const update_yip_content = async (key, changes) => {
         try {
             db.yip.update(key, changes).then(function (updated) {
                 if (updated) {
@@ -96,7 +113,7 @@ export default function YipHomeInfo() {
     }
 
     const change_state = (key, changes) => {
-        add_yip_content(key, changes)
+        update_yip_content(key, changes)
             .then(res => {
                 console.log('success')
             })
@@ -171,7 +188,7 @@ export default function YipHomeInfo() {
                     :
 
                     <Routes>
-                        <Route path={`navigation-screen`} element={<USER_INTERFACE menu={{menu: current_menu, set_menu: set_current_menu}} dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, change: change_state, update: create_kennel, update_yip: create_yip}} />} />
+                        <Route path={`navigation-screen`} element={<USER_INTERFACE menu={{menu: current_menu, set_menu: set_current_menu}} dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, update_kennel: update_kennel, update_yip: update_yip, change: change_state, create_kennel: create_kennel, create_yip: create_yip}} />} />
                         {
                             kennels && kennels
                         }

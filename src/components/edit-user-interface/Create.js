@@ -23,6 +23,7 @@ export default function Create(props) {
         return { name: value.kennel_name, id: value.kennel_id }
     })
 
+    
 
     const [screen, set_screen] = useState(menu.menu)
     const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: kennel_categories[0] })
@@ -30,12 +31,10 @@ export default function Create(props) {
 
 
     const updater = () => {
-        if (menu.menu === 'Kennels') {
-            console.log('ken')
-            dexie.update(new_kennel)
-        } else if (menu.menu === 'Yips') {
-            console.log('yip')
-            dexie.update_yip(new_yip)
+        if (screen === 'Kennels') {
+            dexie.create_kennel(new_kennel)
+        } else if (screen === 'Yips') {
+            dexie.create_yip(new_yip)
         }
     }
 
@@ -53,14 +52,14 @@ export default function Create(props) {
             <div style={{ display: 'flex' }}>
                 <h3>Create: </h3>
 
-                <select 
-                
-                defaultValue={screen}
-                className='button' 
-                onChange={(e) => {
-                    menu.set_menu(e.target.value)
-                    set_screen(e.target.value)
-                }}
+                <select
+
+                    defaultValue={screen}
+                    className='button'
+                    onChange={(e) => {
+                        menu.set_menu(e.target.value)
+                        set_screen(e.target.value)
+                    }}
                 >
                     <option value='Kennels'>Kennels</option>
                     <option value='Yips'>Yips</option>
@@ -86,8 +85,9 @@ export default function Create(props) {
                                 />
                             </div>
 
+                            <h3>Kennel Category: </h3>
                             <div style={{ display: 'flex' }}>
-                                <h3>Kennel Category: </h3>
+                                <h3>Select Existing Category: </h3>
                                 <select className="button" onChange={(e) => {
                                     set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                 }}>
@@ -97,6 +97,15 @@ export default function Create(props) {
                                         })
                                     }
                                 </select>
+                            </div>
+                            <div style={{ display: 'flex' }}>
+                                <h3>Or Create New Category: </h3>
+                                <input
+                                    onChange={(e) => {
+                                        set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
+                                    }}
+                                    className="button"
+                                />
                             </div>
                         </>
 
