@@ -1,17 +1,17 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import CREATE from '../components/edit-user-interface/Create'
 import DELETE from '../components/edit-user-interface/Delete'
 import EDIT from '../components/edit-user-interface/Edit'
 
 
 export default function EditCondition(props) { // kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app}
-    
-    const {dexie, menu, set_condition} = props
+
+    const { dexie, set_condition } = props
 
     const [current_screen, set_current_screen] = useState('create')
 
     const [currentRender, setCurrentRender] = useState(stateRenderSwitcher)
-    
+
     useEffect(() => {
         setCurrentRender(stateRenderSwitcher)
     }, [current_screen])
@@ -19,7 +19,7 @@ export default function EditCondition(props) { // kennelRoutes={kennels} setKenn
     function stateRenderSwitcher() {
         switch (current_screen) {
             case 'create':
-                return <CREATE dexie={dexie} menu={menu}/>
+                return <CREATE dexie={dexie} />
             case 'edit':
                 return <EDIT dexie={dexie} />
             case 'delete':
@@ -31,22 +31,22 @@ export default function EditCondition(props) { // kennelRoutes={kennels} setKenn
 
     return (
         <>
-        <h3 className="button">What would you like to do? </h3>
-        <select className="button" onChange={(e) => {
-            e.preventDefault()
-            set_current_screen(e.target.value)
-        }}>
-            <option value='create'>Create</option>
-            <option value='edit'>Edit</option>
-            <option value='delete'>Delete</option>
-        </select>
-        <br></br>
-        <br></br>
-        
-        <button className="button" onClick={() => set_condition('kennels-list')}>Back</button>
-        {
-            currentRender
-        }
+            <h3 className="button">What would you like to do? </h3>
+            <select className="button" onChange={(e) => {
+                e.preventDefault()
+                set_current_screen(e.target.value)
+            }}>
+                <option value='create'>Create</option>
+                <option value='edit'>Edit</option>
+                <option value='delete'>Delete</option>
+            </select>
+            <br></br>
+            <br></br>
+
+            <button className="button" onClick={() => set_condition('kennels-list')}>Back</button>
+            {
+                currentRender
+            }
         </>
     )
 }

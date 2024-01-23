@@ -6,6 +6,7 @@ import toggle_view from "../context/view_context";
 import condition_context from "../context/condition_context";
 import routes_context from "../context/routes_context";
 import app_data_context from "../context/app_data_context";
+import menu_screen_context from '../context/menu_screen_context'
 
 export default function ContextStore({ children }) {
 
@@ -15,6 +16,7 @@ export default function ContextStore({ children }) {
     const [condition_context_state] = USECONTEXTCREATOR(condition_context)
     const [app_context_state] = USECONTEXTCREATOR(app_data_context)
     const [routes_context_state] = USECONTEXTCREATOR(routes_context)
+    const [menu_screen_context_state] = USECONTEXTCREATOR(menu_screen_context)
 
 
     return (
@@ -23,9 +25,11 @@ export default function ContextStore({ children }) {
                 <toggle_view.Provider value={toggle_context_state}>
                     <app_data_context.Provider value={app_context_state}>
                         <routes_context.Provider value={routes_context_state}>
-                            <YipCSSStyles styles={styles}>
-                                {children}
-                            </YipCSSStyles>
+                            <menu_screen_context.Provider value={menu_screen_context_state}>
+                                <YipCSSStyles styles={styles}>
+                                    {children}
+                                </YipCSSStyles>
+                            </menu_screen_context.Provider>
                         </routes_context.Provider>
                     </app_data_context.Provider>
                 </toggle_view.Provider>
@@ -36,37 +40,37 @@ export default function ContextStore({ children }) {
 
 
 
-    /**
-     * 
-     * @returns 
-     * 
-     *  const fetchDataFromDexie = async () => {
-        try {
-          // Use toArray to fetch all records from marry_kennels
-          const marryKennelsData = await db.marry_kennels.toArray();
-    
-          // Process each record and fetch related data
-          const processedData = await Promise.all(
-            marryKennelsData.map(async (marry) => {
-              const kennelData = await db.kennels.where('kennel_id').equals(marry.kennel_id).first();
-              const yipData = await db.yip.where('yips_id').equals(marry.yips_id).first();
-    
-              // Combine marry_kennels, kennels, and yip data as needed
-              return {
-                marry,
-                kennel: kennelData,
-                yip: yipData,
-              };
-            })
-          );
-    
-          setMarryData(processedData);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-    
-     */
+/**
+ * 
+ * @returns 
+ * 
+ *  const fetchDataFromDexie = async () => {
+    try {
+      // Use toArray to fetch all records from marry_kennels
+      const marryKennelsData = await db.marry_kennels.toArray();
+ 
+      // Process each record and fetch related data
+      const processedData = await Promise.all(
+        marryKennelsData.map(async (marry) => {
+          const kennelData = await db.kennels.where('kennel_id').equals(marry.kennel_id).first();
+          const yipData = await db.yip.where('yips_id').equals(marry.yips_id).first();
+ 
+          // Combine marry_kennels, kennels, and yip data as needed
+          return {
+            marry,
+            kennel: kennelData,
+            yip: yipData,
+          };
+        })
+      );
+ 
+      setMarryData(processedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+ 
+ */
 
 
 /**

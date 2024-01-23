@@ -7,6 +7,7 @@ import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import app_data_context from "../../context/app_data_context";
+import menu_screen_context from "../../context/menu_screen_context";
 import db from "../../data/mock-data/db";
 
 
@@ -20,10 +21,10 @@ export default function YipHomeInfo() {
     const app_state = useContext(app_data_context)
     const [app] = app_state
 
-    const [dexie_kennels, set_dexie_kennels] = useState()
+    const menu_state = useContext(menu_screen_context)
 
+    const [dexie_kennels, set_dexie_kennels] = useState()
     const [data_change, set_data_change] = useState()
-    const [current_menu, set_current_menu] = useState('Kennels')
 
 
     const add_yips = async () => {
@@ -188,7 +189,17 @@ export default function YipHomeInfo() {
                     :
 
                     <Routes>
-                        <Route path={`navigation-screen`} element={<USER_INTERFACE menu={{menu: current_menu, set_menu: set_current_menu}} dexie={{ dexie: dexie_kennels, set_dexie: set_dexie_kennels, update_kennel: update_kennel, update_yip: update_yip, change: change_state, create_kennel: create_kennel, create_yip: create_yip}} />} />
+                        <Route path={`navigation-screen`} element={<USER_INTERFACE 
+
+                        dexie={{ 
+                            dexie: dexie_kennels, 
+                            set_dexie: set_dexie_kennels, 
+                            update_kennel: update_kennel, 
+                            update_yip: update_yip, 
+                            change: change_state, 
+                            create_kennel: create_kennel, 
+                            create_yip: create_yip
+                            }} />} />
                         {
                             kennels && kennels
                         }

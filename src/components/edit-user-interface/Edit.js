@@ -1,7 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import menu_screen_context from "../../context/menu_screen_context"
 
 export default function Edit(props) {
     const { dexie } = props
+
+    const menu_screen_state = useContext(menu_screen_context)
+    const [menu_screen, set_menu_screen] = menu_screen_state
+
 
     const single = (acc, current) => {
         let array = typeof acc !== 'object' ? [acc] : acc
@@ -29,7 +34,7 @@ export default function Edit(props) {
 
 
 
-    const [screen, set_screen] = useState('Kennels')
+    const [screen, set_screen] = useState(menu_screen.edit)
 
     const [kennel_to_update, set_kennel_to_update] = useState(false)
     const [kennel_update, set_kennel_update] = useState({ kennel_name: '', kennel_category: kennel_categories[0]})
@@ -79,13 +84,14 @@ export default function Edit(props) {
                 <h3>Edit: </h3>
 
                 <select
-
                     defaultValue={screen}
                     className='button'
                     onChange={(e) => {
+                        set_menu_screen({...menu_screen, edit: e.target.value})
                         set_screen(e.target.value)
                     }}
                 >
+                    <option value=''>-- select --</option>
                     <option value='Kennels'>Kennels</option>
                     <option value='Yips'>Yips</option>
                 </select>
@@ -96,6 +102,13 @@ export default function Edit(props) {
                 updater()
             }}>
                 {
+
+                    screen === '' ?
+
+                    <p className="button">Select an option</p>
+
+                    :
+                    
                     screen === 'Kennels' ?
 
                         <>

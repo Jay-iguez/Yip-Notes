@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import menu_screen_context from "../../context/menu_screen_context";
 
 export default function Create(props) {
 
-    const { dexie, menu } = props
+    const { dexie } = props
+
+    const menu_screen_state = useContext(menu_screen_context)
+    const [menu_screen, set_menu_screen] = menu_screen_state
+
 
     const single = (acc, current) => {
         let array = typeof acc !== 'object' ? [acc] : acc
@@ -23,9 +28,8 @@ export default function Create(props) {
         return { name: value.kennel_name, id: value.kennel_id }
     })
 
-    
-
-    const [screen, set_screen] = useState(menu.menu)
+   
+    const [screen, set_screen] = useState(menu_screen.create)
     const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: kennel_categories[0] })
     const [new_yip, set_new_yip] = useState({ yip_name: '', yips_id: kennel_names[0].id })
 
@@ -38,11 +42,13 @@ export default function Create(props) {
         }
     }
 
-
+/**
+ * May not be needed but keeping just in case
+ * 
     useEffect(() => {
         menu.set_menu(menu.menu)
     }, [])
-
+ */
 
     return (
         <>
@@ -53,14 +59,14 @@ export default function Create(props) {
                 <h3>Create: </h3>
 
                 <select
-
                     defaultValue={screen}
                     className='button'
                     onChange={(e) => {
-                        menu.set_menu(e.target.value)
+                        set_menu_screen({...menu_screen, create: e.target.value})
                         set_screen(e.target.value)
                     }}
-                >
+                >   
+                    <option value=''>-- select --</option>
                     <option value='Kennels'>Kennels</option>
                     <option value='Yips'>Yips</option>
                 </select>
@@ -71,6 +77,14 @@ export default function Create(props) {
                 updater()
             }}>
                 {
+
+                    screen === '' ? 
+
+                    <p className="button">Select an option.</p>
+
+                    :
+
+
                     screen === 'Kennels' ?
 
                         <>
