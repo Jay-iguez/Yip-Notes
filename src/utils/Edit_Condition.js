@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import menu_screen_context from "../context/menu_screen_context"
 import CREATE from '../components/edit-user-interface/Create'
 import DELETE from '../components/edit-user-interface/Delete'
 import EDIT from '../components/edit-user-interface/Edit'
 
 
-export default function EditCondition(props) { // kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app}
+export default function EditCondition(props) {
 
     const { dexie, set_condition } = props
 
-    const [current_screen, set_current_screen] = useState('create')
+    const menu_screen_state = useContext(menu_screen_context)
+    const [menu_screen, set_menu_screen] = menu_screen_state
+
+    const [current_screen, set_current_screen] = useState(menu_screen.main)
 
     const [currentRender, setCurrentRender] = useState(stateRenderSwitcher)
 
@@ -25,15 +29,16 @@ export default function EditCondition(props) { // kennelRoutes={kennels} setKenn
             case 'delete':
                 return <DELETE dexie={dexie} />
             default:
-                return <button>THis shouldn't be here ever</button>
+                return <button>This shouldn't be here ever, and you neither...</button>
         }
     }
 
     return (
         <>
             <h3 className="button">What would you like to do? </h3>
-            <select className="button" onChange={(e) => {
+            <select className="button" defaultValue={current_screen} onChange={(e) => {
                 e.preventDefault()
+                set_menu_screen({...menu_screen, main: e.target.value})
                 set_current_screen(e.target.value)
             }}>
                 <option value='create'>Create</option>
