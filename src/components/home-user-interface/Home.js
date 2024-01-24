@@ -21,50 +21,31 @@ export default function YipHomeInfo() {
     const [data_change, set_data_change] = useState()
     const [yip_is_updated, set_is_yip_updated] = useState(false)
 
-    const add_yips = async () => {
-        try {
-            const id = await db.yips.add({})
-            return id
-        } catch (err) {
-            console.error(err)
-        }
-    }
 
-    const add_kennel = async (data) => {
-        const formatted_data = { ...data, kennel_date: `${Date.now()}` }
+    const create_kennel_transaction = (data) => {
+        const formatted_kennel_payload = { ...data, kennel_date: `${Date.now()}` }
 
-        try {
-            const id = await db.kennels.add(formatted_data)
-            return id
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
-    const create_kennel = async (data) => {
-
-        const yips_id = await add_yips()
-        const kennel_id = await add_kennel(data)
-
-        try {
-            await db.marry_kennels.add({
+        db.transaction('rw', db.yips, db.kennels, db.marry_kennels, function* () {
+            const yips_id = yield db.yips.add({})
+            const kennel_id = yield db.kennels.add(formatted_kennel_payload)
+            yield db.marry_kennels.add({
                 kennel_id: kennel_id,
                 yips_id: yips_id
             })
-            set_data_change(Math.random() * 1000)
-            console.log('SUCCESS')
-        } catch (err) {
-            console.error(err)
-        }
+        })
+            .then(res => {
+                console.log('success in creating new kennel!')
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 
     const create_yip = async (data) => {
         try {
             const formatted_data = { ...data, yip_content: '' }
-
             await db.yip.add(formatted_data)
-            set_data_change(Math.random() * 1000)
-            console.log('success!')
+            console.log('success in creaating new yip')
         } catch (err) {
             console.error(err)
         }
@@ -75,22 +56,33 @@ export default function YipHomeInfo() {
             await db.yip.where('yip_id').equals(data).delete()
                 .then(function (deleteCount) {
                     console.log(`Deleted ${deleteCount} ---`)
-                    set_data_change(Math.random() * 1000)
                 })
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
+    const delete_kennel_transaction = (data) => {
+        const { marry_id, yips_id, kennel_id } = data
 
+        db.transaction('rw', db.marry_kennels, db.yip, db.yips, db.kennels, function* () {
+            yield db.marry_kennels.where('marry_id').equals(marry_id).delete()
+            yield db.yip.where('yips_id').equals(yips_id).delete()
+            yield db.yips.where('yips_id').equals(yips_id).delete()
+            yield db.kennels.where('kennel_id').equals(kennel_id).delete()
+        })
+            .then(res => {
+                console.log('success in deleting kennel')
+            })
+            .catch(e => console.error(e))
 
+    }
 
-    const update_kennel = async (key, changes) => {
+    const update_kennel = async (data) => {
         try {
-            db.kennels.update(key, changes).then(function (updated) {
+            db.kennels.update(data.kennel_id, data).then(function (updated) {
                 if (updated) {
-                    console.log('kennel success')
-                    set_data_change(Math.random() * 1000)
+                    console.log('kennel update success')
                 } else {
                     console.log('kennel update error')
                 }
@@ -100,46 +92,27 @@ export default function YipHomeInfo() {
         }
     }
 
-    const delete_kennel = (data) => {
-        const {marry_id, yips_id, kennel_id} = data
 
-    
-             db.transaction('rw', db.marry_kennels, db.yip, db.yips, db.kennels, function* () {
-                yield db.marry_kennels.where('marry_id').equals(marry_id).delete()
-                yield db.yip.where('yips_id').equals(yips_id).delete()
-                yield db.yips.where('yips_id').equals(yips_id).delete()
-                yield db.kennels.where('kennel_id').equals(kennel_id).delete()
-            })
-            .then(res => {
-                console.log('success in deleting kennel')
-                set_data_change(Math.random() * 1000)
-            })
-            .catch(e => console.error(e))
-
-    }
-
-    const update_yip = async (key, changes) => {
+    const update_yip = async (data) => {
         try {
-            db.yip.update(key, changes).then(function (updated) {
+            db.yip.update(data.yip_id, data).then(function (updated) {
                 if (updated) {
                     console.log('success in yip udpate!')
-                    set_data_change(Math.random() * 1000)
                 } else {
                     console.log('erro in updating yip')
                 }
             })
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
-    const update_yip_content = async (key, changes) => {
+    const update_yip_content = async (data) => {
         set_is_yip_updated(true)
         try {
-            db.yip.update(key, changes).then(function (updated) {
+            db.yip.update(data.id, data.content).then(function (updated) {
                 if (updated) {
-                    console.log('success')
-                    set_data_change(Math.random() * 1000)
+                    console.log('success in updating content')
                 } else {
                     console.log('error i guess')
                 }
@@ -149,18 +122,6 @@ export default function YipHomeInfo() {
             set_is_yip_updated(false)
         }
     }
-
-    const change_state = (key, changes) => {
-        update_yip_content(key, changes)
-            .then(res => {
-                console.log('success')
-                set_data_change(Math.random() * 1000)
-            })
-            .catch(err => {
-                console.error(err)
-            })
-    }
-
 
     const fetch_data = async () => {
 
@@ -188,6 +149,36 @@ export default function YipHomeInfo() {
         }
     }
 
+    const updater = (action) => {
+        switch (action.action) {
+            case 'create_kennel':
+                create_kennel_transaction(action.payload)
+                break
+            case 'create_yip':
+                create_yip(action.payload)
+                break
+            case 'update_kennel':
+                update_kennel(action.payload)
+                break
+            case 'update_yip_content':
+                update_yip_content(action.payload)
+                break
+            case 'update_yip':
+                update_yip(action.payload)
+                break
+            case 'delete_yip':
+                delete_yip(action.payload)
+                break
+            case 'delete_kennel':
+                delete_kennel_transaction(action.payload)
+                break
+            default:
+                return 'Action Object Not Supplied!'
+        }
+
+        set_data_change(Math.random() * 1000)
+    }
+
     useEffect(() => {
         fetch_data()
             .then(res => {
@@ -199,20 +190,17 @@ export default function YipHomeInfo() {
             })
     }, [data_change])
 
+    useEffect(() => {
+        if (dexie_kennels !== undefined) {
+            Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP, updater)
+        }
+
+    }, [dexie_kennels])
 
     useEffect(() => {
         const body = document.querySelector('body')
         body.style.backgroundColor = '#1D1F21'
     }, [])
-
-    useEffect(() => {
-
-        if (dexie_kennels !== undefined) {
-            console.log('should changes')
-            Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP, change_state)
-        }
-
-    }, [dexie_kennels])
 
 
     return (
@@ -232,21 +220,17 @@ export default function YipHomeInfo() {
                     :
 
                     <Routes>
-                        <Route path={`navigation-screen`} element={<USER_INTERFACE
-
-                            dexie={{
-                                dexie: dexie_kennels,
-                                set_dexie: set_dexie_kennels,
-                                marry: marry_yips,
-                                set_marry: set_marry_yips,
-                                update_kennel: update_kennel,
-                                update_yip: update_yip,
-                                delete_yip: delete_yip,
-                                delete_kennel: delete_kennel,
-                                change: change_state,
-                                create_kennel: create_kennel,
-                                create_yip: create_yip
-                            }} />} />
+                        <Route path={`navigation-screen`} element={
+                            <USER_INTERFACE
+                                dexie={{
+                                    dexie: dexie_kennels,
+                                    set_dexie: set_dexie_kennels,
+                                    marry: marry_yips,
+                                    set_marry: set_marry_yips,
+                                    updater: updater
+                                }}
+                            />
+                        } />
                         {
                             kennels && kennels
                         }

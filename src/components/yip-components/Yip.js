@@ -6,7 +6,7 @@ import { StyledContentContainer, StyledContentTopborder, StyledContentbody, Styl
 
 export default function YipNote(props) {
 
-    const { yip, change } = props
+    const { yip, updater } = props
 
 
     const [html_value, set_html_value] = useState()
@@ -65,7 +65,8 @@ export default function YipNote(props) {
                                 set_to_change(!to_change)
                             }}>Cancel Changes</button>
                             <button className="button" onClick={() => {
-                                change(yip.yip_id, { ...yip, yip_content: value })
+                                const payload = {id: yip.yip_id, content: {...yip, yip_content: value}}
+                                updater({action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
                                 set_html_value(value)
                                 if (unsaved === true) {

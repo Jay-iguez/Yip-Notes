@@ -70,15 +70,14 @@ export default function Edit(props) {
 
             const payload = { ...modified_kennel, kennel_name: kennel_update.kennel_name, kennel_category: kennel_update.kennel_category }
 
-            dexie.update_kennel(kennel_to_update, payload)
+            dexie.updater({action: 'update_kennel', payload: payload})
 
         } else if (screen === 'Yips') {
             const yip = get_proper_yip(yip_update.yip_id)
 
             const payload = { ...yip, yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name, yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id }
 
-        
-            dexie.update_yip(payload.yip_id, payload)
+            dexie.updater({action: 'update_yip', payload: payload})
         }
     }
 

@@ -36,21 +36,12 @@ export default function Create(props) {
 
     const updater = () => {
         if (screen === 'Kennels') {
-            dexie.create_kennel(new_kennel)
+            dexie.updater({action: 'create_kennel', payload: new_kennel})
         } else if (screen === 'Yips') {
-            dexie.create_yip(new_yip)
+            dexie.updater({action: 'create_yip', payload: new_yip})
         }
     }
 
-/**
- * May not be needed but keeping just in case
- * 
-    useEffect(() => {
-        menu.set_menu(menu.menu)
-    }, [])
- */
-
-    console.log(kennel_names)
 
     return (
         <>

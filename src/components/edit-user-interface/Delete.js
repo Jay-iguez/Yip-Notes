@@ -8,21 +8,6 @@ export default function Delete(props) {
     const [menu_screen, set_menu_screen] = menu_screen_state
 
 
-    const single = (acc, current) => {
-        let array = typeof acc !== 'object' ? [acc] : acc
-
-        if (!(array.includes(current))) {
-            array.push(current)
-            return array
-        } else {
-            return acc
-        }
-    }
-
-    const kennel_categories = dexie.dexie.map(value => {
-        return value.kennel_category
-    }).reduce(single)
-
     const kennel_names = dexie.dexie.map(value => {
         return { name: value.kennel_name, id: value.kennel_id }
     })
@@ -65,13 +50,13 @@ export default function Delete(props) {
         if (screen === 'Kennels') {
             const [marry] = get_marry_id(kennel_to_update)
 
-            const payload = {yips_id: marry.yips_id, kennel_id: kennel_to_update, marry_id: marry.marry_id}
+            const payload = { yips_id: marry.yips_id, kennel_id: kennel_to_update, marry_id: marry.marry_id }
 
-            dexie.delete_kennel(payload)
+            dexie.updater({ action: 'delete_kennel', payload: payload })
 
         } else if (screen === 'Yips') {
-           
-            dexie.delete_yip(yip_update.yip_id)
+
+            dexie.updater({ action: 'delete_yip', payload: yip_update.yip_id })
         }
     }
 
@@ -129,7 +114,7 @@ export default function Delete(props) {
                                     </select>
                                 </div>
                                 {
-                                     isNaN(kennel_to_update) ?
+                                    isNaN(kennel_to_update) ?
 
                                         null
 
