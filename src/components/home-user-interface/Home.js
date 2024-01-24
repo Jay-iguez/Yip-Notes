@@ -70,6 +70,18 @@ export default function YipHomeInfo() {
         }
     }
 
+    const delete_yip = async (data) => {
+        try {
+            await db.yip.where('yip_id').equals(data).delete()
+                .then(function (deleteCount) {
+                    console.log(`Deleted ${deleteCount} ---`)
+                    set_data_change(Math.random() * 1000)
+                })
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
 
 
 
@@ -86,6 +98,24 @@ export default function YipHomeInfo() {
         } catch (err) {
             console.error(err)
         }
+    }
+
+    const delete_kennel = (data) => {
+        const {marry_id, yips_id, kennel_id} = data
+
+    
+             db.transaction('rw', db.marry_kennels, db.yip, db.yips, db.kennels, function* () {
+                yield db.marry_kennels.where('marry_id').equals(marry_id).delete()
+                yield db.yip.where('yips_id').equals(yips_id).delete()
+                yield db.yips.where('yips_id').equals(yips_id).delete()
+                yield db.kennels.where('kennel_id').equals(kennel_id).delete()
+            })
+            .then(res => {
+                console.log('success in deleting kennel')
+                set_data_change(Math.random() * 1000)
+            })
+            .catch(e => console.error(e))
+
     }
 
     const update_yip = async (key, changes) => {
@@ -211,6 +241,8 @@ export default function YipHomeInfo() {
                                 set_marry: set_marry_yips,
                                 update_kennel: update_kennel,
                                 update_yip: update_yip,
+                                delete_yip: delete_yip,
+                                delete_kennel: delete_kennel,
                                 change: change_state,
                                 create_kennel: create_kennel,
                                 create_yip: create_yip
