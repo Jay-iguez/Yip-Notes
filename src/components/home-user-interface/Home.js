@@ -6,8 +6,6 @@ import YIP from '../yip-components/Yip'
 import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
-import app_data_context from "../../context/app_data_context";
-import menu_screen_context from "../../context/menu_screen_context";
 import db from "../../data/mock-data/db";
 
 
@@ -18,14 +16,10 @@ export default function YipHomeInfo() {
     const kennels_state = useContext(routes_context)
     const [kennels, set_kennels] = kennels_state
 
-    const app_state = useContext(app_data_context)
-    const [app] = app_state
-
-    const menu_state = useContext(menu_screen_context)
-
     const [dexie_kennels, set_dexie_kennels] = useState()
+    const [marry_yips, set_marry_yips] = useState()
     const [data_change, set_data_change] = useState()
-
+    const [yip_is_updated, set_is_yip_updated] = useState(false)
 
     const add_yips = async () => {
         try {
@@ -42,7 +36,7 @@ export default function YipHomeInfo() {
         try {
             const id = await db.kennels.add(formatted_data)
             return id
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
@@ -66,12 +60,12 @@ export default function YipHomeInfo() {
 
     const create_yip = async (data) => {
         try {
-            const formatted_data = {...data, yip_content: ''}
+            const formatted_data = { ...data, yip_content: '' }
 
             await db.yip.add(formatted_data)
             set_data_change(Math.random() * 1000)
             console.log('success!')
-        } catch(err){
+        } catch (err) {
             console.error(err)
         }
     }
@@ -89,16 +83,28 @@ export default function YipHomeInfo() {
                     console.log('kennel update error')
                 }
             })
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
     const update_yip = async (key, changes) => {
-
+        try {
+            db.yip.update(key, changes).then(function (updated) {
+                if (updated) {
+                    console.log('success in yip udpate!')
+                    set_data_change(Math.random() * 1000)
+                } else {
+                    console.log('erro in updating yip')
+                }
+            })
+        } catch(err) {
+            console.error(err)
+        }
     }
 
     const update_yip_content = async (key, changes) => {
+        set_is_yip_updated(true)
         try {
             db.yip.update(key, changes).then(function (updated) {
                 if (updated) {
@@ -110,6 +116,7 @@ export default function YipHomeInfo() {
             })
         } catch (err) {
             console.error(err)
+            set_is_yip_updated(false)
         }
     }
 
@@ -117,6 +124,7 @@ export default function YipHomeInfo() {
         update_yip_content(key, changes)
             .then(res => {
                 console.log('success')
+                set_data_change(Math.random() * 1000)
             })
             .catch(err => {
                 console.error(err)
@@ -124,12 +132,15 @@ export default function YipHomeInfo() {
     }
 
 
-    const fetch_app = async () => {
-        const data = await db.marry_kennels.toArray()
-        return data
-    }
+    const fetch_data = async () => {
 
-    const fetch_data = async (data) => {
+        if (!yip_is_updated) {
+            set_dexie_kennels(undefined) // Keeps the refresh from happening if the change is too the yip content
+        }
+
+        const data = await db.marry_kennels.toArray()
+        set_marry_yips(data)
+
         try {
             const processed_data = await Promise.all(
                 data.map(async (marry) => {
@@ -140,17 +151,18 @@ export default function YipHomeInfo() {
                     return formatted_kennels
                 })
             )
-            set_dexie_kennels(processed_data)
+
+            return processed_data
         } catch (err) {
             console.error(err)
         }
     }
 
     useEffect(() => {
-        set_dexie_kennels(undefined)
-        fetch_app()
+        fetch_data()
             .then(res => {
-                fetch_data(res)
+                set_dexie_kennels(res)
+                set_is_yip_updated(false)
             })
             .catch(err => {
                 console.error(err)
@@ -166,6 +178,7 @@ export default function YipHomeInfo() {
     useEffect(() => {
 
         if (dexie_kennels !== undefined) {
+            console.log('should changes')
             Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP, change_state)
         }
 
@@ -189,16 +202,18 @@ export default function YipHomeInfo() {
                     :
 
                     <Routes>
-                        <Route path={`navigation-screen`} element={<USER_INTERFACE 
+                        <Route path={`navigation-screen`} element={<USER_INTERFACE
 
-                        dexie={{ 
-                            dexie: dexie_kennels, 
-                            set_dexie: set_dexie_kennels, 
-                            update_kennel: update_kennel, 
-                            update_yip: update_yip, 
-                            change: change_state, 
-                            create_kennel: create_kennel, 
-                            create_yip: create_yip
+                            dexie={{
+                                dexie: dexie_kennels,
+                                set_dexie: set_dexie_kennels,
+                                marry: marry_yips,
+                                set_marry: set_marry_yips,
+                                update_kennel: update_kennel,
+                                update_yip: update_yip,
+                                change: change_state,
+                                create_kennel: create_kennel,
+                                create_yip: create_yip
                             }} />} />
                         {
                             kennels && kennels
