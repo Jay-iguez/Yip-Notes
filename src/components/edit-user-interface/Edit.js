@@ -95,7 +95,7 @@ export default function Edit(props) {
 
                 <select
                     defaultValue={screen}
-                    className='button'
+                    className='option'
                     onChange={(e) => {
                         set_menu_screen({ ...menu_screen, edit: e.target.value })
                         set_screen(e.target.value)
@@ -115,7 +115,7 @@ export default function Edit(props) {
 
                     screen === '' ?
 
-                        <p className="button">Select an option</p>
+                        <p className="option">Select an option</p>
 
                         :
 
@@ -124,7 +124,7 @@ export default function Edit(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="button" onChange={(e) => {
+                                    <select className="option" onChange={(e) => {
                                         set_kennel_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value=''>-- select --</option>
@@ -150,13 +150,13 @@ export default function Edit(props) {
                                                         set_kennel_update({ ...kennel_update, kennel_name: e.target.value })
                                                     }}
                                                     value={kennel_update.kennel_name}
-                                                    className="button"
+                                                    className="option"
                                                 />
                                             </div>
 
                                             <div style={{ display: 'flex' }}>
                                                 <h3>New Kennel Category: </h3>
-                                                <select className="button" onChange={(e) => {
+                                                <select className="option" onChange={(e) => {
                                                     set_kennel_update({ ...kennel_update, kennel_category: e.target.value })
                                                 }}>
                                                     <option value=''>-- select --</option>
@@ -177,7 +177,7 @@ export default function Edit(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="button" onChange={(e) => {
+                                    <select className="option" onChange={(e) => {
                                         set_yip_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value=''>-- select --</option>
@@ -198,7 +198,7 @@ export default function Edit(props) {
                                         <>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>Select Yip: </h3>
-                                                <select className="button" onChange={(e) => {
+                                                <select className="option" onChange={(e) => {
                                                     set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value) })
                                                 }}>
                                                     <option value=''>-- select --</option>
@@ -213,12 +213,12 @@ export default function Edit(props) {
                                                     onChange={(e) => {
                                                         set_yip_update({ ...yip_update, yip_name: e.target.value })
                                                     }}
-                                                    className="button"
+                                                    className="option"
                                                 />
                                             </div>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>New Kennel Source: </h3>
-                                                <select className="button" onChange={(e) => {
+                                                <select className="option" onChange={(e) => {
                                                     set_yip_update({ ...yip_update, yips_id: parseInt(e.target.value) })
                                                 }}>
                                                     <option value=''>-- select --</option>
@@ -234,7 +234,7 @@ export default function Edit(props) {
                             </>
 
                 }
-                <button className="button">Finalize Changes</button>
+                <button className="button">Submit Changes</button>
             </form>
 
         </>

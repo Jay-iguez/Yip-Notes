@@ -40,7 +40,6 @@ export default function Delete(props) {
     const [screen, set_screen] = useState(menu_screen.delete)
 
     const [kennel_to_update, set_kennel_to_update] = useState(NaN)
-    const [kennel_update, set_kennel_update] = useState({ kennel_name: '', kennel_category: '' })
 
     const [yip_to_update, set_yip_to_update] = useState(NaN)
     const [yip_update, set_yip_update] = useState({ yip_id: 0 })
@@ -89,7 +88,7 @@ export default function Delete(props) {
 
                 <select
                     defaultValue={screen}
-                    className='button'
+                    className='option'
                     onChange={(e) => {
                         set_menu_screen({ ...menu_screen, delete: e.target.value })
                         set_screen(e.target.value)
@@ -109,7 +108,7 @@ export default function Delete(props) {
 
                     screen === '' ?
 
-                        <p className="button">Select an option</p>
+                        <p className="option">Select an option</p>
 
                         :
 
@@ -118,7 +117,7 @@ export default function Delete(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="button" onChange={(e) => {
+                                    <select className="option" onChange={(e) => {
                                         set_kennel_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value={false}>-- select --</option>
@@ -139,7 +138,7 @@ export default function Delete(props) {
                                         <>
                                             <div>
                                                 <h3>The Kennel: {get_proper_kennel(kennel_to_update)?.[0]?.kennel_name} - will be deleted.</h3>
-                                                <h3 className="button">Warning: Understand all Yips of selected Kennel will also be deleted - modify the Kennel Source of any Yip you wish to save before deleting Kennel.</h3>
+                                                <h3 className="option">Warning: Understand all Yips of selected Kennel will also be deleted - modify the Kennel Source of any Yip you wish to save before deleting Kennel.</h3>
                                             </div>
 
                                         </>
@@ -152,7 +151,7 @@ export default function Delete(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="button" onChange={(e) => {
+                                    <select className="option" onChange={(e) => {
                                         set_yip_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value=''>-- select --</option>
@@ -173,7 +172,7 @@ export default function Delete(props) {
                                         <>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>Select Yip: </h3>
-                                                <select className="button" onChange={(e) => {
+                                                <select className="option" onChange={(e) => {
                                                     set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value) })
                                                 }}>
                                                     <option value={false}>-- select --</option>

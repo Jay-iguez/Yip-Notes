@@ -11,7 +11,10 @@ const flavorMessages = [
     'hard thought ventures.',
     'amazing mental prowess.',
     'important messages.',
-    'weapons of the quill.'
+    'weapons of the quill.',
+    'works of literary art.',
+    'dog themed notes.',
+    'crevices of grey matter.'
 ]
 
 const getFlavorMessage = () => {

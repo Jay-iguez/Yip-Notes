@@ -50,6 +50,8 @@ export default function Create(props) {
     }, [])
  */
 
+    console.log(kennel_names)
+
     return (
         <>
             <br></br>
@@ -60,7 +62,7 @@ export default function Create(props) {
 
                 <select
                     defaultValue={screen}
-                    className='button'
+                    className='option'
                     onChange={(e) => {
                         set_menu_screen({...menu_screen, create: e.target.value})
                         set_screen(e.target.value)
@@ -95,20 +97,27 @@ export default function Create(props) {
                                         set_new_kennel({ ...new_kennel, kennel_name: e.target.value })
                                     }}
                                     value={new_kennel.kennel_name}
-                                    className="button"
+                                    className="option"
                                 />
                             </div>
 
                             <h3>Kennel Category: </h3>
                             <div style={{ display: 'flex' }}>
                                 <h3>Select Existing Category: </h3>
-                                <select className="button" onChange={(e) => {
+                                <select className="option" onChange={(e) => {
                                     set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                 }}>
+                                    <option value={false}>-- select --</option>
                                     {
+                                        typeof kennel_categories === 'object' ? 
+                                        
                                         kennel_categories.map(value => {
                                             return <option value={value}>{value}</option>
                                         })
+
+                                        :
+
+                                        <option value={kennel_categories}>{kennel_categories}</option>
                                     }
                                 </select>
                             </div>
@@ -118,7 +127,7 @@ export default function Create(props) {
                                     onChange={(e) => {
                                         set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                     }}
-                                    className="button"
+                                    className="option"
                                 />
                             </div>
                         </>
@@ -132,18 +141,25 @@ export default function Create(props) {
                                     onChange={(e) => {
                                         set_new_yip({ ...new_yip, yip_name: e.target.value })
                                     }}
-                                    className="button"
+                                    className="option"
                                 />
                             </div>
                             <div style={{ display: 'flex' }}>
                                 <h3>Select Kennel: </h3>
-                                <select className="button" onChange={(e) => {
+                                <select className="option" onChange={(e) => {
                                     set_new_yip({ ...new_yip, yips_id: parseInt(e.target.value) })
                                 }}>
+                                    <option value={false}>-- select --</option>
                                     {
+                                        kennel_names.length !== 0 ? 
+                                        
                                         kennel_names.map(value => {
                                             return <option value={value.id}>{value.name}</option>
                                         })
+
+                                        :
+
+                                        null
                                     }
                                 </select>
                             </div>

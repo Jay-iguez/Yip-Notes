@@ -23,6 +23,26 @@ export const YipCSSStyles = styled.div`
         color: grey;
     }
 
+    .button.corner {
+       position: fixed;
+       top: 2.5rem;
+    }
+
+    .option {
+        align-self: flex-start;
+        text-align: center;
+        text-decoration: none;
+        background-color: #2a2b34;
+        color: white;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: .1rem 2rem;
+        margin: 0 .2rem;
+        margin-top: .5rem;
+        border-left: .4rem solid #1D1F21;
+    }
+
     .intro_message {
         display: flex;
         flex-flow: column nowrap;
@@ -90,16 +110,17 @@ export const StyledYipHomeScreenNavBar = styled.nav`
 export const StyledContentContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    max-height: 100vh;
+    max-height: 100%;
 
 `
 export const StyledContentTopborder = styled.div`
-    height: 5vh;
+    height: 3rem;
 `
 export const StyledContentbody = styled.div`
+    --gap_size : ${props => props.gap};
     background-color: #373943;
     margin: 0 2rem;
-    margin-top: 1.5%; // needs to be fixed
+    margin-top: 2rem; // needs to be fixed
     overflow: auto;
     font-size: var(--font-size); 
 `
@@ -217,6 +238,8 @@ export const StyledKennelContentBox = styled.div`
 	        outline: inherit;
             width: 0;
         }
+
+        
     }
 `
 //

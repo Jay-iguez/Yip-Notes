@@ -35,8 +35,7 @@ export default function EditCondition(props) {
 
     return (
         <>
-            <h3 className="button">What would you like to do? </h3>
-            <select className="button" defaultValue={current_screen} onChange={(e) => {
+            <select className="option" defaultValue={current_screen} onChange={(e) => {
                 e.preventDefault()
                 set_menu_screen({...menu_screen, main: e.target.value})
                 set_current_screen(e.target.value)
@@ -46,9 +45,6 @@ export default function EditCondition(props) {
                 <option value='delete'>Delete</option>
             </select>
             <br></br>
-            <br></br>
-
-            <button className="button" onClick={() => set_condition('kennels-list')}>Back</button>
             {
                 currentRender
             }

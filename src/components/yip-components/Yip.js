@@ -38,7 +38,7 @@ export default function YipNote(props) {
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
-            <StyledContentbody>
+            <StyledContentbody gap={'2rem'}>
                 <Link to={'/home/navigation-screen'} onClick={(e) => {
                     if (confirm_leave !== 2) {
                         if (html_value !== value) {
@@ -50,10 +50,9 @@ export default function YipNote(props) {
 
                 }}>
                     {
-                        <button className="button">{unsaved === true ? 'You have unsaved changes! Are you sure you want to continue without saving?' : 'Back'}</button>
+                        <button className="button corner">{unsaved === true ? 'You have unsaved changes! Are you sure you want to continue without saving?' : 'Back'}</button>
                     }
                 </Link>
-                <br></br>
                 {
                     !to_change ?
 
@@ -69,7 +68,7 @@ export default function YipNote(props) {
                                 change(yip.yip_id, { ...yip, yip_content: value })
                                 set_to_change(!to_change)
                                 set_html_value(value)
-                                if (unsaved === true){
+                                if (unsaved === true) {
                                     set_unsaved(false)
                                 }
                             }}>Confirm Changes</button>
