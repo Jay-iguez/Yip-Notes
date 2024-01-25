@@ -39,11 +39,11 @@ export default function Edit(props) {
 
     const [screen, set_screen] = useState(menu_screen.edit)
 
-    const [kennel_to_update, set_kennel_to_update] = useState(false)
+    const [kennel_to_update, set_kennel_to_update] = useState('')
     const [kennel_update, set_kennel_update] = useState({ kennel_name: '', kennel_category: '' })
 
-    const [yip_to_update, set_yip_to_update] = useState(false)
-    const [yip_update, set_yip_update] = useState({ yip_name: '', yips_id: 0, yip_id: 0 })
+    const [yip_to_update, set_yip_to_update] = useState('')
+    const [yip_update, set_yip_update] = useState({ yip_name: '', yips_id: '', yip_id: '' })
 
     const get_proper_kennel = (id) => {
         const kennel = dexie.dexie.filter(el => el.kennel_id === id)
@@ -70,19 +70,16 @@ export default function Edit(props) {
 
             const payload = { ...modified_kennel, kennel_name: kennel_update.kennel_name, kennel_category: kennel_update.kennel_category }
 
-            dexie.updater({action: 'update_kennel', payload: payload})
+            dexie.updater({ action: 'update_kennel', payload: payload })
 
         } else if (screen === 'Yips') {
             const yip = get_proper_yip(yip_update.yip_id)
 
             const payload = { ...yip, yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name, yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id }
 
-            dexie.updater({action: 'update_yip', payload: payload})
+            dexie.updater({ action: 'update_yip', payload: payload })
         }
     }
-
-    //console.log([kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.id}>{yip.name}</option>))
-    //console.log([marry_kennels.filter(marry => marry.kennel_id === yip_to_update)][0][0].yips_id)
 
     return (
         <>
@@ -123,7 +120,7 @@ export default function Edit(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="option" onChange={(e) => {
+                                    <select className="option" value={kennel_to_update} onChange={(e) => {
                                         set_kennel_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value=''>-- select --</option>
@@ -135,7 +132,7 @@ export default function Edit(props) {
                                     </select>
                                 </div>
                                 {
-                                    kennel_to_update === false ?
+                                    kennel_to_update === '' ?
 
                                         null
 
@@ -155,14 +152,20 @@ export default function Edit(props) {
 
                                             <div style={{ display: 'flex' }}>
                                                 <h3>New Kennel Category: </h3>
-                                                <select className="option" onChange={(e) => {
+                                                <select className="option" value={kennel_update.kennel_category === false ? 'dog' : kennel_update.kennel_category} onChange={(e) => {
                                                     set_kennel_update({ ...kennel_update, kennel_category: e.target.value })
                                                 }}>
                                                     <option value=''>-- select --</option>
                                                     {
-                                                        kennel_categories.map(value => {
-                                                            return <option value={value}>{value}</option>
-                                                        })
+                                                        typeof kennel_categories === 'object' ?
+
+                                                            kennel_categories.map(value => {
+                                                                return <option value={value}>{value}</option>
+                                                            })
+
+                                                            :
+
+                                                            <option value={kennel_categories}>{kennel_categories}</option>
                                                     }
                                                 </select>
                                             </div>
@@ -176,19 +179,25 @@ export default function Edit(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="option" onChange={(e) => {
+                                    <select className="option" value={yip_to_update} onChange={(e) => {
                                         set_yip_to_update(parseInt(e.target.value))
                                     }}>
                                         <option value=''>-- select --</option>
                                         {
-                                            kennel_names.map(value => {
-                                                return <option value={value.id}>{value.name}</option>
-                                            })
+                                            kennel_names.length !== 0 ?
+
+                                                kennel_names.map(value => {
+                                                    return <option value={value.id}>{value.name}</option>
+                                                })
+
+                                                :
+
+                                                null
                                         }
                                     </select>
                                 </div>
                                 {
-                                    yip_to_update === false ?
+                                    yip_to_update === '' ?
 
                                         null
 
@@ -197,12 +206,19 @@ export default function Edit(props) {
                                         <>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>Select Yip: </h3>
-                                                <select className="option" onChange={(e) => {
-                                                    set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value) })
+                                                <select className="option" value={yip_update.yip_id} onChange={(e) => {
+                                                    const selected_option_content = e.target.options[e.target.selectedIndex].textContent
+                                                    set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value), yip_name: selected_option_content })
                                                 }}>
                                                     <option value=''>-- select --</option>
                                                     {
-                                                        [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
+                                                        [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => yip).length !== 0 ?
+
+                                                            [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
+
+                                                            :
+
+                                                            null
                                                     }
                                                 </select>
                                             </div>
@@ -213,18 +229,25 @@ export default function Edit(props) {
                                                         set_yip_update({ ...yip_update, yip_name: e.target.value })
                                                     }}
                                                     className="option"
+                                                    value={yip_update.yip_name}
                                                 />
                                             </div>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>New Kennel Source: </h3>
-                                                <select className="option" onChange={(e) => {
+                                                <select className="option" value={yip_update.yips_id} onChange={(e) => {
                                                     set_yip_update({ ...yip_update, yips_id: parseInt(e.target.value) })
                                                 }}>
                                                     <option value=''>-- select --</option>
                                                     {
-                                                        kennel_names.map(value => {
-                                                            return <option value={get_yips_id(value.id)}>{value.name}</option>
-                                                        })
+                                                        kennel_names.length !== 0 ?
+
+                                                            kennel_names.map(value => {
+                                                                return <option value={get_yips_id(value.id)}>{value.name}</option>
+                                                            })
+
+                                                            :
+
+                                                            null
                                                     }
                                                 </select>
                                             </div>

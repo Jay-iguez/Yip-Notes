@@ -8,7 +8,6 @@ export default function Create(props) {
     const menu_screen_state = useContext(menu_screen_context)
     const [menu_screen, set_menu_screen] = menu_screen_state
 
-
     const single = (acc, current) => {
         let array = typeof acc !== 'object' ? [acc] : acc
 
@@ -28,11 +27,11 @@ export default function Create(props) {
         return { name: value.kennel_name, id: value.kennel_id }
     })
 
-   
-    const [screen, set_screen] = useState(menu_screen.create)
-    const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: kennel_categories[0] })
-    const [new_yip, set_new_yip] = useState({ yip_name: '', yips_id: kennel_names[0].id })
+console.log(dexie.dexie)
 
+    const [screen, set_screen] = useState(menu_screen.create)
+    const [new_kennel, set_new_kennel] = useState({ kennel_name: '', kennel_category: '' })
+    const [new_yip, set_new_yip] = useState({ yip_name: '', yips_id: false })
 
     const updater = () => {
         if (screen === 'Kennels') {
@@ -95,7 +94,7 @@ export default function Create(props) {
                             <h3>Kennel Category: </h3>
                             <div style={{ display: 'flex' }}>
                                 <h3>Select Existing Category: </h3>
-                                <select className="option" onChange={(e) => {
+                                <select className="option" value={new_kennel.kennel_category} onChange={(e) => {
                                     set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                 }}>
                                     <option value={false}>-- select --</option>
@@ -119,6 +118,7 @@ export default function Create(props) {
                                         set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                     }}
                                     className="option"
+                                    value={new_kennel.kennel_category}
                                 />
                             </div>
                         </>
@@ -133,11 +133,12 @@ export default function Create(props) {
                                         set_new_yip({ ...new_yip, yip_name: e.target.value })
                                     }}
                                     className="option"
+                                    value={new_yip.yip_name}
                                 />
                             </div>
                             <div style={{ display: 'flex' }}>
                                 <h3>Select Kennel: </h3>
-                                <select className="option" onChange={(e) => {
+                                <select className="option" value={new_yip.yips_id} onChange={(e) => {
                                     set_new_yip({ ...new_yip, yips_id: parseInt(e.target.value) })
                                 }}>
                                     <option value={false}>-- select --</option>

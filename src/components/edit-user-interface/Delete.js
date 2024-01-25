@@ -23,23 +23,13 @@ export default function Delete(props) {
 
 
     const [screen, set_screen] = useState(menu_screen.delete)
-
-    const [kennel_to_update, set_kennel_to_update] = useState(NaN)
-
-    const [yip_to_update, set_yip_to_update] = useState(NaN)
-    const [yip_update, set_yip_update] = useState({ yip_id: 0 })
+    const [kennel_to_update, set_kennel_to_update] = useState('')
+    const [yip_to_update, set_yip_to_update] = useState('')
+    const [yip_update, set_yip_update] = useState({ yip_id: '', yip_name: '' })
 
     const get_proper_kennel = (id) => {
         const kennel = dexie.dexie.filter(el => el.kennel_id === id)
         return kennel
-    }
-
-    const get_proper_yip = (id) => {
-        const [kennel] = get_proper_kennel(yip_to_update)
-
-        const [yip] = kennel.yips.filter(el => el.yip_id === id)
-
-        return yip
     }
 
     const get_marry_id = (id) => {
@@ -60,8 +50,6 @@ export default function Delete(props) {
         }
     }
 
-    //console.log([kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.id}>{yip.name}</option>))
-    //console.log([marry_kennels.filter(marry => marry.kennel_id === yip_to_update)][0][0].yips_id)
 
     return (
         <>
@@ -102,19 +90,29 @@ export default function Delete(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="option" onChange={(e) => {
-                                        set_kennel_to_update(parseInt(e.target.value))
+                                    <select className="option" value={kennel_to_update} onChange={(e) => {
+                                        if (e.target.value === '') {
+                                            set_kennel_to_update(e.target.value)
+                                        } else {
+                                            set_kennel_to_update(parseInt(e.target.value))
+                                        }
                                     }}>
-                                        <option value={false}>-- select --</option>
+                                        <option value={''}>-- select --</option>
                                         {
-                                            kennel_names.map(value => {
-                                                return <option value={value.id}>{value.name}</option>
-                                            })
+                                            kennel_names.length !== 0 ?
+
+                                                kennel_names.map(value => {
+                                                    return <option value={value.id}>{value.name}</option>
+                                                })
+
+                                                :
+
+                                                null
                                         }
                                     </select>
                                 </div>
                                 {
-                                    isNaN(kennel_to_update) ?
+                                    kennel_to_update === '' ?
 
                                         null
 
@@ -136,19 +134,30 @@ export default function Delete(props) {
                             <>
                                 <div style={{ display: 'flex' }}>
                                     <h3>Select Kennel: </h3>
-                                    <select className="option" onChange={(e) => {
-                                        set_yip_to_update(parseInt(e.target.value))
+                                    <select className="option" value={yip_to_update} onChange={(e) => {
+                                        if (e.target.value === '') {
+                                            set_yip_to_update(e.target.value)
+                                        } else {
+                                            set_yip_to_update(parseInt(e.target.value))
+                                        }
                                     }}>
                                         <option value=''>-- select --</option>
                                         {
-                                            kennel_names.map(value => {
-                                                return <option value={value.id}>{value.name}</option>
-                                            })
+
+                                            kennel_names.length !== 0 ?
+
+                                                kennel_names.map(value => {
+                                                    return <option value={value.id}>{value.name}</option>
+                                                })
+
+                                                :
+
+                                                null
                                         }
                                     </select>
                                 </div>
                                 {
-                                    isNaN(yip_to_update) ?
+                                    yip_to_update === '' ?
 
                                         null
 
@@ -157,17 +166,25 @@ export default function Delete(props) {
                                         <>
                                             <div style={{ display: 'flex' }}>
                                                 <h3>Select Yip: </h3>
-                                                <select className="option" onChange={(e) => {
-                                                    set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value) })
+                                                <select className="option"  onChange={(e) => {
+                                                    const selected_option_content = e.target.options[e.target.selectedIndex].textContent
+                                                    console.log(selected_option_content)
+                                                    set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value), yip_name: selected_option_content })
                                                 }}>
-                                                    <option value={false}>-- select --</option>
+                                                    <option value=''>-- select --</option>
                                                     {
-                                                        [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
+                                                        [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => yip).length !== 0 ?
+
+                                                            [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
+
+                                                            :
+
+                                                            null
                                                     }
                                                 </select>
                                             </div>
                                             <div style={{ display: 'flex' }}>
-                                                <h3>The Yip: {get_proper_yip(yip_update.yip_id)?.yip_name} - will be deleted. </h3>
+                                                <h3>The Yip: {yip_update.yip_name} - will be deleted. </h3>
                                             </div>
                                         </>
                                 }

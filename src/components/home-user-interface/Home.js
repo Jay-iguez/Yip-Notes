@@ -130,6 +130,11 @@ export default function YipHomeInfo() {
         }
 
         const data = await db.marry_kennels.toArray()
+
+        if (data.length === 0) {
+            return 'no_kennels'
+
+        }
         set_marry_yips(data)
 
         try {
@@ -182,8 +187,15 @@ export default function YipHomeInfo() {
     useEffect(() => {
         fetch_data()
             .then(res => {
-                set_dexie_kennels(res)
-                set_is_yip_updated(false)
+                if (res === 'no_kennels') {
+                    set_dexie_kennels([{
+                        kennel_id: 0, kennel_name: 'Make New Kennel', kennel_category: `To Get Started`, kennel_date: Date.now(), yips: []
+                    }])
+                    set_is_yip_updated(false)
+                } else {
+                    set_dexie_kennels(res)
+                    set_is_yip_updated(false)
+                }
             })
             .catch(err => {
                 console.error(err)
