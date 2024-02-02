@@ -13,7 +13,6 @@ export default function KennelView() {
 
     return (
         <>
-             <button className="button" onClick={() => set_condition('kennels-list')}>Back</button>
              <KENNEL kennel={view} key={view.id} render_status={view ? 'complete' : ''} />
         </>
     )

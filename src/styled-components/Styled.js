@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const YipCSSStyles = styled.div`
     --font-size : ${props => props.styles.fontSize};
     font-family: 'Sunflower', sans-serif;
-   
+
+
     .button {
         align-self: flex-start;
         text-align: center;
@@ -21,6 +22,44 @@ export const YipCSSStyles = styled.div`
 
     .button:hover, a:hover {
         color: grey;
+    }
+
+    .button.corner {
+       position: fixed;
+       top: 2.5rem;
+       border-left: .4rem solid #373943;
+    }
+
+    .button.disabled {
+        color: grey;
+        border-left: .2em solid #1D1F21;
+    }
+
+    .option {
+        align-self: flex-start;
+        text-align: center;
+        text-decoration: none;
+        background-color: #2a2b34;
+        color: white;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: .1rem 2rem;
+        margin: 0 .2rem;
+        margin-top: .5rem;
+        border-left: .4rem solid #1D1F21;
+    }
+
+    .option.condition {
+        margin-left: -.4em;
+        border-right: .4em solid #1D1F21;
+    }
+
+    .option.message {
+        padding: .5em 0;
+        margin: 1em .5em;
+        border-left: none;
+        text-decoration: underline .2em solid #1D1F21;
     }
 
     .intro_message {
@@ -90,21 +129,39 @@ export const StyledYipHomeScreenNavBar = styled.nav`
 export const StyledContentContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    max-height: 100vh;
+    max-height: 100%;
 
 `
 export const StyledContentTopborder = styled.div`
-    height: 5vh;
+    height: 3rem;
 `
 export const StyledContentbody = styled.div`
+    --gap_size : ${props => props.gap};
     background-color: #373943;
-    max-height: 91.5vh; // needs to be fixed
     margin: 0 2rem;
+    margin-top: 2rem; // needs to be fixed
     overflow: auto;
     font-size: var(--font-size); 
-    display: flex;
-    flex-flow: column nowrap;
 `
+
+
+export const StyledQuill = styled.div`
+    border: none;
+
+    .ql-toolbar.ql-snow {
+        border: none;
+        border-bottom: 1px solid #ccc; 
+    }
+
+    .ql-container.ql-snow {
+        border: none;
+    }
+
+    .ql-bold {
+        fill: red;
+    }
+`
+
 // YipStartIntroMessage
 
 
@@ -200,6 +257,8 @@ export const StyledKennelContentBox = styled.div`
 	        outline: inherit;
             width: 0;
         }
+
+        
     }
 `
 //
@@ -217,8 +276,18 @@ flex-flow: row;
     }
 `
 
+export const StyledConditionMessage = styled.h1`
+    border-bottom: .2em solid #2a2b34;
+    border-right: .2em solid #1D1F21;
+    font-style: italic;
+    max-width: max-content;
+    padding-right: 1.5%;
+`
 
-
-
+export const StyledConditionWrapper = styled.div`
+    border-left: .4em solid #1D1F21;
+    margin-left: .2em;
+    margin-right: .2em;
+`
 
 

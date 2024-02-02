@@ -8,7 +8,7 @@ export const Kennel = (props) => {
 
     const { kennel, render_status } = props
 
-    const formatted_kennel_name = Helper.format_to_url(kennel.kennel)
+    const formatted_kennel_name = Helper.format_to_url(kennel.kennel_name)
 
     return (
         <>
@@ -16,31 +16,36 @@ export const Kennel = (props) => {
                 <StyledKennelContentBox>
                     <div className="kennel_information">
                         <div>
-                            <h3>{kennel.kennel}</h3>
-                            <h3>{kennel.category}</h3>
+                            <h3>{kennel.kennel_name}</h3>
+                            <h3>{kennel.kennel_category}</h3>
                         </div>
-                        <button className="button edit_kennel">Edit Kennel</button>
                     </div>
                 </StyledKennelContentBox>
+                {
+                    kennel.yips.length === 0 ?
 
-                { render_status !== 'complete' ?
-                    kennel.yips.length <= 5 ?
-                        kennel.yips.map(yip => {
-                            return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.id} />
-                        })
+                        <p>Nothing here!</p>
 
-                        : kennel.yips.length < 12 ?
+                        :
+
+                        render_status !== 'complete' ?
+                            kennel.yips.length <= 6 ?
+                                kennel.yips.map(yip => {
+                                    return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
+                                })
+
+                                : kennel.yips.length < 11 ?
+                                    kennel.yips.map(yip => {
+                                        return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: 'smash' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
+                                    })
+
+                                    : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} yips_length={kennel.yips.length} />
+
+                            :
+
                             kennel.yips.map(yip => {
-                                return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: 'smash' }} kennel_name={formatted_kennel_name} key={yip.id} />
+                                return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />
                             })
-
-                            : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} yips_length={kennel.yips.length}/>
-
-                    :
-
-                    kennel.yips.map(yip => {
-                        return <YIP_LINK content={{ name: yip.yip, id: yip.id, text: yip.text, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.id} />
-                    })
                 }
             </StyledKennelContainer>
         </>
