@@ -6,6 +6,7 @@ import YIP from '../yip-components/Yip'
 import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
+import menu_screen_context from "../../context/menu_screen_context";
 import db from "../../data/mock-data/db";
 
 
@@ -16,6 +17,10 @@ export default function YipHomeInfo() {
     const kennels_state = useContext(routes_context)
     const [kennels, set_kennels] = kennels_state
 
+    const menu_screen_state = useContext(menu_screen_context)
+    const [menu_screen, set_menu_screen] = menu_screen_state
+
+    const [no_kennels, set_no_kennels] = useState(false)
     const [dexie_kennels, set_dexie_kennels] = useState()
     const [marry_yips, set_marry_yips] = useState()
     const [data_change, set_data_change] = useState()
@@ -189,10 +194,13 @@ export default function YipHomeInfo() {
             .then(res => {
                 if (res === 'no_kennels') {
                     set_dexie_kennels([{
-                        kennel_id: 0, kennel_name: 'Make New Kennel', kennel_category: `To Get Started`, kennel_date: Date.now(), yips: []
+                        kennel_id: 0, kennel_name: 'Make A New Kennel', kennel_category: `To Get Started`, kennel_date: Date.now(), yips: []
                     }])
+                    set_no_kennels(true)
+                    set_menu_screen({ ...menu_screen, main: 'create' })
                     set_is_yip_updated(false)
                 } else {
+                    set_no_kennels(false)
                     set_dexie_kennels(res)
                     set_is_yip_updated(false)
                 }
@@ -239,7 +247,8 @@ export default function YipHomeInfo() {
                                     set_dexie: set_dexie_kennels,
                                     marry: marry_yips,
                                     set_marry: set_marry_yips,
-                                    updater: updater
+                                    updater: updater,
+                                    no_kennels: no_kennels
                                 }}
                             />
                         } />

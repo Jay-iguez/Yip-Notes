@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
+import { StyledConditionMessage, StyledConditionWrapper } from "../styled-components/Styled"
 import menu_screen_context from "../context/menu_screen_context"
 import CREATE from '../components/edit-user-interface/Create'
 import DELETE from '../components/edit-user-interface/Delete'
@@ -35,15 +36,28 @@ export default function EditCondition(props) {
 
     return (
         <>
-            <select className="option" defaultValue={current_screen} onChange={(e) => {
-                e.preventDefault()
-                set_menu_screen({...menu_screen, main: e.target.value})
-                set_current_screen(e.target.value)
-            }}>
-                <option value='create'>Create</option>
-                <option value='edit'>Edit</option>
-                <option value='delete'>Delete</option>
-            </select>
+            <StyledConditionWrapper>
+                <StyledConditionMessage>
+                    What would you like to manage?
+                </StyledConditionMessage>
+                <select className="option condition" defaultValue={current_screen} onChange={(e) => {
+                    e.preventDefault()
+                    set_menu_screen({ ...menu_screen, main: e.target.value })
+                    set_current_screen(e.target.value)
+                }}>
+                    <option value='create'>Create</option>
+                    {
+                        dexie.no_kennels === true ? null :
+
+                            <>
+                                <option value='edit'>Edit</option>
+                                <option value='delete'>Delete</option>
+                            </>
+
+                    }
+
+                </select>
+            </StyledConditionWrapper>
             <br></br>
             {
                 currentRender

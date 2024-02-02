@@ -49,9 +49,13 @@ export default function YipNote(props) {
                     }
 
                 }}>
+                    <button className="button corner">Back</button>
                     {
-                        <button className="button corner">{unsaved === true ? 'You have unsaved changes! Are you sure you want to continue without saving?' : 'Back'}</button>
+                        unsaved === false ? null :
+
+                            <p className="option message">Unsaved changes! Save before exiting if you wish to do so</p>
                     }
+
                 </Link>
                 {
                     !to_change ?
@@ -65,10 +69,11 @@ export default function YipNote(props) {
                                 set_to_change(!to_change)
                             }}>Cancel Changes</button>
                             <button className="button" onClick={() => {
-                                const payload = {id: yip.yip_id, content: {...yip, yip_content: value}}
-                                updater({action: 'update_yip_content', payload: payload })
+                                const payload = { id: yip.yip_id, content: { ...yip, yip_content: value } }
+                                updater({ action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
                                 set_html_value(value)
+                                set_confirm_leave(1)
                                 if (unsaved === true) {
                                     set_unsaved(false)
                                 }

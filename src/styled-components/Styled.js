@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const YipCSSStyles = styled.div`
     --font-size : ${props => props.styles.fontSize};
     font-family: 'Sunflower', sans-serif;
-   
+
+
     .button {
         align-self: flex-start;
         text-align: center;
@@ -26,6 +27,12 @@ export const YipCSSStyles = styled.div`
     .button.corner {
        position: fixed;
        top: 2.5rem;
+       border-left: .4rem solid #373943;
+    }
+
+    .button.disabled {
+        color: grey;
+        border-left: .2em solid #1D1F21;
     }
 
     .option {
@@ -41,6 +48,18 @@ export const YipCSSStyles = styled.div`
         margin: 0 .2rem;
         margin-top: .5rem;
         border-left: .4rem solid #1D1F21;
+    }
+
+    .option.condition {
+        margin-left: -.4em;
+        border-right: .4em solid #1D1F21;
+    }
+
+    .option.message {
+        padding: .5em 0;
+        margin: 1em .5em;
+        border-left: none;
+        text-decoration: underline .2em solid #1D1F21;
     }
 
     .intro_message {
@@ -257,8 +276,18 @@ flex-flow: row;
     }
 `
 
+export const StyledConditionMessage = styled.h1`
+    border-bottom: .2em solid #2a2b34;
+    border-right: .2em solid #1D1F21;
+    font-style: italic;
+    max-width: max-content;
+    padding-right: 1.5%;
+`
 
-
-
+export const StyledConditionWrapper = styled.div`
+    border-left: .4em solid #1D1F21;
+    margin-left: .2em;
+    margin-right: .2em;
+`
 
 
