@@ -30,7 +30,7 @@ export default function EditCondition(props) {
             case 'delete':
                 return <DELETE dexie={dexie} />
             default:
-                return <button>This shouldn't be here ever, and you neither...</button>
+                return <CREATE dexie={dexie} />
         }
     }
 

@@ -42,13 +42,18 @@ export default function Delete(props) {
         if (screen === 'Kennels') {
             const [marry] = get_marry_id(kennel_to_update)
 
-            const payload = { yips_id: marry.yips_id, kennel_id: kennel_to_update, marry_id: marry.marry_id }
+            const payload = { 
+                yips_id: marry.yips_id, 
+                kennel_id: kennel_to_update, 
+                marry_id: marry.marry_id 
+            }
 
             dexie.updater({ action: 'delete_kennel', payload: payload })
 
         } else if (screen === 'Yips') {
 
             dexie.updater({ action: 'delete_yip', payload: yip_update.yip_id })
+            
         }
     }
 

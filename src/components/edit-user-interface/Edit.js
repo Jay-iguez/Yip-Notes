@@ -75,16 +75,27 @@ export default function Edit(props) {
         if (screen === 'Kennels') {
             const [kennel] = get_proper_kennel(kennel_to_update)
 
-            const modified_kennel = { kennel_name: kennel.kennel_name, kennel_category: kennel.kennel_category, kennel_date: kennel.kennel_date, kennel_id: kennel.kennel_id }
+            const modified_kennel = { 
+                kennel_name: kennel.kennel_name, 
+                kennel_category: kennel.kennel_category, 
+                kennel_date: kennel.kennel_date, 
+                kennel_id: kennel.kennel_id 
+            }
 
-            const payload = { ...modified_kennel, kennel_name: kennel_update.kennel_name, kennel_category: kennel_update.kennel_category === '' ? kennel.kennel_category : kennel_update.kennel_category }
+            const payload = { ...modified_kennel, 
+                kennel_name: kennel_update.kennel_name, 
+                kennel_category: kennel_update.kennel_category === '' ? kennel.kennel_category : kennel_update.kennel_category 
+            }
 
             dexie.updater({ action: 'update_kennel', payload: payload })
 
         } else if (screen === 'Yips') {
             const yip = get_proper_yip(yip_update.yip_id)
 
-            const payload = { ...yip, yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name, yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id }
+            const payload = { ...yip, 
+                yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name, 
+                yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id 
+            }
 
             dexie.updater({ action: 'update_yip', payload: payload })
         }
@@ -347,6 +358,8 @@ export default function Edit(props) {
 
                         <button
                             className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
+
+                            
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>
                 }
             </form >

@@ -15,16 +15,14 @@ export const Kennel = (props) => {
             <StyledKennelContainer>
                 <StyledKennelContentBox>
                     <div className="kennel_information">
-                        <div>
-                            <h3>{kennel.kennel_name}</h3>
-                            <h3>{kennel.kennel_category}</h3>
-                        </div>
+                        <p className="option value">{kennel.kennel_name}</p>
+                        <p className="option value">{kennel.kennel_category}</p>
                     </div>
                 </StyledKennelContentBox>
                 {
                     kennel.yips.length === 0 ?
 
-                        <p>Nothing here!</p>
+                        <p className="option condition value">This kennel is rather empty -</p>
 
                         :
 

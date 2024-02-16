@@ -26,3 +26,14 @@ export const dummy_function_to_test = (...args) => {
         return acc + e
     })
 }
+
+export const condense_values = (acc, current) => {
+    let array = typeof acc !== 'object' ? [acc] : acc
+
+    if (!(array.includes(current))) {
+        array.push(current)
+        return array
+    } else {
+        return acc
+    }
+}

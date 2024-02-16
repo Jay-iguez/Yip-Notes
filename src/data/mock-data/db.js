@@ -8,7 +8,16 @@ db.version(1).stores({
   kennels: '++kennel_id, kennel_name, kennel_category, kennel_date', // 1
   marry_kennels: '++marry_id, kennel_id, yips_id' // 4
 })
-db.on('populate', (tx) => {
+
+db.open()
+
+export default db
+
+
+/***
+ * 
+ * 
+ * db.on('populate', (tx) => {
   const yip_records = [
     { yip_id: 1, yips_id: 1, yip_name: 'Big ol doggos', yip_content: 'stuff about dogs and other things. Did you know that they can be big dogs and small dogs? Amazing huh?' },
     { yip_id: 2, yips_id: 1, yip_name: 'Can canines think not food', yip_content: 'Dogs tend to only think about food and nothing else, i think its funny but also sad because im not as important to them as food and stuff' },
@@ -56,6 +65,6 @@ db.on('populate', (tx) => {
   tx.marry_kennels.bulkAdd(marry_records)
 
 })
-db.open()
-
-export default db
+ * 
+ * 
+ */

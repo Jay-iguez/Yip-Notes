@@ -8,6 +8,7 @@ import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import menu_screen_context from "../../context/menu_screen_context";
 import db from "../../data/mock-data/db";
+import dog_image from '../../data/dog.bmp'
 
 
 export default function YipHomeInfo() {
@@ -140,6 +141,7 @@ export default function YipHomeInfo() {
             return 'no_kennels'
 
         }
+        
         set_marry_yips(data)
 
         try {
@@ -227,15 +229,24 @@ export default function YipHomeInfo() {
         <>
             <StyledYipHomeScreenNavBar>
                 <div className="nav-items">
-                    <Link to={`navigation-screen`} onClick={() => set_condition('kennels-list')}>Home</Link>
-                    <Link to={`settings`}>Settings</Link>
-                    <Link to={`info`}>Information</Link>
+                    <Link to={`navigation-screen`} onClick={() => set_condition('kennels-list')}>
+                        <button className="button nav_item">Home</button>
+                    </Link>
+                    <Link to={`settings`}>
+                        <button className="button nav_item">Settings</button>
+                    </Link>
+                    <Link to={`info`}>
+                        <button className="button nav_item">Information</button>
+                    </Link>
                 </div>
+                
+                    <img src={dog_image} />
+                
             </StyledYipHomeScreenNavBar>
             {
                 dexie_kennels === undefined ?
 
-                    <h1> Loading... </h1>
+                    <h1> Loading please wait... </h1>
 
                     :
 

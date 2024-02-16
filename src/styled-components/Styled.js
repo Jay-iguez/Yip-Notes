@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const YipCSSStyles = styled.div`
-    --font-size : ${props => props.styles.fontSize};
     font-family: 'Sunflower', sans-serif;
-
 
     .button {
         align-self: flex-start;
@@ -11,14 +9,16 @@ export const YipCSSStyles = styled.div`
         text-decoration: none;
         background-color: #2a2b34;
         color: white;
+        font-size: 1.2em;
         border: none;
         font-weight: bold;
-        font-size: 1rem;
         padding: .1rem 2rem;
         margin: 0 .2rem;
         margin-top: .5rem;
         border-left: .4rem solid #1D1F21;
     }
+
+    
 
     .button:hover, a:hover {
         color: grey;
@@ -28,6 +28,20 @@ export const YipCSSStyles = styled.div`
        position: fixed;
        top: 2.5rem;
        border-left: .4rem solid #373943;
+       margin-left: 0;
+    }
+
+    .button.corner.right {
+        position: fixed;
+        top: 2.5rem;
+        border-left: .4rem solid #373943;
+        right: 0;
+        margin-right: 8%;
+    }
+
+    .button.corner.right.changes {
+        margin-right: 10rem;
+        right: 8%
     }
 
     .button.disabled {
@@ -43,7 +57,7 @@ export const YipCSSStyles = styled.div`
         color: white;
         border: none;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.25em;
         padding: .1rem 2rem;
         margin: 0 .2rem;
         margin-top: .5rem;
@@ -55,11 +69,22 @@ export const YipCSSStyles = styled.div`
         border-right: .4em solid #1D1F21;
     }
 
+    .option.condition.value {
+        border-left: none;
+        border-right: none;
+        border-bottom: .2em solid #1D1F21;
+    }
+
     .option.message {
         padding: .5em 0;
         margin: 1em .5em;
         border-left: none;
         text-decoration: underline .2em solid #1D1F21;
+    }
+
+    .option.value {
+        border-left: none;
+        border-bottom: .2em solid #1D1F21;
     }
 
     .intro_message {
@@ -98,30 +123,28 @@ export const StyledYipHomeScreenNavBar = styled.nav`
     background-color: #373943; 
     position: fixed;
     width: 100%;
+    height: 2rem;
     display: flex;
-    top: 0;
+    justify-content: space-between;
+    top: -.5rem;
    
    .nav-items {
-        width: 25vw;
+        width: 28.5%;
         display: flex;
         justify-content: space-between;
-        margin-left: 2rem;
+        margin-left: 1.8rem;
         padding: .5rem 0;
-
-        a {
-            text-align: center;
-            text-decoration: none;
-            background-color: #2a2b34;
-            color: white;
-            padding: .1rem 2rem;
-            margin: 0 .2rem;
-            font-size: 1rem;
-            border-left: .4rem solid #1D1F21;
-        }
    }
 
-`
+   img {
+        height: 3rem;
+        width: 3rem;
+   }
+
+` 
 //
+
+
 
 
 
@@ -136,17 +159,22 @@ export const StyledContentTopborder = styled.div`
     height: 3rem;
 `
 export const StyledContentbody = styled.div`
-    --gap_size : ${props => props.gap};
     background-color: #373943;
     margin: 0 2rem;
     margin-top: 2rem; // needs to be fixed
     overflow: auto;
-    font-size: var(--font-size); 
+    font-size: 1em;
+`
+
+export const StyledContentYipBody = styled(StyledContentbody)`
+    margin-left: 8%;
+    margin-right: 8%;
 `
 
 
 export const StyledQuill = styled.div`
     border: none;
+
 
     .ql-toolbar.ql-snow {
         border: none;
@@ -157,9 +185,6 @@ export const StyledQuill = styled.div`
         border: none;
     }
 
-    .ql-bold {
-        fill: red;
-    }
 `
 
 // YipStartIntroMessage
@@ -193,22 +218,8 @@ export const StyledKennelContentBox = styled.div`
     .kennel_information {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: space-between;
+        justify-content: space-around;
         width: 15rem;
-        height: 100%;
-
-        h3 {
-            background-color: #2a2b34;
-            color: #cdcfd0;
-        }
-        
-        .button.edit_kennel {
-        }
-    }
-
-
-    a {
-        text-decoration: none;
     }
 
     .kennel_yip {
@@ -229,6 +240,10 @@ export const StyledKennelContentBox = styled.div`
         h3 {
             border-bottom: .4rem solid #373943;
             font-style: italic;
+        }
+
+        p {
+            padding-bottom: 2rem;
         }
     }
 
@@ -265,15 +280,12 @@ export const StyledKennelContentBox = styled.div`
 
 
 export const StyledNoteLink = styled.div`
-display: flex;
-flex-flow: row;
+    display: flex;
+    flex-flow: row;
     padding: 1rem;
     margin: 0 1.5rem;
     overflow: auto;
 
-    a {
-       
-    }
 `
 
 export const StyledConditionMessage = styled.h1`

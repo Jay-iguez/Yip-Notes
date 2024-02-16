@@ -11,7 +11,7 @@ export default function Create(props) {
     const menu_screen_state = useContext(menu_screen_context)
     const [menu_screen, set_menu_screen] = menu_screen_state
 
-    const single = (acc, current) => {
+    const single = (acc, current) => {                      // condense_values
         let array = typeof acc !== 'object' ? [acc] : acc
 
         if (!(array.includes(current))) {
@@ -145,6 +145,10 @@ export default function Create(props) {
                                             <option value=''>-- select --</option>
                                             <option value={'new category name'}>Create New Category</option>
                                             {
+                                                dexie.no_kennels === true ? null
+
+                                                :
+                                                
                                                 typeof kennel_categories === 'object' ?
 
                                                     kennel_categories.map(value => {
@@ -240,6 +244,8 @@ export default function Create(props) {
 
                         <button
                             className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
+
+                            
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>
                 }
             </form>

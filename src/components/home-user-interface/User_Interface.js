@@ -6,12 +6,11 @@ import CONDITION from '../../utils/Condition';
 export default function UserInterface(props) {
    const { dexie, menu } = props
 
-   const gap = '2rem'
     return (
         <>
             <StyledContentContainer>
                 <StyledContentTopborder />
-                <StyledContentbody gap={gap} >
+                <StyledContentbody >
                     <CONDITION dexie={dexie} menu={menu} />
                 </StyledContentbody>
             </StyledContentContainer>
