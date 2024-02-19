@@ -75,7 +75,7 @@ export default function Create(props) {
         <>
             <StyledConditionWrapper>
                 <StyledConditionMessage>
-                    Create -
+                    Create
                 </StyledConditionMessage>
                 <div className="select_container">
                     <select
@@ -115,7 +115,7 @@ export default function Create(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Kennel Name -
+                                        Kennel Name
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <input
@@ -131,7 +131,7 @@ export default function Create(props) {
 
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Kennel Category -
+                                        Kennel Category
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <select
@@ -196,7 +196,7 @@ export default function Create(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Yip Name -
+                                        Yip Name
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <input
@@ -211,7 +211,7 @@ export default function Create(props) {
                                 </StyledConditionWrapper>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Select Parent Kennel -
+                                        Select Parent Kennel
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <select
@@ -253,7 +253,7 @@ export default function Create(props) {
                         :
 
                         <button
-                            className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
+                            className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''} submit`}
 
 
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>

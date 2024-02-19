@@ -32,7 +32,7 @@ export default function Condition(props) { // kennelRoutes={kennels} setKennelRo
 
     return (
         <>
-        <button className="button corner" onClick={() => {set_condition(condition === 'kennels-list' ? 'create' : 'kennels-list')}}>{condition === 'kennels-list' ? 'Manage Data' : 'Back'}</button>
+        <button className="button corner_left" onClick={() => {set_condition(condition === 'kennels-list' ? 'create' : 'kennels-list')}}>{condition === 'kennels-list' ? 'Manage Data' : 'Back'}</button>
         {
             currentRender
         }

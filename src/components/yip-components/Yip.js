@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css'
-import { StyledContentContainer, StyledContentTopborder, StyledContentbody, StyledContentYipBody, StyledQuill } from "../../styled-components/Styled";
+import { StyledContentContainer, StyledContentTopborder, StyledContentYipBody, StyledQuill } from "../../styled-components/Styled";
 
 export default function YipNote(props) {
 
-    const { yip, updater } = props
+    const { yip, kennel_name, updater } = props
 
 
     const [html_value, set_html_value] = useState()
@@ -49,20 +49,20 @@ export default function YipNote(props) {
                     }
 
                 }}>
-                    <button className="button corner front">Back</button>
+                    <button className="button corner_left front">Back</button>
                 </Link>
                 {
                     !to_change ?
 
-                        <button className='button corner right front' onClick={() => set_to_change(!to_change)}>Save Changes</button>
+                        <button className='button corner_left right front' onClick={() => set_to_change(!to_change)}>Save Changes</button>
 
                         :
 
                         <>
-                            <button className="button corner right changes front" onClick={() => {
+                            <button className="button corner_left right save_changes front" onClick={() => {
                                 set_to_change(!to_change)
                             }}>Cancel</button>
-                            <button className="button corner right front" onClick={() => {
+                            <button className="button corner_left right front" onClick={() => {
                                 const payload = { id: yip.yip_id, content: { ...yip, yip_content: value } }
                                 updater({ action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
@@ -80,6 +80,10 @@ export default function YipNote(props) {
 
                             <p className="option message unsaved">Unsaved changes! Are you sure?</p>
                     }
+                    <div className="yip_info">
+                        <p className="option value">{yip.yip_name}</p>
+                        <p className="option value">{kennel_name}</p>
+                    </div>
                     <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />
                 </StyledQuill>
             </StyledContentYipBody>

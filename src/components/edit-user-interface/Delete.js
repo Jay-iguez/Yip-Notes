@@ -62,7 +62,7 @@ export default function Delete(props) {
         <>
             <StyledConditionWrapper>
                 <StyledConditionMessage>
-                    Delete -
+                    Delete
                 </StyledConditionMessage>
                 <div className="select_container">
                     <select
@@ -72,6 +72,7 @@ export default function Delete(props) {
                             set_menu_screen({ ...menu_screen, delete: e.target.value })
                             set_yip_update({...yip_update, yip_name: '', yip_id: ''})
                             set_screen(e.target.value)
+                            set_confirm(false)
                         }}
                     >
                         <option value=''>-- select --</option>
@@ -98,7 +99,7 @@ export default function Delete(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Select Kennel To Delete -
+                                        Select Kennel To Delete
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <select
@@ -147,7 +148,7 @@ export default function Delete(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Select Parent Kennel -
+                                        Select Parent Kennel
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <select
@@ -188,7 +189,7 @@ export default function Delete(props) {
                                         <>
                                             <StyledConditionWrapper>
                                                 <StyledConditionMessage>
-                                                    Select Yip To Delete -
+                                                    Select Yip To Delete
                                                 </StyledConditionMessage>
                                                 <div className="select_container">
                                                     <select
@@ -234,7 +235,7 @@ export default function Delete(props) {
                         <>
                             <button
                                 className={`button ${screen === 'Kennels' ? kennel_to_update === '' ? 'disabled'
-                                    : '' : yip_update.yip_id === '' ? 'disabled' : ''}`}
+                                    : '' : yip_update.yip_id === '' ? 'disabled' : ''} submit`}
                                 disabled={screen === 'Kennels' ? kennel_to_update === '' ? 'disabled' : ''
                                     : yip_update.yip_id === '' ? 'disabled' : ''}
                                 onClick={(e) => {

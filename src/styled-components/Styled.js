@@ -14,7 +14,6 @@ export const YipCSSStyles = styled.div`
         font-weight: bold;
         padding: .1rem 2rem;
         margin: 0 .2rem;
-        //margin-top: .5rem;
         border-left: .4rem solid #1D1F21;
     }
 
@@ -22,22 +21,22 @@ export const YipCSSStyles = styled.div`
         color: grey;
     }
 
-    .button.corner {
+    .button.corner_left {
        position: fixed;
-       top: 2.5rem;
+       top: 3.8rem;
        border-left: .4rem solid #373943;
        margin-left: 0;
     }
 
-    .button.corner.right {
+    .button.corner_left.right {
         position: fixed;
-        top: 2.5rem;
+        top: 3.8rem;
         border-left: .4rem solid #373943;
         right: 0;
         margin-right: 8%;
     }
 
-    .button.corner.right.changes {
+    .button.corner_left.right.save_changes {
         margin-right: 10rem;
         right: 8%
     }
@@ -65,6 +64,10 @@ export const YipCSSStyles = styled.div`
     
     .button.nav_item {
         margin-top: .5rem;
+    }
+
+    .button.submit {
+        margin-top: 1.5rem;
     }
 
 
@@ -189,12 +192,12 @@ export const StyledContentContainer = styled.div`
 
 `
 export const StyledContentTopborder = styled.div`
-    height: 3rem;
+    height: 6rem;
 `
 export const StyledContentbody = styled.div`
     background-color: #373943;
     margin: 0 2rem;
-    margin-top: 2rem; // needs to be fixed
+    //margin-top: 2rem; // needs to be fixed
     overflow: auto;
     font-size: 1em;
 `
@@ -211,12 +214,32 @@ export const StyledQuill = styled.div`
 
     .ql-toolbar.ql-snow {
         border: none;
-        border-bottom: 1px solid #ccc; 
+        border-bottom: .1em solid #ccc;
+        margin-bottom: 3.5rem;
     }
 
     .ql-container.ql-snow {
         border: none;
     }
+
+    .yip_info {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        margin-top: 2.5rem;
+        padding-bottom: .5em;
+        left: 8%;
+        right: 8%;
+        background-color: #2a2b34;
+
+       p {
+        padding-top: .2em;
+        padding-bottom: .2em;
+       }
+
+    }
+
+
 
 `
 

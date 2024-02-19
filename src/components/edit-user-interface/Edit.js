@@ -126,7 +126,7 @@ export default function Edit(props) {
         <>
             <StyledConditionWrapper>
                 <StyledConditionMessage>
-                    Edit -
+                    Edit
                 </StyledConditionMessage>
                 <div className="select_container">
                     <select
@@ -161,7 +161,7 @@ export default function Edit(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Select Parent Kennel -
+                                        Select Parent Kennel
                                     </StyledConditionMessage>
                                     <div className="select_container">
                                         <select
@@ -196,7 +196,7 @@ export default function Edit(props) {
                                         <>
                                             <StyledConditionWrapper>
                                                 <StyledConditionMessage>
-                                                    Edit Kennel Name -
+                                                    Edit Kennel Name
                                                 </StyledConditionMessage>
                                                 <div className="select_option">
                                                     <input
@@ -211,7 +211,7 @@ export default function Edit(props) {
                                             </StyledConditionWrapper>
                                             <StyledConditionWrapper>
                                                 <StyledConditionMessage>
-                                                    Edit Kennel Category -
+                                                    Edit Kennel Category
                                                 </StyledConditionMessage>
                                                 <div className="select_option">
                                                     <select
@@ -245,7 +245,7 @@ export default function Edit(props) {
                             <>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
-                                        Select Parent Kennel -
+                                        Select Parent Kennel
                                     </StyledConditionMessage>
                                     <div className="select_condition">
                                         <select
@@ -284,7 +284,7 @@ export default function Edit(props) {
                                         <>
                                             <StyledConditionWrapper>
                                                 <StyledConditionMessage>
-                                                    Select Yip -
+                                                    Select Yip
                                                 </StyledConditionMessage>
                                                 <div className="select_container">
                                                     <select
@@ -316,7 +316,7 @@ export default function Edit(props) {
                                                     <>
                                                         <StyledConditionWrapper>
                                                             <StyledConditionMessage>
-                                                                Edit Yip Name -
+                                                                Edit Yip Name
                                                             </StyledConditionMessage>
                                                             <div className="select_container">
                                                                 <input
@@ -331,7 +331,7 @@ export default function Edit(props) {
                                                         </StyledConditionWrapper>
                                                         <StyledConditionWrapper>
                                                             <StyledConditionMessage>
-                                                                Edit Kennel Parent -
+                                                                Edit Kennel Parent
                                                             </StyledConditionMessage>
                                                             <div className="select_container">
                                                                 <select
@@ -377,7 +377,7 @@ export default function Edit(props) {
                         :
 
                         <button
-                            className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
+                            className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''} submit`}
 
 
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>
