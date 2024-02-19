@@ -34,8 +34,6 @@ export default function YipNote(props) {
         set_html_value(value)
     }, [])
 
-    console.log(yip.yip_name.length, kennel_name.length)
-
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
@@ -75,15 +73,15 @@ export default function YipNote(props) {
                         </>
                 }
 
-                <StyledQuill margin_size={yip.yip_name.length >= 18 && kennel_name.length >= 16 ? '4.5rem' : '3.5rem'}>
+                <StyledQuill margin_size={yip.yip_name.length >= 16 || kennel_name.length >= 16 ? '4.5rem' : '3.5rem'}>
                     {
                         unsaved === false ? null :
 
-                            <p className="option message unsaved">Unsaved changes! Are you sure?</p>
+                            <div className="value unsaved_message front">Exit without saving?</div>
                     }
                     <div className="yip_info">
-                        <p className="option value">{yip.yip_name}</p>
-                        <p className="option value">{kennel_name}</p>
+                        <div className="value yip_values"><p>{yip.yip_name}</p></div>
+                        <div className="value yip_values"><p>{kennel_name}</p></div>
                     </div>
                     <div className="quill_text_box">
                         <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />

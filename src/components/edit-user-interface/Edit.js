@@ -152,7 +152,9 @@ export default function Edit(props) {
 
                     screen === '' ?
 
-                        <p className="option message">Select an Edit option to continue</p>
+                       <div className="value">
+                        <p>Select an Edit option to continue</p>
+                       </div>
 
                         :
 

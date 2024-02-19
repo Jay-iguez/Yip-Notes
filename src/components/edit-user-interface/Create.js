@@ -106,7 +106,9 @@ export default function Create(props) {
 
                     screen === '' ?
 
-                        <p className="option message">Select a Create option to continue</p>
+                        <div className="value">
+                            <p>Select a Create option to continue</p>
+                        </div>
 
                         :
 

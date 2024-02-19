@@ -72,51 +72,46 @@ export const YipCSSStyles = styled.div`
 
 
 
-
-
-
-    .option {
-        align-self: flex-start;
+    .value {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        text-decoration: none;
         background-color: #2a2b34;
         color: white;
-        border: none;
         font-weight: bold;
         font-size: 1.25em;
         padding: .1rem 2rem;
-        margin: 0 .2rem;
-        margin-top: .5rem;
-        border-left: .4rem solid #1D1F21;
+        margin: .25rem .2rem;
+
+        p {
+            border-bottom: .4rem solid #373943;
+        }
     }
 
-    .option.condition.value {
-        border-left: none;
-        border-right: none;
-        border-bottom: .2em solid #1D1F21;
+    .value.yip_values {
+        margin: -.5rem 0;
+        background-color: transparent;
     }
 
-    .option.message {
-        padding: .5em 0;
-        margin: 1em .5em;
-        border-left: none;
-        text-decoration: underline .2em solid #1D1F21;
+    .value.kennel_values {
+        border-bottom: .4rem solid #373943;
     }
 
-    .option.message.unsaved {
+    .value.unsaved_message {
         position: fixed;
-        top: 1.8rem;
+        top: 3.8rem;
         left: 8%;
         right: 8%;
         margin-left: 24.5%;
         margin-right: 24.5%;
-        padding: .5rem 0;
+        font-style: italic;
     }
 
-    .option.value {
-        border-left: none;
-        border-bottom: .4rem solid #373943;
+    .value.alert {
+        margin: 1em .5em;
     }
+
 
     .intro_message {
         display: flex;
@@ -227,7 +222,6 @@ export const StyledQuill = styled.div`
         justify-content: space-between;
         position: absolute;
         margin-top: 2.5rem;
-        padding-bottom: .5em;
         left: 8%;
         right: 8%;
         background-color: #2a2b34;

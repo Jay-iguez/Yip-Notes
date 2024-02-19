@@ -90,7 +90,9 @@ export default function Delete(props) {
 
                     screen === '' ?
 
-                        <p className="option message">Select a Delete option to continue</p>
+                        <div className="value">
+                            <p>Select a Delete option continue</p>
+                        </div>
 
                         :
 
@@ -137,7 +139,9 @@ export default function Delete(props) {
                                         :
 
                                         <>
-                                            <p className="option message">Warning: Understand all Yips of '{get_proper_kennel(kennel_to_update)?.[0]?.kennel_name}' will also be deleted - modify the Parent Kennel of any/all Yips you wish to save before deleting the Kennel.</p>
+                                        <div className="value alert">
+                                              <p>Warning: Understand all Yips of "{get_proper_kennel(kennel_to_update)?.[0]?.kennel_name}" will also be deleted - modify the Parent Kennel of any/all Yips you wish to save before deleting the Kennel.</p>
+                                        </div>
                                         </>
                                 }
 
@@ -218,7 +222,7 @@ export default function Delete(props) {
 
                                             </StyledConditionWrapper>
                                             {
-                                                yip_update.yip_name === '' ? null : <p className="option message">The Yip '{yip_update.yip_name}' will be deleted.</p>
+                                                yip_update.yip_name === '' ? null : <div className="value alert"><p>The Yip "{yip_update.yip_name}" will be deleted.</p></div>
                                             }
                                         </>
                                 }

@@ -15,15 +15,17 @@ export const Kennel = (props) => {
             <StyledKennelContainer>
                 <StyledKennelContentBox>
                     <div className="kennel_information">
-                        <p className="option value">{kennel.kennel_name}</p>
-                        <p className="option value">{kennel.kennel_category}</p>
+                        <div className="value kennel_values">{kennel.kennel_name}</div>
+                        <div className="value kennel_values">{kennel.kennel_category}</div>
                     </div>
                 </StyledKennelContentBox>
                 {
                     kennel.yips.length === 0 ?
 
-                        <p className="option condition value">This kennel is rather empty -</p>
-
+                        <div className="value">
+                            <p>This kennel is rather empty -</p>
+                        </div>
+                        
                         :
 
                         render_status !== 'complete' ?
