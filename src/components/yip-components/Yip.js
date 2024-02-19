@@ -49,20 +49,20 @@ export default function YipNote(props) {
                     }
 
                 }}>
-                    <button className="button corner">Back</button>
+                    <button className="button corner front">Back</button>
                 </Link>
                 {
                     !to_change ?
 
-                        <button className='button corner right' onClick={() => set_to_change(!to_change)}>Save Changes</button>
+                        <button className='button corner right front' onClick={() => set_to_change(!to_change)}>Save Changes</button>
 
                         :
 
                         <>
-                            <button className="button corner right changes" onClick={() => {
+                            <button className="button corner right changes front" onClick={() => {
                                 set_to_change(!to_change)
                             }}>Cancel</button>
-                            <button className="button corner right" onClick={() => {
+                            <button className="button corner right front" onClick={() => {
                                 const payload = { id: yip.yip_id, content: { ...yip, yip_content: value } }
                                 updater({ action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
@@ -78,7 +78,7 @@ export default function YipNote(props) {
                     {
                         unsaved === false ? null :
 
-                            <p className="option message">Unsaved changes! Are you sure?</p>
+                            <p className="option message unsaved">Unsaved changes! Are you sure?</p>
                     }
                     <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />
                 </StyledQuill>

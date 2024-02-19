@@ -14,11 +14,9 @@ export const YipCSSStyles = styled.div`
         font-weight: bold;
         padding: .1rem 2rem;
         margin: 0 .2rem;
-        margin-top: .5rem;
+        //margin-top: .5rem;
         border-left: .4rem solid #1D1F21;
     }
-
-    
 
     .button:hover, a:hover {
         color: grey;
@@ -49,6 +47,31 @@ export const YipCSSStyles = styled.div`
         border-left: .2em solid #1D1F21;
     }
 
+    
+    .button.select_option {
+        padding: 0 3.5em;
+        margin-bottom: 1em;
+        background-color: #373943;
+    }
+
+    .button.select_option.input {
+        padding: 0 0;
+        max-width: fit-content;
+    }
+
+    .button.select_option.input:hover {
+        color: white;
+    }
+    
+    .button.nav_item {
+        margin-top: .5rem;
+    }
+
+
+
+
+
+
     .option {
         align-self: flex-start;
         text-align: center;
@@ -64,11 +87,6 @@ export const YipCSSStyles = styled.div`
         border-left: .4rem solid #1D1F21;
     }
 
-    .option.condition {
-        margin-left: -.4em;
-        border-right: .4em solid #1D1F21;
-    }
-
     .option.condition.value {
         border-left: none;
         border-right: none;
@@ -82,9 +100,19 @@ export const YipCSSStyles = styled.div`
         text-decoration: underline .2em solid #1D1F21;
     }
 
+    .option.message.unsaved {
+        position: fixed;
+        top: 1.8rem;
+        left: 8%;
+        right: 8%;
+        margin-left: 24.5%;
+        margin-right: 24.5%;
+        padding: .5rem 0;
+    }
+
     .option.value {
         border-left: none;
-        border-bottom: .2em solid #1D1F21;
+        border-bottom: .4rem solid #373943;
     }
 
     .intro_message {
@@ -116,10 +144,15 @@ export const YipCSSStyles = styled.div`
         width: 0; 
     }
 
+    .front {
+        z-index: 9998;
+    }
+
 `
 
 // YipHomeScreen ---------
 export const StyledYipHomeScreenNavBar = styled.nav`
+    z-index: 9999;
     background-color: #373943; 
     position: fixed;
     width: 100%;
@@ -141,7 +174,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
         width: 3rem;
    }
 
-` 
+`
 //
 
 
@@ -220,6 +253,7 @@ export const StyledKennelContentBox = styled.div`
         flex-flow: column nowrap;
         justify-content: space-around;
         width: 15rem;
+        background-color: #2a2b34;
     }
 
     .kennel_yip {
@@ -288,18 +322,24 @@ export const StyledNoteLink = styled.div`
 
 `
 
+export const StyledManageScreen = styled.div`
+    margin: 1rem 8%;
+    text-align: center;
+`
+
 export const StyledConditionMessage = styled.h1`
-    border-bottom: .2em solid #2a2b34;
-    border-right: .2em solid #1D1F21;
-    font-style: italic;
-    max-width: max-content;
-    padding-right: 1.5%;
+    border-bottom: .4rem solid #373943;
 `
 
 export const StyledConditionWrapper = styled.div`
-    border-left: .4em solid #1D1F21;
-    margin-left: .2em;
-    margin-right: .2em;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #2a2b34;
+
+    .select_container {
+        margin: 0 0;
+    }
+  
 `
 
 

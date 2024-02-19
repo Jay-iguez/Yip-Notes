@@ -75,16 +75,17 @@ export default function Edit(props) {
         if (screen === 'Kennels') {
             const [kennel] = get_proper_kennel(kennel_to_update)
 
-            const modified_kennel = { 
-                kennel_name: kennel.kennel_name, 
-                kennel_category: kennel.kennel_category, 
-                kennel_date: kennel.kennel_date, 
-                kennel_id: kennel.kennel_id 
+            const modified_kennel = {
+                kennel_name: kennel.kennel_name,
+                kennel_category: kennel.kennel_category,
+                kennel_date: kennel.kennel_date,
+                kennel_id: kennel.kennel_id
             }
 
-            const payload = { ...modified_kennel, 
-                kennel_name: kennel_update.kennel_name, 
-                kennel_category: kennel_update.kennel_category === '' ? kennel.kennel_category : kennel_update.kennel_category 
+            const payload = {
+                ...modified_kennel,
+                kennel_name: kennel_update.kennel_name,
+                kennel_category: kennel_update.kennel_category === '' ? kennel.kennel_category : kennel_update.kennel_category
             }
 
             dexie.updater({ action: 'update_kennel', payload: payload })
@@ -92,9 +93,10 @@ export default function Edit(props) {
         } else if (screen === 'Yips') {
             const yip = get_proper_yip(yip_update.yip_id)
 
-            const payload = { ...yip, 
-                yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name, 
-                yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id 
+            const payload = {
+                ...yip,
+                yip_name: yip_update.yip_name === '' ? yip.yip_name : yip_update.yip_name,
+                yips_id: !yip_update.yips_id ? yip.yips_id : yip_update.yips_id
             }
 
             dexie.updater({ action: 'update_yip', payload: payload })
@@ -126,18 +128,20 @@ export default function Edit(props) {
                 <StyledConditionMessage>
                     Edit -
                 </StyledConditionMessage>
-                <select
-                    defaultValue={screen}
-                    className='option condition'
-                    onChange={(e) => {
-                        set_menu_screen({ ...menu_screen, edit: e.target.value })
-                        set_screen(e.target.value)
-                    }}
-                >
-                    <option value=''>-- select --</option>
-                    <option value='Kennels'>Kennels</option>
-                    <option value='Yips'>Yips</option>
-                </select>
+                <div className="select_container">
+                    <select
+                        defaultValue={screen}
+                        className='button select_option'
+                        onChange={(e) => {
+                            set_menu_screen({ ...menu_screen, edit: e.target.value })
+                            set_screen(e.target.value)
+                        }}
+                    >
+                        <option value=''>-- select --</option>
+                        <option value='Kennels'>Kennels</option>
+                        <option value='Yips'>Yips</option>
+                    </select>
+                </div>
             </StyledConditionWrapper>
 
             <form onSubmit={(e) => {
@@ -159,26 +163,28 @@ export default function Edit(props) {
                                     <StyledConditionMessage>
                                         Select Parent Kennel -
                                     </StyledConditionMessage>
-                                    <select
-                                        className="option condition"
-                                        value={kennel_to_update}
-                                        onChange={(e) => {
-                                            if (e.target.value === '') {
-                                                set_kennel_to_update('')
-                                                set_kennel_update({ ...kennel_update, kennel_name: '', kennel_category: '' })
-                                            } else {
-                                                const selected_option_content = e.target.options[e.target.selectedIndex].textContent
-                                                set_kennel_to_update(parseInt(e.target.value))
-                                                set_kennel_update({ ...kennel_update, kennel_name: selected_option_content })
+                                    <div className="select_container">
+                                        <select
+                                            className="button select_option"
+                                            value={kennel_to_update}
+                                            onChange={(e) => {
+                                                if (e.target.value === '') {
+                                                    set_kennel_to_update('')
+                                                    set_kennel_update({ ...kennel_update, kennel_name: '', kennel_category: '' })
+                                                } else {
+                                                    const selected_option_content = e.target.options[e.target.selectedIndex].textContent
+                                                    set_kennel_to_update(parseInt(e.target.value))
+                                                    set_kennel_update({ ...kennel_update, kennel_name: selected_option_content })
+                                                }
+                                            }}>
+                                            <option value=''>-- select --</option>
+                                            {
+                                                kennel_names.map(value => {
+                                                    return <option value={value.id}>{value.name}</option>
+                                                })
                                             }
-                                        }}>
-                                        <option value=''>-- select --</option>
-                                        {
-                                            kennel_names.map(value => {
-                                                return <option value={value.id}>{value.name}</option>
-                                            })
-                                        }
-                                    </select>
+                                        </select>
+                                    </div>
                                 </StyledConditionWrapper>
                                 {
                                     kennel_to_update === '' ?
@@ -192,37 +198,42 @@ export default function Edit(props) {
                                                 <StyledConditionMessage>
                                                     Edit Kennel Name -
                                                 </StyledConditionMessage>
-                                                <input
-                                                    onChange={(e) => {
-                                                        set_kennel_update({ ...kennel_update, kennel_name: e.target.value })
-                                                    }}
-                                                    value={kennel_update.kennel_name}
-                                                    className="option condition"
-                                                />
+                                                <div className="select_option">
+                                                    <input
+                                                        onChange={(e) => {
+                                                            set_kennel_update({ ...kennel_update, kennel_name: e.target.value })
+                                                        }}
+                                                        value={kennel_update.kennel_name}
+                                                        className="button select_option input"
+                                                        placeholder="Type Here..."
+                                                    />
+                                                </div>
                                             </StyledConditionWrapper>
                                             <StyledConditionWrapper>
                                                 <StyledConditionMessage>
                                                     Edit Kennel Category -
                                                 </StyledConditionMessage>
-                                                <select
-                                                    className="option condition"
-                                                    value={kennel_update.kennel_category}
-                                                    onChange={(e) => {
-                                                        set_kennel_update({ ...kennel_update, kennel_category: e.target.value })
-                                                    }}>
-                                                    <option value=''>-- select --</option>
-                                                    {
-                                                        typeof kennel_categories === 'object' ?
+                                                <div className="select_option">
+                                                    <select
+                                                        className="button select_option"
+                                                        value={kennel_update.kennel_category}
+                                                        onChange={(e) => {
+                                                            set_kennel_update({ ...kennel_update, kennel_category: e.target.value })
+                                                        }}>
+                                                        <option value=''>-- select --</option>
+                                                        {
+                                                            typeof kennel_categories === 'object' ?
 
-                                                            kennel_categories.map(value => {
-                                                                return <option value={value}>{value}</option>
-                                                            })
+                                                                kennel_categories.map(value => {
+                                                                    return <option value={value}>{value}</option>
+                                                                })
 
-                                                            :
+                                                                :
 
-                                                            <option value={kennel_categories}>{kennel_categories}</option>
-                                                    }
-                                                </select>
+                                                                <option value={kennel_categories}>{kennel_categories}</option>
+                                                        }
+                                                    </select>
+                                                </div>
                                             </StyledConditionWrapper>
                                         </>
                                 }
@@ -236,30 +247,32 @@ export default function Edit(props) {
                                     <StyledConditionMessage>
                                         Select Parent Kennel -
                                     </StyledConditionMessage>
-                                    <select
-                                        className="option condition"
-                                        value={yip_to_update}
-                                        onChange={(e) => {
-                                            if (e.target.value === '') {
-                                                set_yip_to_update('')
-                                                set_yip_update({ ...yip_update, yip_id: '', yip_name: '' })
-                                            } else {
-                                                set_yip_to_update(parseInt(e.target.value))
+                                    <div className="select_condition">
+                                        <select
+                                            className="button select_option"
+                                            value={yip_to_update}
+                                            onChange={(e) => {
+                                                if (e.target.value === '') {
+                                                    set_yip_to_update('')
+                                                    set_yip_update({ ...yip_update, yip_id: '', yip_name: '' })
+                                                } else {
+                                                    set_yip_to_update(parseInt(e.target.value))
+                                                }
+                                            }}>
+                                            <option value=''>-- select --</option>
+                                            {
+                                                kennel_names.length !== 0 ?
+
+                                                    kennel_names.map(value => {
+                                                        return <option value={value.id}>{value.name}</option>
+                                                    })
+
+                                                    :
+
+                                                    null
                                             }
-                                        }}>
-                                        <option value=''>-- select --</option>
-                                        {
-                                            kennel_names.length !== 0 ?
-
-                                                kennel_names.map(value => {
-                                                    return <option value={value.id}>{value.name}</option>
-                                                })
-
-                                                :
-
-                                                null
-                                        }
-                                    </select>
+                                        </select>
+                                    </div>
                                 </StyledConditionWrapper>
                                 {
                                     yip_to_update === '' ?
@@ -273,28 +286,30 @@ export default function Edit(props) {
                                                 <StyledConditionMessage>
                                                     Select Yip -
                                                 </StyledConditionMessage>
-                                                <select
-                                                    className="option condition"
-                                                    value={yip_update.yip_id}
-                                                    onChange={(e) => {
-                                                        if (e.target.value === '') {
-                                                            set_yip_update({ ...yip_update, yip_id: '', yip_name: '' })
-                                                        } else {
-                                                            const selected_option_content = e.target.options[e.target.selectedIndex].textContent
-                                                            set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value), yip_name: selected_option_content })
+                                                <div className="select_container">
+                                                    <select
+                                                        className="button select_option"
+                                                        value={yip_update.yip_id}
+                                                        onChange={(e) => {
+                                                            if (e.target.value === '') {
+                                                                set_yip_update({ ...yip_update, yip_id: '', yip_name: '' })
+                                                            } else {
+                                                                const selected_option_content = e.target.options[e.target.selectedIndex].textContent
+                                                                set_yip_update({ ...yip_update, yip_id: parseInt(e.target.value), yip_name: selected_option_content })
+                                                            }
+                                                        }}>
+                                                        <option value=''>-- select --</option>
+                                                        {
+                                                            [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0] !== undefined ?
+
+                                                                [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
+
+                                                                :
+
+                                                                null
                                                         }
-                                                    }}>
-                                                    <option value=''>-- select --</option>
-                                                    {
-                                                        [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0] !== undefined ?
-
-                                                            [kennel_yips.filter(value => value.kennel_id === yip_to_update)][0][0].yips.map(yip => <option value={yip.yip_id}>{yip.yip_name}</option>)
-
-                                                            :
-
-                                                            null
-                                                    }
-                                                </select>
+                                                    </select>
+                                                </div>
                                             </StyledConditionWrapper>
                                             {
                                                 yip_update.yip_id === '' ? null :
@@ -303,43 +318,48 @@ export default function Edit(props) {
                                                             <StyledConditionMessage>
                                                                 Edit Yip Name -
                                                             </StyledConditionMessage>
-                                                            <input
-                                                                onChange={(e) => {
-                                                                    set_yip_update({ ...yip_update, yip_name: e.target.value })
-                                                                }}
-                                                                className="option condition"
-                                                                value={yip_update.yip_name}
-                                                            />
+                                                            <div className="select_container">
+                                                                <input
+                                                                    onChange={(e) => {
+                                                                        set_yip_update({ ...yip_update, yip_name: e.target.value })
+                                                                    }}
+                                                                    className="button select_option input"
+                                                                    placeholder="Type Here..."
+                                                                    value={yip_update.yip_name}
+                                                                />
+                                                            </div>
                                                         </StyledConditionWrapper>
                                                         <StyledConditionWrapper>
                                                             <StyledConditionMessage>
                                                                 Edit Kennel Parent -
                                                             </StyledConditionMessage>
-                                                            <select
-                                                                className="option condition"
-                                                                value={yip_update.yips_id}
-                                                                onChange={(e) => {
-                                                                    if (e.target.value === '') {
-                                                                        set_parent_kennel_selected(false)
-                                                                        set_yip_update({ ...yip_update, yips_id: '' })
-                                                                    } else {
-                                                                        set_parent_kennel_selected(true)
-                                                                        set_yip_update({ ...yip_update, yips_id: parseInt(e.target.value) })
+                                                            <div className="select_container">
+                                                                <select
+                                                                    className="button select_option"
+                                                                    value={yip_update.yips_id}
+                                                                    onChange={(e) => {
+                                                                        if (e.target.value === '') {
+                                                                            set_parent_kennel_selected(false)
+                                                                            set_yip_update({ ...yip_update, yips_id: '' })
+                                                                        } else {
+                                                                            set_parent_kennel_selected(true)
+                                                                            set_yip_update({ ...yip_update, yips_id: parseInt(e.target.value) })
+                                                                        }
+                                                                    }}>
+                                                                    <option value=''>-- select --</option>
+                                                                    {
+                                                                        kennel_names.length !== 0 ?
+
+                                                                            kennel_names.map(value => {
+                                                                                return <option value={get_yips_id(value.id)}>{value.name}</option>
+                                                                            })
+
+                                                                            :
+
+                                                                            null
                                                                     }
-                                                                }}>
-                                                                <option value=''>-- select --</option>
-                                                                {
-                                                                    kennel_names.length !== 0 ?
-
-                                                                        kennel_names.map(value => {
-                                                                            return <option value={get_yips_id(value.id)}>{value.name}</option>
-                                                                        })
-
-                                                                        :
-
-                                                                        null
-                                                                }
-                                                            </select>
+                                                                </select>
+                                                            </div>
                                                         </StyledConditionWrapper>
                                                     </>
                                             }
@@ -359,7 +379,7 @@ export default function Edit(props) {
                         <button
                             className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
 
-                            
+
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>
                 }
             </form >

@@ -77,23 +77,25 @@ export default function Create(props) {
                 <StyledConditionMessage>
                     Create -
                 </StyledConditionMessage>
-                <select
-                    defaultValue={screen}
-                    className='option condition'
-                    onChange={(e) => {
-                        set_menu_screen({ ...menu_screen, create: e.target.value })
-                        set_screen(e.target.value)
-                    }}
-                >
-                    <option value=''>-- select --</option>
-                    <option value='Kennels'>Kennels</option>
-                    {
-                        dexie.no_kennels === true ? null :
+                <div className="select_container">
+                    <select
+                        defaultValue={screen}
+                        className='button select_option'
+                        onChange={(e) => {
+                            set_menu_screen({ ...menu_screen, create: e.target.value })
+                            set_screen(e.target.value)
+                        }}
+                    >
+                        <option value=''>-- select --</option>
+                        <option value='Kennels'>Kennels</option>
+                        {
+                            dexie.no_kennels === true ? null :
 
-                            <option value='Yips'>Yips</option>
-                    }
+                                <option value='Yips'>Yips</option>
+                        }
 
-                </select>
+                    </select>
+                </div>
             </StyledConditionWrapper>
 
             <form onSubmit={(e) => {
@@ -115,27 +117,30 @@ export default function Create(props) {
                                     <StyledConditionMessage>
                                         Kennel Name -
                                     </StyledConditionMessage>
-                                    <input
-                                        onChange={(e) => {
-                                            set_new_kennel({ ...new_kennel, kennel_name: e.target.value })
-                                        }}
-                                        value={new_kennel.kennel_name}
-                                        className="option condition"
-                                    />
+                                    <div className="select_container">
+                                        <input
+                                            onChange={(e) => {
+                                                set_new_kennel({ ...new_kennel, kennel_name: e.target.value })
+                                            }}
+                                            value={new_kennel.kennel_name}
+                                            className="button select_option input"
+                                            placeholder="Type Here..."
+                                        />
+                                    </div>
                                 </StyledConditionWrapper>
 
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
                                         Kennel Category -
                                     </StyledConditionMessage>
-                                    <div style={{ display: 'flex', flexFlow: 'column' }}>
+                                    <div className="select_container">
                                         <select
-                                            className="option condition"
+                                            className="button select_option"
                                             value={new_kennel.kennel_category}
                                             onChange={(e) => {
                                                 if (e.target.value === 'new category name') {
                                                     set_create_new(true)
-                                                    set_new_kennel({...new_kennel, kennel_category: ''})
+                                                    set_new_kennel({ ...new_kennel, kennel_category: '' })
 
                                                 } else {
                                                     set_create_new(false)
@@ -147,17 +152,17 @@ export default function Create(props) {
                                             {
                                                 dexie.no_kennels === true ? null
 
-                                                :
-                                                
-                                                typeof kennel_categories === 'object' ?
-
-                                                    kennel_categories.map(value => {
-                                                        return <option value={value}>{value}</option>
-                                                    })
-
                                                     :
 
-                                                    <option value={kennel_categories}>{kennel_categories}</option>
+                                                    typeof kennel_categories === 'object' ?
+
+                                                        kennel_categories.map(value => {
+                                                            return <option value={value}>{value}</option>
+                                                        })
+
+                                                        :
+
+                                                        <option value={kennel_categories}>{kennel_categories}</option>
                                             }
                                         </select>
                                         {
@@ -172,8 +177,8 @@ export default function Create(props) {
                                                     onChange={(e) => {
                                                         set_new_kennel({ ...new_kennel, kennel_category: e.target.value })
                                                     }}
-                                                    className="option condition"
-                                                    placeholder="Input New Category"
+                                                    className="button select_option input"
+                                                    placeholder="Type Here..."
                                                 />
 
 
@@ -193,44 +198,49 @@ export default function Create(props) {
                                     <StyledConditionMessage>
                                         Yip Name -
                                     </StyledConditionMessage>
-                                    <input
-                                        onChange={(e) => {
-                                            set_new_yip({ ...new_yip, yip_name: e.target.value })
-                                        }}
-                                        className="option condition"
-                                        value={new_yip.yip_name}
-                                    />
+                                    <div className="select_container">
+                                        <input
+                                            onChange={(e) => {
+                                                set_new_yip({ ...new_yip, yip_name: e.target.value })
+                                            }}
+                                            className="button select_option input"
+                                            value={new_yip.yip_name}
+                                            placeholder="Type Here..."
+                                        />
+                                    </div>
                                 </StyledConditionWrapper>
                                 <StyledConditionWrapper>
                                     <StyledConditionMessage>
                                         Select Parent Kennel -
                                     </StyledConditionMessage>
-                                    <select
-                                        className="option condition"
-                                        value={new_yip.yips_id}
-                                        onChange={(e) => {
-                                            if (e.target.value === '') {
-                                                set_parent_kennel_selected(false)
-                                                set_new_yip({ ...new_yip, yips_id: '' })
-                                            } else {
-                                                set_parent_kennel_selected(true)
-                                                set_new_yip({ ...new_yip, yips_id: parseInt(e.target.value) })
+                                    <div className="select_container">
+                                        <select
+                                            className="button select_option"
+                                            value={new_yip.yips_id}
+                                            onChange={(e) => {
+                                                if (e.target.value === '') {
+                                                    set_parent_kennel_selected(false)
+                                                    set_new_yip({ ...new_yip, yips_id: '' })
+                                                } else {
+                                                    set_parent_kennel_selected(true)
+                                                    set_new_yip({ ...new_yip, yips_id: parseInt(e.target.value) })
+                                                }
+
+                                            }}>
+                                            <option value=''>-- select --</option>
+                                            {
+                                                kennel_names.length !== 0 ?
+
+                                                    kennel_names.map(value => {
+                                                        return <option value={value.id}>{value.name}</option>
+                                                    })
+
+                                                    :
+
+                                                    null
                                             }
-
-                                        }}>
-                                        <option value=''>-- select --</option>
-                                        {
-                                            kennel_names.length !== 0 ?
-
-                                                kennel_names.map(value => {
-                                                    return <option value={value.id}>{value.name}</option>
-                                                })
-
-                                                :
-
-                                                null
-                                        }
-                                    </select>
+                                        </select>
+                                    </div>
                                 </StyledConditionWrapper>
                             </>
 
@@ -245,7 +255,7 @@ export default function Create(props) {
                         <button
                             className={`button ${screen === 'Kennels' ? !is_form_valid_kennel ? 'disabled' : '' : (!is_form_valid_yip || !parent_kennel_selected) ? 'disabled' : ''}`}
 
-                            
+
                             disabled={screen === 'Kennels' ? !is_form_valid_kennel : (!is_form_valid_yip || !parent_kennel_selected)}>Submit</button>
                 }
             </form>

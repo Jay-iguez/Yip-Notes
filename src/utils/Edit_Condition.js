@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { StyledConditionMessage, StyledConditionWrapper } from "../styled-components/Styled"
+import { StyledConditionMessage, StyledConditionWrapper, StyledManageScreen } from "../styled-components/Styled"
 import menu_screen_context from "../context/menu_screen_context"
 import CREATE from '../components/edit-user-interface/Create'
 import DELETE from '../components/edit-user-interface/Delete'
@@ -36,32 +36,36 @@ export default function EditCondition(props) {
 
     return (
         <>
-            <StyledConditionWrapper>
-                <StyledConditionMessage>
-                    What would you like to manage?
-                </StyledConditionMessage>
-                <select className="option condition" defaultValue={current_screen} onChange={(e) => {
-                    e.preventDefault()
-                    set_menu_screen({ ...menu_screen, main: e.target.value })
-                    set_current_screen(e.target.value)
-                }}>
-                    <option value='create'>Create</option>
-                    {
-                        dexie.no_kennels === true ? null :
+            <StyledManageScreen>
+                <StyledConditionWrapper>
+                    <StyledConditionMessage>
+                        How would you like to manage your data?
+                    </StyledConditionMessage>
+                    <div className="select_container"> 
+                        <select className="button select_option" defaultValue={current_screen} onChange={(e) => {
+                            e.preventDefault()
+                            set_menu_screen({ ...menu_screen, main: e.target.value })
+                            set_current_screen(e.target.value)
+                        }}>
+                            <option value='create'>Create</option>
+                            {
+                                dexie.no_kennels === true ? null :
 
-                            <>
-                                <option value='edit'>Edit</option>
-                                <option value='delete'>Delete</option>
-                            </>
+                                    <>
+                                        <option value='edit'>Edit</option>
+                                        <option value='delete'>Delete</option>
+                                    </>
 
-                    }
+                            }
 
-                </select>
-            </StyledConditionWrapper>
-            <br></br>
-            {
-                currentRender
-            }
+                        </select>
+                    </div>
+                </StyledConditionWrapper>
+                <br></br>
+                {
+                    currentRender
+                }
+            </StyledManageScreen>
         </>
     )
 }
