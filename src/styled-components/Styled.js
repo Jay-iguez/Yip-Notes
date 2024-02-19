@@ -215,7 +215,7 @@ export const StyledQuill = styled.div`
     .ql-toolbar.ql-snow {
         border: none;
         border-bottom: .1em solid #ccc;
-        margin-bottom: 3.5rem;
+        margin-bottom: ${props => props.margin_size};
     }
 
     .ql-container.ql-snow {
@@ -239,7 +239,11 @@ export const StyledQuill = styled.div`
 
     }
 
-
+    .quill_text_box {
+        * {
+            font-size: medium;
+        }
+    }
 
 `
 

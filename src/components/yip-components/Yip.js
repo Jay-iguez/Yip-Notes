@@ -34,6 +34,7 @@ export default function YipNote(props) {
         set_html_value(value)
     }, [])
 
+    console.log(yip.yip_name.length, kennel_name.length)
 
     return (
         <StyledContentContainer>
@@ -74,7 +75,7 @@ export default function YipNote(props) {
                         </>
                 }
 
-                <StyledQuill>
+                <StyledQuill margin_size={yip.yip_name.length >= 18 && kennel_name.length >= 16 ? '4.5rem' : '3.5rem'}>
                     {
                         unsaved === false ? null :
 
@@ -84,7 +85,9 @@ export default function YipNote(props) {
                         <p className="option value">{yip.yip_name}</p>
                         <p className="option value">{kennel_name}</p>
                     </div>
-                    <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />
+                    <div className="quill_text_box">
+                        <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />
+                    </div>
                 </StyledQuill>
             </StyledContentYipBody>
         </StyledContentContainer>
