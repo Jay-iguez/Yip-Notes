@@ -146,6 +146,30 @@ export const YipCSSStyles = styled.div`
         z-index: 9998;
     }
 
+    @media screen and (max-width: 540px) {
+        .button.corner_left {
+            top: 10.15rem;
+        }
+
+        .button.corner_left.right {
+            top: 10.15rem;
+            margin-right: .5rem;
+        }
+
+        .button.corner_left.right.save_changes {
+            right: .5rem;
+        }
+
+        .value.unsaved_message {
+            top: 15.50rem;
+            left: .5rem;
+            right: .5rem;
+            border-bottom: .2em solid white;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
 `
 
 // YipHomeScreen ---------
@@ -172,6 +196,21 @@ export const StyledYipHomeScreenNavBar = styled.nav`
         width: 3rem;
    }
 
+   @media screen and (max-width: 540px) {
+        height: 9.2rem;
+        border-top: .8em solid #1d1f21;
+
+        .nav-items {
+            flex-flow: column nowrap;
+            margin-left: .5rem;
+
+            button {
+                position: relative;
+                margin: .55rem 0;
+            }
+        }
+   }
+
 `
 //
 
@@ -188,18 +227,29 @@ export const StyledContentContainer = styled.div`
 `
 export const StyledContentTopborder = styled.div`
     height: 6rem;
+
+    @media screen and (max-width: 540px) {
+        height: 12.25rem;
+    }
 `
 export const StyledContentbody = styled.div`
     background-color: #373943;
     margin: 0 2rem;
-    //margin-top: 2rem; // needs to be fixed
     overflow: auto;
     font-size: 1em;
+
+    @media screen and (max-width: 540px) {
+        margin: 0 .5rem;
+    }
 `
 
 export const StyledContentYipBody = styled(StyledContentbody)`
     margin-left: 8%;
     margin-right: 8%;
+
+    @media screen and (max-width: 540px) {
+        margin: 0 .5rem;
+    }
 `
 
 
@@ -236,6 +286,13 @@ export const StyledQuill = styled.div`
     .quill_text_box {
         * {
             font-size: medium;
+        }
+    }
+
+    @media screen and (max-width: 540px) {
+        .yip_info {
+            left: .5rem;
+            right: .5rem;
         }
     }
 
@@ -327,8 +384,39 @@ export const StyledKennelContentBox = styled.div`
 	        outline: inherit;
             width: 0;
         }
-
         
+    }
+
+    @media screen and (max-width: 540px) {
+      width: 100%;
+      overflow: hidden;
+
+      .kennel_information {
+        width: 100%;
+        margin: 0 .5rem;
+      }
+
+
+
+      a {
+        width: 100%;
+      }
+
+      .kennel_yip {
+        width: 100%;
+        align-items: center;
+
+        * {
+            padding: 0 1em;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+      }
+
+
     }
 `
 //
