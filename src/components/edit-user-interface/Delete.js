@@ -252,7 +252,7 @@ export default function Delete(props) {
                             {
                                 confirm === false ? null :
 
-                                    <p className="option message">Are you sure?</p>
+                                    <div className="value alert"><p>Are you certain?</p></div>
                             }
                         </>
                 }
