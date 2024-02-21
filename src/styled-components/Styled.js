@@ -104,7 +104,7 @@ export const YipCSSStyles = styled.div`
 
     .value.unsaved_message {
         position: fixed;
-        top: 3.8rem;
+        top: 6.2rem;
         left: 8%;
         right: 8%;
         margin-left: 24.5%;
