@@ -34,6 +34,7 @@ export default function ColorSetting(props) {
 
             if (change_value === '') {
                 set_preview('')
+                set_is_disabled(true)
                 return { to_change: change_value }
             } else {
                 if (is_hex_valid(actual_value)) {

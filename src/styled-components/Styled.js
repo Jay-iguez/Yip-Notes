@@ -96,12 +96,17 @@ export const YipCSSStyles = styled.div`
             border-bottom: .4rem solid var(--color-sub);
         }
 
+        .text {
+            border-bottom: none;
+        }
+
         .color_box {
             width: 2.5em;
             height: 2.5em;
             margin: .8em;
             border: .2em solid gray;
         }
+
     }
 
     .value.yip_values {
@@ -126,6 +131,20 @@ export const YipCSSStyles = styled.div`
     .value.alert {
         margin: 1em .5em;
     }
+
+    .value.loading_bar {
+        height: 1em;
+        background-color: var(--color-accent);
+        border: .2em solid var(--color-main);
+        justify-content: left;
+        padding: .025em 0;
+
+       .fill {
+            background-color: var(--color-sub);
+            height: fit-content;
+       }
+    }
+
 
 
     .intro_message {

@@ -4,13 +4,14 @@ import { StyledYipHomeScreenNavBar } from "../../styled-components/Styled";
 import USER_INTERFACE from './User_Interface'
 import YIP from '../yip-components/Yip'
 import SETTINGS from "../settings-user-interface/Settings";
+import INFO from "../info-user-interface/Info";
 import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import menu_screen_context from "../../context/menu_screen_context";
 import css_context from "../../context/css_context";
 import db from "../../data/mock-data/db";
-import dog_image from '../../data/dog.bmp'
+
 
 
 export default function YipHomeInfo(props) {
@@ -246,9 +247,6 @@ export default function YipHomeInfo(props) {
                         <button className="button nav_item">Information</button>
                     </Link>
                 </div>
-                
-                    <img src={dog_image} />
-                
             </StyledYipHomeScreenNavBar>
             {
                 dexie_kennels === undefined ?
@@ -271,6 +269,7 @@ export default function YipHomeInfo(props) {
                             />
                         } />
                         <Route path={`settings`} element={<SETTINGS css_state={css_state} />} />
+                        <Route path={`info`} element={<INFO />} />
                         {
                             kennels && kennels
                         }
