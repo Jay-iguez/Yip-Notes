@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const YipCSSStyles = styled.div`
     font-family: 'Sunflower', sans-serif;
@@ -347,13 +347,22 @@ export const StyledKennelContainer = styled.div`
     flex-flow: row wrap;
     background-color: #373943;
     border-bottom: .5rem solid #1D1F21;
+
+
     
 `
 
 export const StyledKennelContentBox = styled.div`
     height: ${props => props.view === '' ? '15rem' : '7.5rem'}; // Need to be changed
-    width: 15rem;
-    margin: 0 .5rem;
+    margin: 0 0;
+    margin-right: ${props => props.margin_right === 0 ? '1rem' : '.6rem'};
+
+   ${props => props.max_on_query === true &&
+        css`
+        width: 100%;
+    `}
+
+    margin-left: .5rem;
     padding: 1rem 0;
     display: flex;
 
@@ -361,7 +370,7 @@ export const StyledKennelContentBox = styled.div`
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-around;
-        width: 15rem;
+        width: 20rem;
         background-color: #2a2b34;
     }
 
@@ -373,7 +382,7 @@ export const StyledKennelContentBox = styled.div`
         background-color: #2a2b34;
         border-left: .4rem solid #1D1F21;
         overflow: hidden;
-        width: 15rem;
+        width: 20rem;
         height: 100%;
 
         h3, p {
@@ -394,36 +403,59 @@ export const StyledKennelContentBox = styled.div`
         border-right: 1rem solid #1D1F21;
     }
 
+    @media screen and (max-width: 1250px) {
+        .kennel_yip {
+            width: 32.5rem;
+        }
 
+        .kennel_information {
+            width: 100%
+        }
+    }
 
-    @media screen and (max-width: 730px) {
-      width: 100%;
-      overflow: hidden;
-
-      .kennel_information {
+    @media screen and (max-width: 1155px) {
         width: 100%;
         margin: 0 .5rem;
-      }
-
-
-
-      a {
-        width: 100%;
-      }
-
-      .kennel_yip {
-        width: 100%;
-        align-items: center;
-
-        * {
-            padding: 0 1em;
+        overflow: hidden;
+        
+        .kennel_yip {
+            width: 100%;
         }
 
-        h3 {
-            text-align: center;
+        a {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 730px) {
+        width: 100%;
+        overflow: hidden;
+        margin: 0 .5rem;
+
+        .kennel_information {
+            width: 100%;
+            margin: 0 .5rem;
         }
 
-      }
+
+
+        a {
+            width: 100%;
+        }
+
+        .kennel_yip {
+            width: 100%;
+            align-items: center;
+
+            * {
+                padding: 0 1em;
+            }
+
+            h3 {
+               text-align: center;
+            }
+
+        }
 
     }
 `

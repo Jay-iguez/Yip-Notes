@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyledKennelContainer, StyledKennelContentBox } from "../../styled-components/Styled";
 import * as Helper from '../../utils/helper_functions'
 import YIP_LINK from "./Yip_Link";
@@ -7,13 +7,23 @@ import KENNEL_DROP_DOWN from './Kennel_Drop_Down'
 export const Kennel = (props) => {
 
     const { kennel, render_status } = props
+    const [viewport_width_assertion, set_viewport_width_assertion] = useState(window.innerWidth)
+
+    useEffect(() => {
+
+        set_viewport_width_assertion(window.innerWidth)
+        
+    })
+
 
     const formatted_kennel_name = Helper.format_to_url(kennel.kennel_name)
+
+
 
     return (
         <>
             <StyledKennelContainer>
-                <StyledKennelContentBox>
+                <StyledKennelContentBox margin_right={0} max_on_query={viewport_width_assertion <= 1250 ? true : false}>
                     <div className="kennel_information">
                         <div className="value kennel_values">{kennel.kennel_name}</div>
                         <div className="value kennel_values">{kennel.kennel_category}</div>
@@ -25,7 +35,7 @@ export const Kennel = (props) => {
                         <div className="value">
                             <p>This kennel is rather empty -</p>
                         </div>
-                        
+
                         :
 
                         render_status !== 'complete' ?
