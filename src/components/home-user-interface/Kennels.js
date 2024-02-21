@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import KENNEL from "../kennel-components/Kennel";
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
-import app_data_context from "../../context/app_data_context";
+
 
 export default function Kennels(props) {
 
@@ -14,8 +14,6 @@ export default function Kennels(props) {
     const routes_state = useContext(routes_context)
     const [routes, set_routes] = routes_state
 
-    const app_state = useContext(app_data_context)
-    const [app, set_app] = app_state
 
 
     return (

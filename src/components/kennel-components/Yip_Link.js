@@ -30,7 +30,7 @@ export const YipLink = (props) => {
         :
         <StyledKennelContentBox view={content.appearance} >
 
-            <Link to={`/home/${kennel_name}/${content.id}`}>
+            <Link to={`/${kennel_name}/${content.id}`}>
                 <div className={`kennel_yip ${content.appearance}`} >
                     <h3>{content.name}</h3>
                     <p>{content.text.replace(/(<([^>]+)>)/gi, " ")}</p>

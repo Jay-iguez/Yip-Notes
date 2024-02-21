@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import { StyledContentContainer, StyledContentTopborder, StyledContentbody } from "../../styled-components/Styled"
+import css_context from "../../context/css_context"
 
 // Renders the splash screen with title of app 'Yip Notes' and displays a funny flavor text.
 
@@ -22,25 +23,34 @@ const getFlavorMessage = () => {
     return flavorMessages[randomIndex]
 }
 
-export default function YipIntroInfo() {
+export default function IntroMessage() {
+
+    const css_context_state = useContext(css_context)
+    const [css, set_css] = css_context_state
+
 
     const [flavorText] = useState(getFlavorMessage())
+    
 
     useEffect(() => {
         const body = document.querySelector('body')
-        body.style.backgroundColor = '#1D1F21'
+        body.style.backgroundColor = css.color_main
     }, [])
 
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
             <StyledContentbody>
-                <h1>Welcome To Yip Notes!</h1>
-                <Link to={`home/navigation-screen`}>
-                    <div className="intro_message">
-                        <h2>
+                <div className="value">
+                    <p>
+                        Welcome to Yip Notes!
+                    </p>
+                </div>
+                <Link to={`/navigation-screen`}>
+                    <div className="value">
+                        <p>
                             Trot over to your {flavorText}
-                        </h2>
+                        </p>
                     </div>
                 </Link>
             </StyledContentbody>

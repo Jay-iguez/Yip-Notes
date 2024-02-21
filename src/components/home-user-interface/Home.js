@@ -3,15 +3,20 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { StyledYipHomeScreenNavBar } from "../../styled-components/Styled";
 import USER_INTERFACE from './User_Interface'
 import YIP from '../yip-components/Yip'
+import SETTINGS from "../settings-user-interface/Settings";
 import * as Helper from '../../utils/helper_functions'
 import condition_context from "../../context/condition_context";
 import routes_context from "../../context/routes_context";
 import menu_screen_context from "../../context/menu_screen_context";
+import css_context from "../../context/css_context";
 import db from "../../data/mock-data/db";
 import dog_image from '../../data/dog.bmp'
 
 
-export default function YipHomeInfo() {
+export default function YipHomeInfo(props) {
+
+    const { css_state } = props
+
     const condition_state = useContext(condition_context)
     const [condition, set_condition] = condition_state
 
@@ -20,6 +25,9 @@ export default function YipHomeInfo() {
 
     const menu_screen_state = useContext(menu_screen_context)
     const [menu_screen, set_menu_screen] = menu_screen_state
+
+    const css_context_state = useContext(css_context)
+    const [css, set_css] = css_context_state
 
     const [no_kennels, set_no_kennels] = useState(false)
     const [dexie_kennels, set_dexie_kennels] = useState()
@@ -221,9 +229,8 @@ export default function YipHomeInfo() {
 
     useEffect(() => {
         const body = document.querySelector('body')
-        body.style.backgroundColor = '#1D1F21'
+        body.style.backgroundColor = css.color_main
     }, [])
-
 
     return (
         <>
@@ -263,6 +270,7 @@ export default function YipHomeInfo() {
                                 }}
                             />
                         } />
+                        <Route path={`settings`} element={<SETTINGS css_state={css_state} />} />
                         {
                             kennels && kennels
                         }

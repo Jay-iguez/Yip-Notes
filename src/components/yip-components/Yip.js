@@ -38,7 +38,7 @@ export default function YipNote(props) {
         <StyledContentContainer>
             <StyledContentTopborder />
             <StyledContentYipBody>
-                <Link to={'/home/navigation-screen'} onClick={(e) => {
+                <Link to={'/navigation-screen'} onClick={(e) => {
                     if (confirm_leave !== 2) {
                         if (html_value !== value) {
                             set_unsaved(true)

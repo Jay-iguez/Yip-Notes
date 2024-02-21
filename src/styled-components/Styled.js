@@ -2,19 +2,23 @@ import styled, { css } from "styled-components";
 
 export const YipCSSStyles = styled.div`
     font-family: 'Sunflower', sans-serif;
+    --color-main: ${props => props.styles.color_main};
+    --color-sub: ${props => props.styles.color_sub};
+    --color-accent: ${props => props.styles.color_accent};
+    --color-font: ${props => props.styles.color_font};
 
     .button {
         align-self: flex-start;
         text-align: center;
         text-decoration: none;
-        background-color: #2a2b34;
-        color: white;
+        background-color: var(--color-accent);
+        color: var(--color-font);
         font-size: 1.2em;
         border: none;
         font-weight: bold;
         padding: .1rem 2rem;
         margin: 0 .2rem;
-        border-left: .4rem solid #1D1F21;
+        border-left: .4rem solid var(--color-main);
     }
 
     .button:hover, a:hover {
@@ -24,14 +28,14 @@ export const YipCSSStyles = styled.div`
     .button.corner_left {
        position: fixed;
        top: 3.8rem;
-       border-left: .4rem solid #373943;
+       border-left: .4rem solid var(--color-sub);
        margin-left: 0;
     }
 
     .button.corner_left.right {
         position: fixed;
         top: 3.8rem;
-        border-left: .4rem solid #373943;
+        border-left: .4rem solid var(--color-sub);
         right: 0;
         margin-right: 8%;
     }
@@ -43,14 +47,14 @@ export const YipCSSStyles = styled.div`
 
     .button.disabled {
         color: grey;
-        border-left: .2em solid #1D1F21;
+        border-left: .2em solid var(--color-main);
     }
 
     
     .button.select_option {
         padding: 0 3.5em;
         margin-bottom: 1em;
-        background-color: #373943;
+        background-color: var(--color-sub);
         max-width: 100%;
         white-space: nowrap;
         overflow: hidden;
@@ -63,7 +67,7 @@ export const YipCSSStyles = styled.div`
     }
 
     .button.select_option.input:hover {
-        color: white;
+        color: var(--color-font);
     }
     
     .button.nav_item {
@@ -81,15 +85,22 @@ export const YipCSSStyles = styled.div`
         justify-content: center;
         align-items: center;
         text-align: center;
-        background-color: #2a2b34;
-        color: white;
+        background-color: var(--color-accent);
+        color: var(--color-font);
         font-weight: bold;
         font-size: 1.25em;
         padding: .1rem 2rem;
         margin: .25rem .2rem;
 
         p {
-            border-bottom: .4rem solid #373943;
+            border-bottom: .4rem solid var(--color-sub);
+        }
+
+        .color_box {
+            width: 2.5em;
+            height: 2.5em;
+            margin: .8em;
+            border: .2em solid gray;
         }
     }
 
@@ -99,7 +110,7 @@ export const YipCSSStyles = styled.div`
     }
 
     .value.kennel_values {
-        border-bottom: .4rem solid #373943;
+        border-bottom: .4rem solid var(--color-sub);
     }
 
     .value.unsaved_message {
@@ -122,8 +133,8 @@ export const YipCSSStyles = styled.div`
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: start;
-        background-color: #2a2b34;
-        border-left: .4rem solid #1D1F21;
+        background-color: var(--color-accent);
+        border-left: .4rem solid var(--color-main);
         margin-left: 1rem;
         margin-right: 1rem;
         padding: 0 1rem;
@@ -136,14 +147,7 @@ export const YipCSSStyles = styled.div`
     }
 
     * {
-        color: #cdcfd0;
-    }
-
-    .caret {
-        border-left: solid 3.5rem transparent; 
-        border-bottom: solid 3.5rem #fff; 
-        height: 0; 
-        width: 0; 
+        color: var(--color-font);
     }
 
     .front {
@@ -172,7 +176,7 @@ export const YipCSSStyles = styled.div`
             top: 12.50rem;
             left: .5rem;
             right: .5rem;
-            border-bottom: .2em solid white;
+            border-bottom: .2em solid var(--color-font);
             margin-left: 0;
             margin-right: 0;
         }
@@ -202,7 +206,7 @@ export const YipCSSStyles = styled.div`
 // YipHomeScreen ---------
 export const StyledYipHomeScreenNavBar = styled.nav`
     z-index: 9999;
-    background-color: #373943; 
+    background-color: var(--color-sub); 
     position: fixed;
     width: 100%;
     height: 2rem;
@@ -225,7 +229,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
 
    @media screen and (max-width: 730px) {
         height: 9.2rem;
-        border-top: .8em solid #1d1f21;
+        border-top: .8em solid var(--color-main);
 
         .nav-items {
             flex-flow: column nowrap;
@@ -264,7 +268,7 @@ export const StyledContentTopborder = styled.div`
     }
 `
 export const StyledContentbody = styled.div`
-    background-color: #373943;
+    background-color: var(--color-sub);
     margin: 0 2rem;
     overflow: auto;
     font-size: 1em;
@@ -305,7 +309,7 @@ export const StyledQuill = styled.div`
         margin-top: 2.5rem;
         left: 8%;
         right: 8%;
-        background-color: #2a2b34;
+        background-color: var(--color-accent);
 
        p {
         padding-top: .2em;
@@ -345,8 +349,8 @@ export const StyledKennelContainer = styled.div`
     height: 30%;
     display: flex;
     flex-flow: row wrap;
-    background-color: #373943;
-    border-bottom: .5rem solid #1D1F21;
+    background-color: var(--color-sub);
+    border-bottom: .5rem solid var(--color-main);
 
 
     
@@ -371,7 +375,7 @@ export const StyledKennelContentBox = styled.div`
         flex-flow: column nowrap;
         justify-content: space-around;
         width: 20rem;
-        background-color: #2a2b34;
+        background-color: var(--color-accent);
     }
 
     .kennel_yip {
@@ -379,18 +383,18 @@ export const StyledKennelContentBox = styled.div`
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: start;
-        background-color: #2a2b34;
-        border-left: .4rem solid #1D1F21;
+        background-color: var(--color-accent);
+        border-left: .4rem solid var(--color-main);
         overflow: hidden;
         width: 20rem;
         height: 100%;
 
         h3, p {
-            color: #cdcfd0;
+            color: var(--color-font);
         };
 
         h3 {
-            border-bottom: .4rem solid #373943;
+            border-bottom: .4rem solid var(--color-sub);
             font-style: italic;
         }
 
@@ -400,7 +404,7 @@ export const StyledKennelContentBox = styled.div`
     }
 
     .kennel_yip.expand {
-        border-right: 1rem solid #1D1F21;
+        border-right: 1rem solid var(--color-main);
     }
 
     @media screen and (max-width: 1250px) {
@@ -481,13 +485,13 @@ export const StyledManageScreen = styled.div`
 `
 
 export const StyledConditionMessage = styled.h1`
-    border-bottom: .4rem solid #373943;
+    border-bottom: .4rem solid var(--color-sub);
 `
 
 export const StyledConditionWrapper = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    background-color: #2a2b34;
+    background-color: var(--color-accent);
     width: 100%;
 
     .select_container {
