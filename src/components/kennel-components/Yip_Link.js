@@ -17,16 +17,15 @@ export const YipLink = (props) => {
 
     const content_to_render = content.appearance === 'expand' ?
         <StyledKennelContentBox view={content.appearance} >
-            <div className={`kennel_yip ${content.appearance}`} >
-                <h3>{content.name}</h3>
-                <div className="kennel_expand">
+            <button
+                className={`button kennel_yip drop-down expand`}
+                onClick={() => {
+                    set_condition('drop-down')
+                    set_view(content.kennel)
+                }}><div>
+                    <h3>{content.name}</h3>
                     <p>Yips: {yips_length}</p>
-                    <button onClick={() => {
-                        set_condition('drop-down')
-                        set_view(content.kennel)
-                    }}><div className="caret"></div></button>
-                </div>
-            </div>
+                </div></button>
         </StyledKennelContentBox>
         :
         <StyledKennelContentBox view={content.appearance} >

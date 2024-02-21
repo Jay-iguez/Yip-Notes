@@ -51,6 +51,10 @@ export const YipCSSStyles = styled.div`
         padding: 0 3.5em;
         margin-bottom: 1em;
         background-color: #373943;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .button.select_option.input {
@@ -146,7 +150,7 @@ export const YipCSSStyles = styled.div`
         z-index: 9998;
     }
 
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
         .button.corner_left {
             top: 10.15rem;
         }
@@ -160,13 +164,36 @@ export const YipCSSStyles = styled.div`
             right: .5rem;
         }
 
+        .button.select_option {
+            padding: 0 1em;
+        }
+
         .value.unsaved_message {
-            top: 15.50rem;
+            top: 12.50rem;
             left: .5rem;
             right: .5rem;
             border-bottom: .2em solid white;
             margin-left: 0;
             margin-right: 0;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .button.corner_left {
+            top: 12.15rem;
+        }
+
+        .button.corner_left.right {
+            top: 12.15rem;
+        }
+
+        .button.corner_left.right.save_changes {
+            top: 9.85rem;
+            margin-right: 0;
+        }
+
+        .value.value.unsaved_message {
+            top: 14.50rem;
         }
     }
 
@@ -196,7 +223,7 @@ export const StyledYipHomeScreenNavBar = styled.nav`
         width: 3rem;
    }
 
-   @media screen and (max-width: 540px) {
+   @media screen and (max-width: 730px) {
         height: 9.2rem;
         border-top: .8em solid #1d1f21;
 
@@ -228,8 +255,12 @@ export const StyledContentContainer = styled.div`
 export const StyledContentTopborder = styled.div`
     height: 6rem;
 
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
         height: 12.25rem;
+    }
+
+    @media screen and (max-width: 450px) {
+        height: 14.25rem;
     }
 `
 export const StyledContentbody = styled.div`
@@ -238,7 +269,7 @@ export const StyledContentbody = styled.div`
     overflow: auto;
     font-size: 1em;
 
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
         margin: 0 .5rem;
     }
 `
@@ -247,7 +278,7 @@ export const StyledContentYipBody = styled(StyledContentbody)`
     margin-left: 8%;
     margin-right: 8%;
 
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
         margin: 0 .5rem;
     }
 `
@@ -289,7 +320,7 @@ export const StyledQuill = styled.div`
         }
     }
 
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
         .yip_info {
             left: .5rem;
             right: .5rem;
@@ -360,34 +391,12 @@ export const StyledKennelContentBox = styled.div`
     }
 
     .kennel_yip.expand {
-        border-bottom: .5rem solid #1D1F21;
+        border-right: 1rem solid #1D1F21;
     }
 
-    .kennel_expand {
-        display: flex;
-        justify-content: space-between;
-        flex-flow: row nowrap;
 
-        .caret {
-           margin-left: 8rem;
-           position: relative;
-        }
 
-        button {
-            text-decoration: none;
-            background: none;
-	        color: inherit;
-	        border: none;
-	        padding: 0;
-	        font: inherit;
-	        cursor: pointer;
-	        outline: inherit;
-            width: 0;
-        }
-        
-    }
-
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 730px) {
       width: 100%;
       overflow: hidden;
 
@@ -416,7 +425,6 @@ export const StyledKennelContentBox = styled.div`
 
       }
 
-
     }
 `
 //
@@ -434,6 +442,10 @@ export const StyledNoteLink = styled.div`
 export const StyledManageScreen = styled.div`
     margin: 1rem 8%;
     text-align: center;
+
+    @media screen and (max-width: 730px) {
+        margin: 1rem .5rem
+    }
 `
 
 export const StyledConditionMessage = styled.h1`
@@ -444,6 +456,7 @@ export const StyledConditionWrapper = styled.div`
     display: flex;
     flex-flow: column nowrap;
     background-color: #2a2b34;
+    width: 100%;
 
     .select_container {
         margin: 0 0;

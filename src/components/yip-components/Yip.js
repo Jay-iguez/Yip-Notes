@@ -73,7 +73,7 @@ export default function YipNote(props) {
                         </>
                 }
 
-                <StyledQuill margin_size={yip.yip_name.length >= 16 || kennel_name.length >= 16 ? '4.5rem' : '3.5rem'}>
+                <StyledQuill margin_size={yip.yip_name.length >= 16 || kennel_name.length >= 16 ? '5rem' : '3.5rem'}>
                     {
                         unsaved === false ? null :
 
