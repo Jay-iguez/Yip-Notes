@@ -19,7 +19,6 @@ export const Kennel = (props) => {
     const formatted_kennel_name = Helper.format_to_url(kennel.kennel_name)
 
 
-
     return (
         <>
             <StyledKennelContainer>

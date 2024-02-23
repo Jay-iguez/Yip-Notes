@@ -41,8 +41,14 @@ export default function AppIntro() {
 
         const fetch_data = async () => {
             const css_data = await db.color_schema.toArray()
+            let formatted_css_data
 
-            const formatted_css_data = css_data[0]
+            if (!css_data[0]) {
+                formatted_css_data = css
+            } else {
+                formatted_css_data = css_data[0]
+            }
+
 
             const css_values = {
                 color_main: formatted_css_data.color_main,
@@ -66,7 +72,7 @@ export default function AppIntro() {
                 !app_stable ?
 
                     <div>
-                        <p>App starting, please wait</p>
+                        <p style={{color: 'black'}}>App starting, please wait</p>
                     </div>
 
                     :

@@ -4,7 +4,7 @@ import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css'
 import { StyledContentContainer, StyledContentTopborder, StyledContentYipBody, StyledQuill } from "../../styled-components/Styled";
 
-export default function YipNote(props) {
+export default function Yip(props) {
 
     const { yip, kennel_name, updater } = props
 
@@ -34,6 +34,9 @@ export default function YipNote(props) {
         set_html_value(value)
     }, [])
 
+    console.log('html value: ', html_value)
+    console.log('actual: ', value)
+    console.log(value === html_value)
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
