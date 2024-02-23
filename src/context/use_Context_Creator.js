@@ -1,5 +1,7 @@
 import {useState, useContext } from "react";
 
+// Custom hook to easily create context with necessary functions to affect_said context
+
 export default function useContextCreator (context, state) {
     
     const given_context = useContext(context)

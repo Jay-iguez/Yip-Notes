@@ -6,6 +6,10 @@ import view_context from "../../context/view_context"
 
 export const YipLink = (props) => {
 
+    // Our YipLink component - it will render a different body depending on value of content.apperance
+
+    // The if content.apperance ==== expand - then it will render the special button to set the context of view to that kennel - enabling the rendering of the kennel to display. Otherwise it will render them like normal
+
     const { content, kennel_name, yips_length } = props
 
     const view_state = useContext(view_context)

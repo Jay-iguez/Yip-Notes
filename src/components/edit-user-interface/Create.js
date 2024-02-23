@@ -6,6 +6,8 @@ import menu_screen_context from "../../context/menu_screen_context";
 
 export default function Create(props) {
 
+    // Our create component - it lets us create new Kennels or yips.
+
     const { dexie } = props
 
     const menu_screen_state = useContext(menu_screen_context)

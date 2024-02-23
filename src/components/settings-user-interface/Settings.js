@@ -6,6 +6,8 @@ export default function Settings(props) {
 
     const { css_state } = props
 
+    // Parent component to setting child components
+
     return (
         <>
             <StyledContentContainer>

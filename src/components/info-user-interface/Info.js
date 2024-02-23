@@ -4,6 +4,8 @@ import { StyledContentContainer, StyledContentTopborder, StyledContentbody, Styl
 
 export default function Info () {
 
+    // Parent container of info related child components
+
     return (
         <>
             <StyledContentContainer>

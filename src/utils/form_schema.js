@@ -1,5 +1,7 @@
 import * as Yup from 'yup'
 
+// Form schema to make certain values are the specified way for indexeddb record names
+
 const kennel_name_schema = Yup
     .string()
     .matches(/^[a-zA-Z\s]+$/, 'Only alphabet characters and spaces are allowed for a Kennel Name.')

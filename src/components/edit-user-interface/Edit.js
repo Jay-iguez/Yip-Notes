@@ -4,6 +4,9 @@ import { kennel_name_schema, kennel_category_schema, yip_name_schema } from "../
 import menu_screen_context from "../../context/menu_screen_context"
 
 export default function Edit(props) {
+
+    // Lets us edit our Kennels or yips.
+
     const { dexie } = props
 
     const menu_screen_state = useContext(menu_screen_context)

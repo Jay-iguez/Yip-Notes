@@ -6,6 +6,8 @@ import { StyledContentContainer, StyledContentTopborder, StyledContentYipBody, S
 
 export default function Yip(props) {
 
+    // Our yip body component - it lets us input values and save our changes. It knows when state changes from previous value and alerts the user to this.
+
     const { yip, kennel_name, updater } = props
 
     const [start_up_count, set_start_up_count] = useState(0)

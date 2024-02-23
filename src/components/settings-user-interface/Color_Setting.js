@@ -4,6 +4,9 @@ import css_context from "../../context/css_context";
 
 export default function ColorSetting(props) {
 
+
+    // Our Color Setting component that lets us update our color values of indexeddb record 'color_schema'.
+
     const { css_state } = props
 
 

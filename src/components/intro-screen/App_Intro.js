@@ -6,6 +6,7 @@ import css_context from "../../context/css_context";
 import db from "../../data/mock-data/db";
 
 // Parent container of whole app - creates two routes that entire application live in.
+// It also sets the CSS of our css_context using our indexeddb record of 'color_schema'
 
 export default function AppIntro() {
 

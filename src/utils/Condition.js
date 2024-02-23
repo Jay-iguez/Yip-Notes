@@ -4,8 +4,10 @@ import EDIT_CONDITION from '../utils/Edit_Condition'
 import KENNEL_VIEW from '../components/kennel-components/Kennel_View'
 import condition_context from "../context/condition_context"
 
-export default function Condition(props) { // kennelRoutes={kennels} setKennelRoutes={set_kennels} kennelData={app}
-    
+export default function Condition(props) {
+
+    // Special component to render different components conditionally - based on a value. Lets us change the view of our page without having to resort to creating new routes/links
+
     const {dexie, menu} = props
 
     const condition_state = useContext(condition_context)

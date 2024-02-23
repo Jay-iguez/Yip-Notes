@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
+// Our inital colors to start out with that is then used for app styles and indexeddb fallback.
+
 const css_styling = {
     color_main: '#1D1F21',
     color_sub: '#373943',

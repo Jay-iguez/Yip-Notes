@@ -14,7 +14,10 @@ import db from "../../data/mock-data/db";
 
 
 
-export default function YipHomeInfo(props) {
+export default function Home(props) {
+
+    // Where a majority of our app's functionality lives.
+    // It houses the updater functions from which child components can update our indexeddb store. It prop drills almost all necessary functions/data as dexie/indexeddb is async in nature - so it first makes certain that the data needed is grabbed/ready before rendering page. 
 
     const { css_state } = props
 
@@ -49,7 +52,7 @@ export default function YipHomeInfo(props) {
             })
         })
             .then(res => {
-                console.log('success in creating new kennel!')
+                //console.log('success in creating new kennel!')
             })
             .catch(err => {
                 console.error(err)
@@ -60,7 +63,7 @@ export default function YipHomeInfo(props) {
         try {
             const formatted_data = { ...data, yip_content: '' }
             await db.yip.add(formatted_data)
-            console.log('success in creaating new yip')
+            //console.log('success in creaating new yip')
         } catch (err) {
             console.error(err)
         }
@@ -70,7 +73,7 @@ export default function YipHomeInfo(props) {
         try {
             await db.yip.where('yip_id').equals(data).delete()
                 .then(function (deleteCount) {
-                    console.log(`Deleted ${deleteCount} ---`)
+                    //console.log(`Deleted ${deleteCount} ---`)
                 })
         } catch (err) {
             console.error(err)
@@ -87,7 +90,7 @@ export default function YipHomeInfo(props) {
             yield db.kennels.where('kennel_id').equals(kennel_id).delete()
         })
             .then(res => {
-                console.log('success in deleting kennel')
+                //console.log('success in deleting kennel')
             })
             .catch(e => console.error(e))
 
@@ -97,7 +100,7 @@ export default function YipHomeInfo(props) {
         try {
             db.kennels.update(data.kennel_id, data).then(function (updated) {
                 if (updated) {
-                    console.log('kennel update success')
+                    //console.log('kennel update success')
                 } else {
                     console.log('kennel update error')
                 }
@@ -112,7 +115,7 @@ export default function YipHomeInfo(props) {
         try {
             db.yip.update(data.yip_id, data).then(function (updated) {
                 if (updated) {
-                    console.log('success in yip udpate!')
+                    //console.log('success in yip udpate!')
                 } else {
                     console.log('erro in updating yip')
                 }
@@ -127,7 +130,7 @@ export default function YipHomeInfo(props) {
         try {
             db.yip.update(data.id, data.content).then(function (updated) {
                 if (updated) {
-                    console.log('success in updating content')
+                    //console.log('success in updating content')
                 } else {
                     console.log('error i guess')
                 }
@@ -141,7 +144,7 @@ export default function YipHomeInfo(props) {
     const fetch_data = async () => {
 
         if (!yip_is_updated) {
-            set_dexie_kennels(undefined) // Keeps the refresh from happening if the change is too the yip content
+            set_dexie_kennels(undefined) // Keeps the refresh from happening if the change is too the yip content rather than the app as a whole.
         }
 
         const data = await db.marry_kennels.toArray()
@@ -150,7 +153,7 @@ export default function YipHomeInfo(props) {
             return 'no_kennels'
 
         }
-        
+
         set_marry_yips(data)
 
         try {
@@ -170,7 +173,7 @@ export default function YipHomeInfo(props) {
         }
     }
 
-    const updater = (action) => {
+    const updater = (action) => { // Uses a switch_statement to determine which action to take with payload/action
         switch (action.action) {
             case 'create_kennel':
                 create_kennel_transaction(action.payload)
@@ -203,7 +206,7 @@ export default function YipHomeInfo(props) {
     useEffect(() => {
         fetch_data()
             .then(res => {
-                if (res === 'no_kennels') {
+                if (res === 'no_kennels') { // Essentially if amount of kennels is 0/none - then it renders page in a way that only lets the user create a new kennel. Helps to prevent errors on editing/deleting data when there isnt any
                     set_dexie_kennels([{
                         kennel_id: 0, kennel_name: 'Make A New Kennel', kennel_category: `To Get Started`, kennel_date: Date.now(), yips: []
                     }])
@@ -222,7 +225,7 @@ export default function YipHomeInfo(props) {
     }, [data_change])
 
     useEffect(() => {
-        if (dexie_kennels !== undefined) {
+        if (dexie_kennels !== undefined) { // Creates routes of yips of a kennel
             Helper.kennel_routes_creator(dexie_kennels, set_kennels, YIP, updater)
         }
 

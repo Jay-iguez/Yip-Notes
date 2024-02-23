@@ -6,6 +6,8 @@ import routes_context from "../../context/routes_context";
 
 export default function Kennels(props) {
 
+    // Creates views of Kennels based on data
+
     const { dexie } = props
 
     const condition_state = useContext(condition_context)
@@ -27,9 +29,3 @@ export default function Kennels(props) {
 
     )
 }
-
-/**
- * 
- * 
-    logic to check amount of storage IndexedDB would allow on my devices. It's sufficient enough! 10 Gbs worth of stuff AT LEAST is plenty.
- */

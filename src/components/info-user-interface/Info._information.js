@@ -4,7 +4,7 @@ import { StyledConditionWrapper, StyledConditionMessage } from "../../styled-com
 
 export default function InfoInformation() {
 
-
+    // Our information component that displays general information on app - version - and amount of storage available to end user to create kennels/yips.
 
     const [overall_space, set_overall_space] = useState()
     const [actual_used_space, set_actual_used_space] = useState()

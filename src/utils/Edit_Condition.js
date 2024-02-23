@@ -8,6 +8,8 @@ import EDIT from '../components/edit-user-interface/Edit'
 
 export default function EditCondition(props) {
 
+    // Special component to render conditionally child components based on context - renders the menu options.
+
     const { dexie, set_condition } = props
 
     const menu_screen_state = useContext(menu_screen_context)

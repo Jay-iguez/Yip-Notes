@@ -3,6 +3,9 @@ import { StyledConditionWrapper, StyledConditionMessage } from "../../styled-com
 import menu_screen_context from "../../context/menu_screen_context"
 
 export default function Delete(props) {
+
+    // Lets us delete kennels or yips.
+
     const { dexie } = props
 
     const menu_screen_state = useContext(menu_screen_context)

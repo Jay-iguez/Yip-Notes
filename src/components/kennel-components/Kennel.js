@@ -6,6 +6,8 @@ import KENNEL_DROP_DOWN from './Kennel_Drop_Down'
 
 export const Kennel = (props) => {
 
+    // Creates a view-box of our kennel data containing the kennel name, category, and children yips.
+
     const { kennel, render_status } = props
     const [viewport_width_assertion, set_viewport_width_assertion] = useState(window.innerWidth)
 
@@ -37,6 +39,9 @@ export const Kennel = (props) => {
 
                         :
 
+                        // Essentially whats happening here is depending on length of yips of the kennel - it will change the size of the box it is in. If it gets too much - it will pass down logic to Kennel_Drop_Down component.
+
+                      
                         render_status !== 'complete' ?
                             kennel.yips.length <= 6 ?
                                 kennel.yips.map(yip => {
@@ -50,7 +55,10 @@ export const Kennel = (props) => {
 
                                     : <KENNEL_DROP_DOWN kennel={kennel} url={formatted_kennel_name} yips_length={kennel.yips.length} />
 
-                            :
+                            :  
+                            
+                            // If render_state === 'complete' then it will render ONLY kennels of that kennel without any special styles added to them.
+
 
                             kennel.yips.map(yip => {
                                 return <YIP_LINK content={{ name: yip.yip_name, id: yip.yip_id, text: yip.yip_content, appearance: '' }} kennel_name={formatted_kennel_name} key={yip.yip_id} />

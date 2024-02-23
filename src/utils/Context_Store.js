@@ -9,6 +9,8 @@ import menu_screen_context from '../context/menu_screen_context'
 
 export default function ContextStore({ children }) {
 
+    // Our context store component - it houses all our context to allow any children to obtain access to said context.
+
     const [styles_context_state] = USECONTEXTCREATOR(css_context)
     const [styles] = styles_context_state
     const [toggle_context_state] = USECONTEXTCREATOR(toggle_view)
