@@ -8,45 +8,38 @@ export default function Yip(props) {
 
     const { yip, kennel_name, updater } = props
 
+    const [start_up_count, set_start_up_count] = useState(0)
+    const [content_state, set_content_state] = useState({
+        actual_content: yip.yip_content,
+        previous_content: yip.yip_content
+    })
 
-    const [html_value, set_html_value] = useState()
-    const [value, setValue] = useState(yip.yip_content)
     const [to_change, set_to_change] = useState(false)
     const [unsaved, set_unsaved] = useState(false)
     const [confirm_leave, set_confirm_leave] = useState(1)
 
-    let counts = 0
-
     const quill_change = (e) => {
-
-        counts = counts + 1
-
-        if (counts === 2) {
-            set_html_value(e)
-            setValue(e)
-            counts = 0
-        } else {
-            setValue(e)
-        }
+        set_start_up_count(start_up_count + 1)
+        set_content_state({...content_state, actual_content: e})
     }
 
     useEffect(() => {
-        set_html_value(value)
-    }, [])
+        if (start_up_count > 0 && start_up_count <= 2 && content_state.actual_content !== content_state.previous_content) {
+            set_content_state({...content_state, previous_content: content_state.actual_content})
+        }
+    }, [start_up_count])
 
-    console.log('actual: ', html_value)
-    console.log('ACTUAL: ', value)
-    console.log(value === html_value)
+
     return (
         <StyledContentContainer>
             <StyledContentTopborder />
             <StyledContentYipBody>
                 <Link to={'/navigation-screen'} onClick={(e) => {
                     if (confirm_leave !== 2) {
-                        if (html_value !== value) {
+                        if (content_state.actual_content !== content_state.previous_content) {
+                            e.preventDefault()
                             set_unsaved(true)
                             set_confirm_leave(confirm_leave + 1)
-                            e.preventDefault()
                         }
                     }
 
@@ -65,10 +58,11 @@ export default function Yip(props) {
                                 set_to_change(!to_change)
                             }}>Cancel</button>
                             <button className="button corner_left right front" onClick={() => {
-                                const payload = { id: yip.yip_id, content: { ...yip, yip_content: value } }
+                                const payload = { id: yip.yip_id, content: { ...yip, yip_content: content_state.actual_content } }
                                 updater({ action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
-                                set_html_value(value)
+                                set_content_state({...content_state, previous_content: content_state.actual_content})
+                                set_start_up_count(0)
                                 if (unsaved === true) {
                                     set_unsaved(false)
                                 }
@@ -87,7 +81,7 @@ export default function Yip(props) {
                         <div className="value yip_values"><p>{kennel_name}</p></div>
                     </div>
                     <div className="quill_text_box">
-                        <ReactQuill theme="snow" value={value} onChange={(e) => quill_change(e)} />
+                        <ReactQuill theme="snow" value={content_state.actual_content} onChange={(e) => quill_change(e)} />
                     </div>
                 </StyledQuill>
             </StyledContentYipBody>
