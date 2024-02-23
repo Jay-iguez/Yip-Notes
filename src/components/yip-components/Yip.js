@@ -34,8 +34,8 @@ export default function Yip(props) {
         set_html_value(value)
     }, [])
 
-    console.log('html value: ', html_value)
-    console.log('actual: ', value)
+    console.log('actual: ', html_value)
+    console.log('ACTUAL: ', value)
     console.log(value === html_value)
     return (
         <StyledContentContainer>
