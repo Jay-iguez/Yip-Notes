@@ -26,7 +26,7 @@ export default function Yip(props) {
     }
 
     useEffect(() => {
-        if (start_up_count > 0 && start_up_count <= 2 && content_state.actual_content !== content_state.previous_content) {
+        if (start_up_count >= 0 && start_up_count <= 2 && content_state.actual_content !== content_state.previous_content) {
             set_content_state({...content_state, previous_content: content_state.actual_content})
         }
     }, [start_up_count])
