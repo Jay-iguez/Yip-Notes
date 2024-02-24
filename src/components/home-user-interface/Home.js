@@ -238,19 +238,24 @@ export default function Home(props) {
 
     return (
         <>
-            <StyledYipHomeScreenNavBar>
-                <div className="nav-items">
-                    <Link to={`navigation-screen`} onClick={() => set_condition('kennels-list')}>
-                        <button className="button nav_item">Home</button>
-                    </Link>
-                    <Link to={`settings`}>
-                        <button className="button nav_item">Settings</button>
-                    </Link>
-                    <Link to={`info`}>
-                        <button className="button nav_item">Information</button>
-                    </Link>
-                </div>
-            </StyledYipHomeScreenNavBar>
+            {
+                condition === 'bleu' ? null :
+
+                    <StyledYipHomeScreenNavBar>
+                        <div className="nav-items">
+                            <Link to={`navigation-screen`} onClick={() => set_condition('kennels-list')}>
+                                <button className="button nav_item">Home</button>
+                            </Link>
+                            <Link to={`settings`}>
+                                <button className="button nav_item">Settings</button>
+                            </Link>
+                            <Link to={`info`}>
+                                <button className="button nav_item">Information</button>
+                            </Link>
+                        </div>
+                    </StyledYipHomeScreenNavBar>
+            }
+
             {
                 dexie_kennels === undefined ?
 

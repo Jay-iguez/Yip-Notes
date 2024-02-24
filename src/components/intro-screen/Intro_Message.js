@@ -49,7 +49,7 @@ export default function IntroMessage() {
                 <Link to={`/navigation-screen`}>
                     <div className="value">
                         <p>
-                            Select here to trot over to your {flavorText}
+                            Click here to trot over to your {flavorText}
                         </p>
                     </div>
                 </Link>

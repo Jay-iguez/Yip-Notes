@@ -22,7 +22,7 @@ export default function Kennels(props) {
         <> 
             {
                 dexie.dexie.map(kennel => {
-                    return <KENNEL kennel={kennel} key={kennel.kennel_id} kennel_routes={routes} set_kennel_routes={set_routes} />
+                    return <KENNEL kennel={kennel} key={kennel.kennel_id} kennel_routes={routes} set_kennel_routes={set_routes} set_condition={set_condition}/>
                 })
             }
         </>
