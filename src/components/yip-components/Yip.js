@@ -21,13 +21,16 @@ export default function Yip(props) {
     const [confirm_leave, set_confirm_leave] = useState(1)
 
     const quill_change = (e) => {
-        set_start_up_count(start_up_count + 1)
-        set_content_state({...content_state, actual_content: e})
+
+        if (start_up_count <= 2) {
+            set_start_up_count(start_up_count + 1)
+        }
+        set_content_state({ ...content_state, actual_content: e })
     }
 
     useEffect(() => {
-        if (start_up_count >= 0 && start_up_count <= 2 && content_state.actual_content !== content_state.previous_content) {
-            set_content_state({...content_state, previous_content: content_state.actual_content})
+        if (start_up_count > 0 && start_up_count <= 2 && content_state.actual_content !== content_state.previous_content) {
+            set_content_state({ ...content_state, previous_content: content_state.actual_content })
         }
     }, [start_up_count])
 
@@ -63,7 +66,7 @@ export default function Yip(props) {
                                 const payload = { id: yip.yip_id, content: { ...yip, yip_content: content_state.actual_content } }
                                 updater({ action: 'update_yip_content', payload: payload })
                                 set_to_change(!to_change)
-                                set_content_state({...content_state, previous_content: content_state.actual_content})
+                                set_content_state({ ...content_state, previous_content: content_state.actual_content })
                                 set_start_up_count(0)
                                 if (unsaved === true) {
                                     set_unsaved(false)
