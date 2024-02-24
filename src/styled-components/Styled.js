@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 
+// All our necessary css styles using the beauty of styled components
+
 export const YipCSSStyles = styled.div`
     font-family: 'Sunflower', sans-serif;
     --color-main: ${props => props.styles.color_main};
@@ -222,7 +224,6 @@ export const YipCSSStyles = styled.div`
 
 `
 
-// YipHomeScreen ---------
 export const StyledYipHomeScreenNavBar = styled.nav`
     z-index: 9999;
     background-color: var(--color-sub); 
@@ -262,13 +263,8 @@ export const StyledYipHomeScreenNavBar = styled.nav`
    }
 
 `
-//
 
 
-
-
-
-// YipHomeScreenBodyGUI --------
 export const StyledContentContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
@@ -352,10 +348,6 @@ export const StyledQuill = styled.div`
 
 `
 
-// YipStartIntroMessage
-
-
-
 
 export const StyledCreateNote = styled.div`
     background-color: #cedbd7;
@@ -363,7 +355,6 @@ export const StyledCreateNote = styled.div`
     height: 80vh;
 `
 
-// YipKennel --------
 export const StyledKennelContainer = styled.div`
     height: 30%;
     display: flex;
@@ -376,7 +367,7 @@ export const StyledKennelContainer = styled.div`
 `
 
 export const StyledKennelContentBox = styled.div`
-    height: ${props => props.view === '' ? '15rem' : '7.5rem'}; // Need to be changed
+    height: ${props => props.view === '' ? '15rem' : '7.5rem'};
     margin: 0 0;
     margin-right: ${props => props.margin_right === 0 ? '1rem' : '.6rem'};
 

@@ -1,5 +1,7 @@
 import { Route } from "react-router-dom"
 
+// Misc helper functions for many components to use
+
 export const kennel_routes_creator = (state, setState, Component, func) => {
     
     let result = []

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HOME from "../home-user-interface/Home";
 import INTRO_MESSAGE from "./Intro_Message";
 import css_context from "../../context/css_context";
-import db from "../../data/mock-data/db";
+import db from "../../data/dexie-database/db";
 
 // Parent container of whole app - creates two routes that entire application live in.
 // It also sets the CSS of our css_context using our indexeddb record of 'color_schema'
