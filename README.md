@@ -15,6 +15,8 @@ A React-based notes app to help you stay organized and productive.
 
 ## Roadmap
 - [ ] Add search functionality.
-- [ ] Implement categories for notes.
 - [ ] Color coding.
+- [ ] Export notes to PDF or different formats.
+- [ ] Export/Import databases.
+- [ ] Support for more than text input - but images, sound files, etc...
 
